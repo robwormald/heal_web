@@ -6,6 +6,7 @@ $size-input-height: 45px
 
 @mixin form-group-design($count)
   height: $size-input-height * $count
+  top: -($size-input-height * $count)
   form > .grouped-form-element > .form-group
     height: (100%/$count)
 
@@ -110,3 +111,5 @@ $size-input-height: 45px
 @media(max-width: 767px)
   #login-form, #register-form, #send-form
     padding-right: 30px
+    padding-left: 30px
+    top: 0 !important
