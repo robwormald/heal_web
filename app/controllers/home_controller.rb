@@ -1,9 +1,7 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    if current_user
-      render :index
-    else
-      redirect_to authorization_index_path
-    end
+    render :index
   end
 end
