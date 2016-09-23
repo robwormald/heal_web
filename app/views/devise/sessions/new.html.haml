@@ -1,11 +1,14 @@
 #authorization-container
   #login-form.col-xs-12.col-sm-2.middle-of
-    = form_for(@user, url: session_path(@user)) do |f|
-      .form-group
-        = f.text_field :username, autofocus: true, class: 'form-control', placeholder: 'username'
-      .form-group
-        = f.password_field :password, autocomplete: 'off', class: 'form-control', placeholder: 'password'
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .grouped-form-element
+        .form-group
+          = f.text_field :username, autofocus: true, class: 'form-control', placeholder: 'username'
+        .form-group
+          = f.password_field :password, autocomplete: 'off', class: 'form-control', placeholder: 'password'
       .circle-block.outer-circle.middle-of
         = f.button '', class: 'circle-block inner-circle middle-of fa fa-play'
+    = devise_error_messages_auth!
     .form-links.text-center
-      forgot password? register
+      = link_to('forgot password?', new_user_password_path)
+      = link_to('register', new_user_registration_path)

@@ -1,15 +1,29 @@
 $color-background-main: #34383D
 $color-font-main: #4F5561
 $color-form-main: #1C1E21
+$size-outer-circle: 50px
+$size-input-height: 45px
+
+@mixin form-group-design($count)
+  height: $size-input-height * $count
+  form > .grouped-form-element > .form-group
+    height: (100%/$count)
 
 #authorization-container
   background-color: $color-background-main
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
   width: 100vw
   height: 100vh
+  .form-errors
+    color: red
+    display: flex
+    &> div
+      margin: 0 auto
   #login-form
-    height: 90px
-    top: -90px
+    @include form-group-design(2)
+  #register-form
+    @include form-group-design(4)
+  #login-form, #register-form
     position: absolute
     ::-webkit-input-placeholder
       color: $color-font-main
@@ -21,42 +35,51 @@ $color-form-main: #1C1E21
       color: $color-font-main
     form
       height: 100%
-      .form-group
-        margin-bottom: 0
-        height: 50%
-        &:first-of-type > input
-          border-bottom-left-radius: 0px
-          border-bottom: 1px solid $color-background-main
-        &~ .form-group > input
-          border-top-left-radius: 0px
-          border-top: 1px solid $color-background-main
-        input
-          color: $color-font-main
-          border-color: $color-form-main
-          background-color: $color-form-main
-          height: 100%
-          outline: none
-          box-shadow: none
-          border-radius: 10px
-          padding-right: 30px
+      .grouped-form-element
+        height: 100%
+        .form-group
+          margin-bottom: 0
+          .field_with_errors
+            display: inline
+          &:first-of-type input
+            border-bottom-left-radius: 0px
+            border-bottom-right-radius: 0px
+            border-bottom: 1px solid $color-background-main
+          &:last-of-type  input
+            border-top-left-radius: 0px
+            border-top-right-radius: 0px
+            border-top: 1px solid $color-background-main
+          &:not(:first-of-type):not(:last-of-type) input
+            border-radius: 0
+            border-top: 1px solid $color-background-main
+            border-bottom: 1px solid $color-background-main
+          input
+            color: $color-font-main
+            border-color: $color-form-main
+            background-color: $color-form-main
+            height: 100%
+            outline: none
+            box-shadow: none
+            border-radius: 10px
+            padding-right: 30px
     .circle-block
       display: inline-block
       border-radius: 50%
       &.inner-circle
         background-color: $color-form-main
-        width: 40px
-        height: 40px
+        width: $size-outer-circle - 10px
+        height: $size-outer-circle - 10px
         border: 0
       &.outer-circle
         display: flex
         position: relative
         background-color: $color-background-main
-        width: 50px
-        height: 50px
+        width: $size-outer-circle
+        height: $size-outer-circle
         border-top-right-radius: 0
         border-bottom-right-radius: 0
-        top: -74%
-        left: 49%
+        top: -70px
+        left: 50%
     .fa.fa-play
       line-height: 2.8
       padding-left: 20%
@@ -70,3 +93,10 @@ $color-form-main: #1C1E21
     left: 0
     right: 0
     margin: auto
+
+@media(max-width: 767px)
+  #login-form, #register-form
+    padding-right: 30px
+@media(min-width: 768px)
+  #login-form, #register-form
+    min-width: 320px
