@@ -11,7 +11,8 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get '/forgot-password'  => 'devise/passwords#new',        as: :new_user_password
-    get '/forgot-password'  => 'devise/passwords#create',     as: :user_password
+    post '/forgot-password'  => 'devise/passwords#create',    as: :user_password
+    get '/forgot-password/edit'  => 'devise/passwords#edit',  as: :edit_user_password
     get '/register'         => 'devise/registrations#new',    as: :new_user_registration
     post '/register'        => 'devise/registrations#create', as: :user_registration
   end

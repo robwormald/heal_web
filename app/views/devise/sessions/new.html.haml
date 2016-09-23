@@ -1,5 +1,5 @@
 #authorization-container
-  #login-form.col-xs-12.col-sm-2.middle-of
+  #login-form.middle-of
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .grouped-form-element
         .form-group
@@ -8,7 +8,4 @@
           = f.password_field :password, autocomplete: 'off', class: 'form-control', placeholder: 'password'
       .circle-block.outer-circle.middle-of
         = f.button '', class: 'circle-block inner-circle middle-of fa fa-play'
-    = devise_error_messages_auth!
-    .form-links.text-center
-      = link_to('forgot password?', new_user_password_path)
-      = link_to('register', new_user_registration_path)
+    = render 'devise/shared/links'
