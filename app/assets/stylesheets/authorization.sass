@@ -1,0 +1,72 @@
+$color-background-main: #34383D
+$color-font-main: #4F5561
+$color-form-main: #1C1E21
+
+#authorization-container
+  background-color: $color-background-main
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif
+  width: 100vw
+  height: 100vh
+  #login-form
+    height: 90px
+    top: -90px
+    position: absolute
+    ::-webkit-input-placeholder
+      color: $color-font-main
+    :-moz-placeholder
+      color: $color-font-main
+    ::-moz-placeholder
+      color: $color-font-main
+    :-ms-input-placeholder
+      color: $color-font-main
+    form
+      height: 100%
+      .form-group
+        margin-bottom: 0
+        height: 50%
+        &:first-of-type > input
+          border-bottom-left-radius: 0px
+          border-bottom: 1px solid $color-background-main
+        &~ .form-group > input
+          border-top-left-radius: 0px
+          border-top: 1px solid $color-background-main
+        input
+          color: $color-font-main
+          border-color: $color-form-main
+          background-color: $color-form-main
+          height: 100%
+          outline: none
+          box-shadow: none
+          border-radius: 10px
+          padding-right: 30px
+    .circle-block
+      display: inline-block
+      border-radius: 50%
+      &.inner-circle
+        background-color: $color-form-main
+        width: 40px
+        height: 40px
+        border: 0
+      &.outer-circle
+        display: flex
+        position: relative
+        background-color: $color-background-main
+        width: 50px
+        height: 50px
+        border-top-right-radius: 0
+        border-bottom-right-radius: 0
+        top: -74%
+        left: 49%
+    .fa.fa-play
+      line-height: 2.8
+      padding-left: 20%
+      color: $color-background-main
+    .form-links
+      color: $color-font-main
+
+  .middle-of
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    margin: auto
