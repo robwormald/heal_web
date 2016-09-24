@@ -12,6 +12,11 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+/node_modules/*
+
+/typings
+/public/app/**/*.js
+/public/app/**/*.map
 
 # Ignore Byebug command history file.
 .byebug_history
