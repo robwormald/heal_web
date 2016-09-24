@@ -9,3 +9,6 @@
 user = User.new({ username: 'GuskiS', email: 'edvards@lazdans.lv', password: 'qwerty123' })
 user.skip_confirmation!
 user.save!
+
+chat_room = ChatRoom.create!({ title: 'General' })
+chat_message = ChatMessage.create!({ chat_room_id: chat_room.id, user_id: user.id, body: 'Hey!' })

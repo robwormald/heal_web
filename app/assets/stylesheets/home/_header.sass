@@ -1,0 +1,28 @@
+.header-helper
+  background-color: white
+  line-height: 2
+  .triangle
+    width: 0
+    height: 0
+    border-style: solid
+    &.pull-left
+      padding-left: 15px
+      border-width: 30px 0 0 30px
+      border-color: transparent transparent transparent $color-main-background
+    &.pull-right
+      padding-right: 15px
+      border-width: 30px 30px 0 0
+      border-color: transparent $color-main-background transparent transparent
+
+nav.navbar
+  background-color: $color-header-background
+  .main-container
+    padding-left: 10px
+    padding-right: 10px
+    a
+      color: white
+    #header-navbar
+      li
+        border-top: 3px solid transparent
+      li:hover
+        border-top-color: white

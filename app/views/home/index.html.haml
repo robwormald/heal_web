@@ -1,3 +1,40 @@
-Haha, logged in -
-= current_user.username
-= link_to('Logout', destroy_user_session_path, method: :delete)
+#home-block
+  = render 'home/header'
+  #home-layout.container-fluid.main-container
+    .col-xs-12.col-sm-12.col-md-6.col-md-push-3.center-column
+      .container-block
+        .container-header
+          .container-title
+            hey2
+          .container-space
+            .triangle
+        .container-body
+          Hello
+
+    .col-xs-12.col-sm-6.col-md-3.col-md-push-3.right-column
+      .container-block
+        .container-header
+          .container-title.text-uppercase
+            hey3
+        .container-body
+          Hello
+
+    .col-xs-12.col-sm-6.col-md-3.col-md-pull-9.left-column
+      .container-block
+        .container-header
+          .container-title.text-uppercase
+            hey1
+        .container-body
+          Hello
+      .container-block
+        .container-header
+          .container-title.text-uppercase
+            hey1
+        .container-body
+          Hello
+      .container-block
+        .container-header
+          .container-title.text-uppercase
+            hey1
+        .container-body
+          Hello

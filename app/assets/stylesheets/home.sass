@@ -1,0 +1,60 @@
+#home-block
+  $color-main-background: #F1F1F1
+  $color-header-background: #E93100
+  $size-container-max-width: 1460px
+
+  .main-container
+    max-width: $size-container-max-width
+    padding-left: 0
+    padding-right: 0
+
+  padding-top: 53px
+  height: 100vh
+  background-color: $color-main-background
+  @import "home/_header.sass"
+
+  #home-layout
+    $size-default-container-space: 15px
+    margin-top: 50px
+
+    .left-column, .center-column, .right-column
+      margin-bottom: $size-default-container-space
+      padding-left: 7px
+      padding-right: 7px
+    .left-column, .right-column
+      .container-block
+        padding: $size-default-container-space
+        .container-title
+          border-bottom: 3px solid $color-header-background
+          font-size: 16px
+          margin-bottom: $size-default-container-space
+    .center-column
+      .container-block
+        $size-top-border: 8px
+        $size-space-heigth: 4rem
+
+        .container-header
+          display: flex
+          .container-title
+            border-top: $size-top-border solid white
+            padding-right: 20px
+            padding-left: 20px
+            font-size: 20px
+          .container-space
+            border-top: $size-top-border solid $color-main-background
+            background-color: #00BEE9
+            width: 100%
+            height: $size-space-heigth
+            .triangle
+              width: 0
+              height: 0
+              border-style: solid
+              border-width: $size-space-heigth 0 0 $size-space-heigth
+              border-color: transparent transparent transparent white
+              margin-top: -$size-top-border
+        .container-body
+          padding: $size-default-container-space
+    .container-block
+      background-color: white
+    .container-block ~ .container-block
+      margin-top: $size-default-container-space
