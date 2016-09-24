@@ -3,7 +3,7 @@
     = form_for(resource, as: resource_name, url: password_path(resource_name)) do |f|
       .grouped-form-element
         .form-group
-          = f.text_field :username, autofocus: true, class: 'form-control', placeholder: 'username'
+          = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'email'
       .circle-block.outer-circle.middle-of
         = f.button '', class: 'circle-block inner-circle middle-of fa fa-play'
     = render 'devise/shared/links'
