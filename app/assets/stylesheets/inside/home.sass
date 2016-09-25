@@ -1,17 +1,18 @@
+$color-main-background: #F1F1F1
+$color-header-background: #E93100
+$size-container-max-width: 1460px
+
+body
+  background-color: $color-main-background
+
 #home-block
-  $color-main-background: #F1F1F1
-  $color-header-background: #E93100
-  $size-container-max-width: 1460px
+  @import "_header.sass"
+  padding-top: 53px
 
   .main-container
     max-width: $size-container-max-width
     padding-left: 0
     padding-right: 0
-
-  padding-top: 53px
-  background-color: $color-main-background
-  @import "home/_header.sass"
-
   #home-layout
     $size-default-container-space: 15px
     margin-top: 50px
