@@ -17,6 +17,7 @@
 /typings
 /public/app/**/*.js
 /public/app/**/*.map
+npm-debug.log
 
 # Ignore Byebug command history file.
 .byebug_history
