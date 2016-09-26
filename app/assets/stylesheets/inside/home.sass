@@ -41,6 +41,7 @@ body
             padding-left: 20px
             font-size: 20px
           .container-space
+            @include display-flex
             border-top: $size-top-border solid $color-main-background
             background-color: #00BEE9
             width: 100%
@@ -52,9 +53,9 @@ body
               border-width: $size-space-heigth 0 0 $size-space-heigth
               border-color: transparent transparent transparent white
               margin-top: -$size-top-border
+              @include align-self(flex-end)
         .container-body
           padding: $size-default-container-space
     .container-block
       background-color: white
-    .container-block ~ .container-block
-      margin-top: $size-default-container-space
+      margin-bottom: $size-default-container-space

@@ -19,10 +19,11 @@ nav.navbar
   .main-container
     padding-left: 10px
     padding-right: 10px
-    a
-      color: white
     #header-navbar
       li
-        border-top: 3px solid transparent
-      li:hover
-        border-top-color: white
+        a
+          outline: none
+          color: white
+          border-top: 3px solid transparent
+        &:hover > a, &> a.active
+          border-top-color: white
