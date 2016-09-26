@@ -1,1 +1,7 @@
-<container-block [title]='"Chat"' [center]='true'>LOLOLOLOLOL</container-block>
+<container-block [title]='"Chat"' [center]='true'>
+  <ul>
+    <li *ngFor='let chat of chats'>
+      {{ chat.title }}
+    </li>
+  </ul>
+</container-block>

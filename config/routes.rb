@@ -17,5 +17,9 @@ Rails.application.routes.draw do
     post '/register'        => 'devise/registrations#create', as: :user_registration
   end
 
-   get '*path', to: 'home#index'
+  namespace :api do
+    resources :chat, only: [:index]
+  end
+
+  get '*path', to: 'home#index'
 end

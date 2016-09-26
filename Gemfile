@@ -36,6 +36,7 @@ gem 'haml-rails', '~> 0.9'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-sass', '~> 4.6.2'
 gem 'redis', '~> 3.2'
+gem 'active_model_serializers', '~> 0.10.0'
 
 group :development, :test do
   gem 'pry'
