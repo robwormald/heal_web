@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Chat } from './chat';
+import { ActivatedRoute, Params } from '@angular/router';
+
+import { ChatRoom, ChatMessage } from './../objects';
 import { ChatService } from './chat.service';
 
 @Component({
@@ -9,10 +11,18 @@ import { ChatService } from './chat.service';
 })
 
 export class ChatComponent implements OnInit {
-  chats: Chat[];
-  constructor(private chatService: ChatService) { }
+  chats: ChatRoom[];
+  chatMessages: ChatMessage[];
+
+  constructor(
+    private chatService: ChatService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.chatService.getChats().then(chats => this.chats = chats);
+    this.route.params.forEach((params: Params) => {
+      this.chatService.getChat(params['id']).then(chatMessages => this.chatMessages = chatMessages);
+    });
   }
 }

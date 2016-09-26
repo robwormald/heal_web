@@ -1,4 +1,4 @@
-export class Chat {
+export class ChatRoom {
   id: number;
   title: string;
 }

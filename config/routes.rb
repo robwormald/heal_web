@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :chat, only: [:index]
+    resources :chat, only: [:index, :show]
   end
 
   get '*path', to: 'home#index'

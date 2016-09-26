@@ -11,4 +11,6 @@ user.skip_confirmation!
 user.save!
 
 chat_room = ChatRoom.create!({ title: 'General' })
+ChatRoom.create!({ title: 'Gaming' })
+ChatRoom.create!({ title: 'Admin' })
 chat_message = ChatMessage.create!({ chat_room_id: chat_room.id, user_id: user.id, body: 'Hey!' })

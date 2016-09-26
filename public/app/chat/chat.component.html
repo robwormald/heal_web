@@ -1,7 +1,37 @@
 <container-block [title]='"Chat"' [center]='true'>
-  <ul>
-    <li *ngFor='let chat of chats'>
-      {{ chat.title }}
-    </li>
-  </ul>
+  <div id='chat-room'>
+    <ul class='nav nav-tabs'>
+      <li *ngFor='let chat of chats' role='presentation'>
+        <a routerLink='/chat/{{ chat.id }}' routerLinkActive='active'>{{ chat.title }}</a>
+      </li>
+    </ul>
+
+    <div class='row'>
+      <div class='col-xs-12 chat-header'>
+        <div class='input-group'>
+          <input type='text' class='form-control' placeholder='Message'>
+          <span class='input-group-addon cursor-pointer'>
+            <span class='glyphicon glyphicon-comment'></span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor='let message of chatMessages' class='chat-messages'>
+      <div class='row'>
+        <div class='col-xs-12 chat-message-header'>
+          <span class='pull-left'>{{ message.user.username }}</span>
+          <span class='pull-right'>{{ message.created_at }}</span>
+        </div>
+      </div>
+
+      <div class='row'>
+        <div class='col-xs-12 chat-message-body'>
+          <div>
+            {{ message.body }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </container-block>
