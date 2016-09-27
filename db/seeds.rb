@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-main_user = User.new({ username: 'GuskiS', email: 'edvards@lazdans.lv', password: 'qwerty123' })
+main_user = User.new({ username: 'GuskiS', email: 'edvards@lazdans.lv', password: 'qwerty123', permissions: [:member, :administrator] })
 main_user.skip_confirmation!
 main_user.save!
 
@@ -16,4 +16,4 @@ test_user.save!
 
 ChatRoom.create!({ title: 'General' })
 ChatRoom.create!({ title: 'Gaming' })
-ChatRoom.create!({ title: 'Admin' })
+ChatRoom.create!({ title: 'Admin', permissions: Constants::ADMIN_SYSTEM_ROLES })

@@ -13,6 +13,8 @@ module HealWeb
     # -- all .rb files in that directory are automatically loaded.
     config.sass.preferred_syntax = :sass
 
+    config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths << Rails.root.join('queries')
     config.assets.paths << Rails.root.join('node_modules')
   end
 end

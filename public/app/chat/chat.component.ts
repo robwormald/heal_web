@@ -47,7 +47,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   onKeyPress(e): void {
-    if(e && e.ctrlKey && e.keyCode == 13) {
+    if(e && !e.ctrlKey && e.keyCode == 13) {
       this.onSend();
     }
   }
