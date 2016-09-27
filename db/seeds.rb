@@ -6,11 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-user = User.new({ username: 'GuskiS', email: 'edvards@lazdans.lv', password: 'qwerty123' })
-user.skip_confirmation!
-user.save!
+main_user = User.new({ username: 'GuskiS', email: 'edvards@lazdans.lv', password: 'qwerty123' })
+main_user.skip_confirmation!
+main_user.save!
 
-chat_room = ChatRoom.create!({ title: 'General' })
+test_user = User.new({ username: 'test', email: 'test@test.lv', password: 'qwerty123' })
+test_user.skip_confirmation!
+test_user.save!
+
+ChatRoom.create!({ title: 'General' })
 ChatRoom.create!({ title: 'Gaming' })
 ChatRoom.create!({ title: 'Admin' })
-chat_message = ChatMessage.create!({ chat_room_id: chat_room.id, user_id: user.id, body: 'Hey!' })
