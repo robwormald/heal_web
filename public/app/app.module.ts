@@ -1,6 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
+import { FormsModule }   from '@angular/forms';
 
 import './rxjs-extensions';
 import { routing, appRoutingProviders } from './app.routing';
@@ -16,6 +17,7 @@ import { ContainerBlockComponent }   from './templates/container-block.component
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
     routing
   ],
   declarations: [

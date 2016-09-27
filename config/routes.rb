@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :home, only: [:index]
+  mount ActionCable.server => '/cable'
 
   devise_for :users, skip: [:registrations, :passwords], path: '', path_names: {
     sign_in: 'login',
@@ -18,7 +19,9 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :chat, only: [:index, :show]
+    resources :chat, only: [:index, :show] do
+      post :create, on: :member
+    end
   end
 
   get '*path', to: 'home#index'
