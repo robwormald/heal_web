@@ -1,13 +1,19 @@
-import 'bbCodeParser';
-declare let BBCodeParser:any;
+var XBBCODE = require('XBBCODE');
 
 import { Injectable } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Injectable()
 export class BBCodeService {
-  parser:any = new BBCodeParser(BBCodeParser.defaultTags());
+  constructor(private sanitizer: DomSanitizer) {}
 
-  parse(data: string): string {
-    return this.parser.parseString(data);
+  parse(data: string): any {
+    let object = XBBCODE.process({
+      text: data,
+      removeMisalignedTags: false,
+      addInLineBreaks: true
+    });
+
+    return this.sanitizer.bypassSecurityTrustHtml(object.html);
   }
 }

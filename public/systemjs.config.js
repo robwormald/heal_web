@@ -24,7 +24,7 @@
       // other libraries
       'rxjs':                       'npm:rxjs',
       'actioncable-js': 'npm:actioncable-js/dist/action_cable.js',
-      'bbCodeParser': 'npm:bbCodeParser.min.js'
+      'XBBCODE': 'npm:xbbcode.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -38,7 +38,7 @@
       'actioncable-js': {
         defaultExtension: 'js'
       },
-      'bbCodeParser': {
+      'XBBCODE': {
         defaultExtension: 'js'
       }
     }

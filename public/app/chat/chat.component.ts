@@ -17,6 +17,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   chatRoomId: number;
   message: string;
   inputDisabled: boolean;
+  parsedList: any = {};
 
   constructor(
     private chatService: ChatService,
@@ -49,13 +50,13 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   onKeyPress(e): void {
-    if(e && !e.ctrlKey && e.keyCode == 13) {
+    if(e && !e.ctrlKey && !e.shiftKey && e.keyCode == 13) {
       this.onSend();
     }
   }
 
-  parseBBcode(data: string): string {
-    return this.bbcode.parse(data);
+  parseBBcode(message: ChatMessage): string {
+    return message.parsed || (message.parsed = this.bbcode.parse(message.body))
   }
 
   onSend(): void {
