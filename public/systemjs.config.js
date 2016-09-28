@@ -23,7 +23,8 @@
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       // other libraries
       'rxjs':                       'npm:rxjs',
-      'actioncable-js': 'npm:actioncable-js/dist/action_cable.js'
+      'actioncable-js': 'npm:actioncable-js/dist/action_cable.js',
+      'bbCodeParser': 'npm:bbCodeParser.min.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -35,6 +36,9 @@
         defaultExtension: 'js'
       },
       'actioncable-js': {
+        defaultExtension: 'js'
+      },
+      'bbCodeParser': {
         defaultExtension: 'js'
       }
     }

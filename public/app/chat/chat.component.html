@@ -8,8 +8,9 @@
 
     <div class='row'>
       <div class='col-xs-12 chat-header'>
+        <bbcode-toolbar target='chatroom-textarea'></bbcode-toolbar>
         <div class='input-group'>
-          <input [(ngModel)]='message' (keydown)='onKeyPress($event)' type='text' class='form-control' placeholder='Message'>
+          <textarea [(ngModel)]='message' (keydown)='onKeyPress($event)' id='chatroom-textarea' class='form-control' placeholder='Message' rows='2'></textarea>
           <span class='input-group-addon cursor-pointer' (click)='onSend()'>
             <span class='glyphicon glyphicon-comment'></span>
           </span>
@@ -27,9 +28,7 @@
 
       <div class='row'>
         <div class='col-xs-12 chat-message-body'>
-          <div>
-            {{ message.body }}
-          </div>
+          <div [innerHTML]='parseBBcode(message.body)'></div>
         </div>
       </div>
     </div>

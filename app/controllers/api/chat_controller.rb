@@ -5,8 +5,8 @@ class Api::ChatController < ApiController
   end
 
   def create
-    chat_room = ChatRoom.where(id: params[:id])
-    if chat_room.any?
+    chat_room = ChatRoom.where(id: params[:id]).where(GlobalQueries.permission_array, current_user.permissions).first
+    if chat_room
       message = ChatMessage.new(permit_params)
       message.user = current_user
       message.chat_room = chat_room

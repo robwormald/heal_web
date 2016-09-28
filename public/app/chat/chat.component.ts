@@ -1,13 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
+import { BBCodeService } from './../global/bbcode.service';
 import { ChatRoom, ChatMessage } from './../objects';
 import { ChatService } from './chat.service';
 
 @Component({
   selector: 'chat-component',
   templateUrl: 'app/chat/chat.component.html',
-  providers: [ChatService]
+  providers: [ChatService, BBCodeService]
 })
 
 export class ChatComponent implements OnInit, OnDestroy {
@@ -19,7 +20,8 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   constructor(
     private chatService: ChatService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private bbcode: BBCodeService
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +52,10 @@ export class ChatComponent implements OnInit, OnDestroy {
     if(e && !e.ctrlKey && e.keyCode == 13) {
       this.onSend();
     }
+  }
+
+  parseBBcode(data: string): string {
+    return this.bbcode.parse(data);
   }
 
   onSend(): void {

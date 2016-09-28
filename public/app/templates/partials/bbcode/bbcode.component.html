@@ -1,0 +1,5 @@
+<div class='bbcode-toolbar'>
+  <button class='bbcode-button no-border-radius' *ngFor='let object of bbcodeList' (click)='onClick(object.code)'>
+    <i class='fa {{ object.className }}' aria-hidden='true'></i>
+  </button>
+</div>
