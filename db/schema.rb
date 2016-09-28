@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160927161638) do
     t.string   "permissions", default: ["member", "moderator", "administrator"],              array: true
     t.datetime "created_at",                                                     null: false
     t.datetime "updated_at",                                                     null: false
+    t.index ["title"], name: "index_chat_rooms_on_title", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade do |t|

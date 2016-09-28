@@ -17,9 +17,9 @@ export class ChatService {
       .catch(this.handleError);
   }
 
-  getChats(): Promise<ChatRoom[]> {
+  getChats(): Promise<any> {
     return this.http.get('api/chat').toPromise()
-      .then(function(response) { return response.json() as ChatRoom[] })
+      .then(function(response) { return response.json() })
       .catch(this.handleError);
   }
 

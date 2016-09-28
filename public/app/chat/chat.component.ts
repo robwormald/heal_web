@@ -12,12 +12,11 @@ import { ChatService } from './chat.service';
 })
 
 export class ChatComponent implements OnInit, OnDestroy {
-  chats: ChatRoom[];
+  chats: ChatRoom[] = [];
+  currentChatId: number;
   chatMessages: ChatMessage[];
-  chatRoomId: number;
   message: string;
   inputDisabled: boolean;
-  parsedList: any = {};
 
   constructor(
     private chatService: ChatService,
@@ -26,17 +25,28 @@ export class ChatComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.chatService.getChats().then(chats => this.chats = chats);
-
-    this.route.params.forEach((params: Params) => {
-      this.chatRoomId = params['id'];
-      this.chatService.getMessages(this.chatRoomId).then(chatMessages => this.chatMessages = chatMessages);
-      this.subscribe(this.chatRoomId);
+    this.chatService.getChats().then(result => {
+      this.chats = result.chats as ChatRoom[];
+      this.chatMessages = result.messages as ChatMessage[];
+      this.currentChatId = this.chats[0].id;
+      this.subscribe(this.currentChatId);
     });
   }
 
   ngOnDestroy(): void {
     this.chatService.unsubscribe();
+  }
+
+  tabClassName(id: number): string {
+    return this.currentChatId == id ? 'active' : '';
+  }
+
+  switchChatRooms(id: number): void {
+    this.currentChatId = id;
+    this.chatService.getMessages(id).then(chatMessages => {
+      this.chatMessages = chatMessages;
+      this.subscribe(id);
+    });
   }
 
   subscribe(id: number): void {
@@ -62,7 +72,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   onSend(): void {
     if(!this.inputDisabled && this.message && this.message.length) {
       this.inputDisabled = true;
-      this.chatService.sendMessage(this.chatRoomId, this.message).then(() => {
+      this.chatService.sendMessage(this.currentChatId, this.message).then(() => {
         this.message = '';
         this.inputDisabled = false;
       }).catch(() => this.inputDisabled = false);

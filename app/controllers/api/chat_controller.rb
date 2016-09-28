@@ -1,7 +1,8 @@
 class Api::ChatController < ApiController
   def index
     @chat_rooms = ChatRoom.where(GlobalQueries.permission_array, current_user.permissions)
-    render json: @chat_rooms
+    @chat_messages = get_messages(@chat_rooms.first.id)
+    render json: { chats: @chat_rooms, messages: @chat_messages.as_json(include: { user: { only: [:id, :username] } }) }
   end
 
   def create
@@ -17,14 +18,20 @@ class Api::ChatController < ApiController
   end
 
   def show
-    @messages = ChatMessage.joins(:chat_room)
-      .where({ chat_room_id: params[:id] })
-      .where(GlobalQueries.permission_array, current_user.permissions)
-      .includes(:user).order(id: :desc).limit(15)
-    render json: @messages
+    @chat_room = ChatRoom.where(id: params[:id]).where(GlobalQueries.permission_array, current_user.permissions).first
+    if(@chat_room)
+      @chat_messages = get_messages(@chat_room.id)
+      render json: @chat_messages
+    else
+      render json: []
+    end
   end
 
   private
+
+  def get_messages(chat_room_id)
+    ChatMessage.where({ chat_room_id: chat_room_id }).includes(:user).order(id: :desc).limit(15)
+  end
 
   def permit_params
     params.require(:chat).permit([:body])

@@ -1,8 +1,8 @@
 <container-block [title]='"Chat"' [center]='true'>
-  <div id='chat-room'>
+  <div id='chat-room' *ngIf='chats.length'>
     <ul class='nav nav-tabs'>
-      <li *ngFor='let chat of chats' role='presentation'>
-        <a routerLink='/chat/{{ chat.id }}' routerLinkActive='active'>{{ chat.title }}</a>
+      <li *ngFor='let chat of chats' class='cursor-pointer' (click)='switchChatRooms(chat.id)'>
+        <a [ngClass]='tabClassName(chat.id)'>{{ chat.title }}</a>
       </li>
     </ul>
 

@@ -14,6 +14,6 @@ test_user = User.new({ username: 'test', email: 'test@test.lv', password: 'qwert
 test_user.skip_confirmation!
 test_user.save!
 
-ChatRoom.create!({ title: 'General' })
-ChatRoom.create!({ title: 'Gaming' })
-ChatRoom.create!({ title: 'Admin', permissions: Constants::ADMIN_SYSTEM_ROLES })
+ChatRoom.create!({ title: '#general' })
+ChatRoom.create!({ title: '#gaming' })
+ChatRoom.create!({ title: '#admin', permissions: Constants::ADMIN_SYSTEM_ROLES })

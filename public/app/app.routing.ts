@@ -5,9 +5,8 @@ import { HomeComponent }   from './home/home.component';
 import { ChatComponent }   from './chat/chat.component';
 
 const appRoutes: Routes = [
-  { path: 'chat', redirectTo: 'chat/1' },
   {
-    path: 'chat/:id',
+    path: 'chat',
     component: ChatComponent,
     data: { title: 'Chat' }
   },
