@@ -8,13 +8,19 @@
         outline: none
         border-color: transparent
         background-color: $color-center-title-background
-  .chat-messages
-    border: 1px solid #ddd
-    background-color: $color-main-background
-    padding: $size-default-container-space/2
-    margin-top: $size-default-container-space
-    .xbbcode-blockquote
-      background-color: white
+  .chat-message-container
+    padding-right: $size-default-container-space
+    margin-right: -$size-default-container-space
+    max-height: 500px
+    overflow-y: auto
+    overflow-x: hidden
+    .chat-messages
       border: 1px solid #ddd
-      border-left-width: 5px
-      font-size: inherit
+      background-color: $color-main-background
+      padding: $size-default-container-space/2
+      margin-top: $size-default-container-space
+      .xbbcode-blockquote
+        background-color: white
+        border: 1px solid #ddd
+        border-left-width: 5px
+        font-size: inherit

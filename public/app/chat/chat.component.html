@@ -18,17 +18,19 @@
       </div>
     </div>
 
-    <div *ngFor='let message of chatMessages' class='chat-messages'>
-      <div class='row'>
-        <div class='col-xs-12 chat-message-header'>
-          <span class='pull-left'>{{ message.user.username }}</span>
-          <span class='pull-right'>{{ message.created_at }}</span>
+    <div class='chat-message-container'>
+      <div *ngFor='let message of chatMessages' class='chat-messages'>
+        <div class='row'>
+          <div class='col-xs-12 chat-message-header'>
+            <span class='pull-left'>{{ message.user.username }}</span>
+            <span class='pull-right'>{{ message.created_at }}</span>
+          </div>
         </div>
-      </div>
 
-      <div class='row'>
-        <div class='col-xs-12 chat-message-body'>
-          <div [innerHTML]='parseBBcode(message)'></div>
+        <div class='row'>
+          <div class='col-xs-12 chat-message-body'>
+            <div [innerHTML]='parseBBcode(message)'></div>
+          </div>
         </div>
       </div>
     </div>
