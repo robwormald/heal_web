@@ -24,7 +24,8 @@
       // other libraries
       'rxjs':                       'npm:rxjs',
       'actioncable-js': 'npm:actioncable-js/dist/action_cable.js',
-      'XBBCODE': 'npm:xbbcode.js'
+      'XBBCODE': 'npm:xbbcode.js',
+      'ng2-popover': 'npm:ng2-popover/index.js',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -40,7 +41,10 @@
       },
       'XBBCODE': {
         defaultExtension: 'js'
-      }
+      },
+      'ng2-popover': {
+        defaultExtension: 'js'
+      },
     }
   });
 })(this);

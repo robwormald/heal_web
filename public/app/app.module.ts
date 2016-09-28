@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 import { FormsModule }   from '@angular/forms';
 
+var Popover = require('ng2-popover');
+
 import './rxjs-extensions';
 import { routing, appRoutingProviders } from './app.routing';
 
@@ -19,6 +21,7 @@ import { BBCodeComponent } from './templates/partials/bbcode/bbcode.component';
     BrowserModule,
     HttpModule,
     FormsModule,
+    Popover.PopoverModule,
     routing
   ],
   declarations: [

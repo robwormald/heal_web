@@ -1,14 +1,37 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'bbcode-toolbar',
   templateUrl: 'app/templates/partials/bbcode/bbcode.component.html'
 })
 
-export class BBCodeComponent {
+export class BBCodeComponent implements OnInit {
   @Input('target') target = '';
 
-  bbcodeList:any = [
+  emojiList:string[] = [
+    "😀", "😬", "😂", "😄", "😅", "😇", "😉", "😊", "🙂", "😋",
+    "😍", "😘", "😚", "😜", "😛", "😎", "😏", "😑", "😒", "🤔",
+    "😠", "😡", "😔", "😕", "☹️", "😤", "😱", "😨", "😯", "😧",
+    "😢", "😪", "😲", "😴", "💤", "💩", "😈", "👿", "🐶", "🐱",
+    "🐰", "🐻", "🐼", "🐯", "🐷", "🙈", "🙉", "🙊", "❤️", "💔"
+  ];
+
+  emoticonsList:any = {
+    '<3': '❤️', '</3': '💔',
+    ':D': '😀', ';D': '😂',
+    ']:)': '😈', ']:(': '👿',
+    ':)': '🙂', ';)': '😏',
+    ':(': '☹️', ';(': '😢',
+    ':p': '😛', ';p': '😜',
+    ':o': '😯', ';o': '😱',
+    ':@': '😡', ';@': '😠',
+    ':|': '😑', ';|': '😪',
+    ":\\": '😕', ";\\": '😒',
+    ':*': '😘', ';*': '😚',
+    '8)': '😎', ':zzz:': '😴',
+  };
+
+  bbcodeList:any[] = [
     { code: 'b',       className: 'fa-bold'          },
     { code: 'i',       className: 'fa-italic'        },
     { code: 'u',       className: 'fa-underline'     },
@@ -27,9 +50,21 @@ export class BBCodeComponent {
     { code: 'sup',     className: 'fa-superscript'   },
   ];
 
-  constructor() {}
+  constructor() { }
 
-  public onClick(code: string): void {
+  ngOnInit(): void {
+    let input = document.getElementById(this.target);
+    input.addEventListener('keyup', (e) => {
+      for(let emoticon in this.emoticonsList) {
+        let replaced = emoticon.replace(/([()[{*+.$^\\|?])/g, '\\$1');
+        let regex = new RegExp(replaced, 'gim');
+        input['value'] = input['value'].replace(regex, this.emoticonsList[emoticon]);
+        this.updateWithAngular(input);
+      }
+    });
+  }
+
+  public onClick(code: string, emoji: string): void {
     switch(code) {
       case 'url':
         this.addBBCodeToInput(`[${code}=http://heal.lv/]`, `[/${code}]`);
@@ -39,6 +74,9 @@ export class BBCodeComponent {
         break;
       case 'size':
         this.addBBCodeToInput(`[${code}=16]`, `[/${code}]`);
+        break;
+      case 'emoji':
+        this.addBBCodeToInput('', emoji);
         break;
       default:
         this.addBBCodeToInput(`[${code}]`, `[/${code}]`);
@@ -54,6 +92,10 @@ export class BBCodeComponent {
 
     let inserted = `${value.substring(0, start) + startCode + selected + endCode + value.substring(end)}`;
     input['value'] = inserted;
+    this.updateWithAngular(input);
+  }
+
+  private updateWithAngular(input: any): void {
     let event = new Event('input');
     input.dispatchEvent(event);
   }
