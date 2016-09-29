@@ -8,8 +8,10 @@
         outline: none
         border-color: transparent
         background-color: $color-center-title-background
-  .chat-header > .input-group
-    float: left
+  .chat-header
+    margin-bottom: $size-default-container-space
+    .input-group
+      float: left
   .chat-message-container
     padding-right: $size-default-container-space
     margin-right: -$size-default-container-space
@@ -20,7 +22,9 @@
       border: 1px solid #ddd
       background-color: $color-main-background
       padding: $size-default-container-space/2
-      margin-top: $size-default-container-space
+      margin-bottom: $size-default-container-space
+      &:last-child
+        margin-bottom: 0
       .chat-message-body img
         max-width: 50%
         max-height: 300px

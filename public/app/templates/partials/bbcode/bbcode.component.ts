@@ -35,7 +35,7 @@ export class BBCodeComponent implements OnInit {
     { code: 'b',       className: 'fa-bold'          },
     { code: 'i',       className: 'fa-italic'        },
     { code: 'u',       className: 'fa-underline'     },
-    { code: 's',       className: 'fa-strikethrough' },
+    // { code: 's',       className: 'fa-strikethrough' },
     { code: 'size',    className: 'fa-text-height'   },
     { code: 'url',     className: 'fa-link'          },
     { code: 'img',     className: 'fa-image'         },

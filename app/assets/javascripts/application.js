@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery_ujs
 //= require bootstrap-sprockets
 //= require core-js/client/shim.min.js
 //= require zone.js/dist/zone.js
