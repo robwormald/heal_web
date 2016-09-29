@@ -7,7 +7,7 @@ export class EmojiSupportService {
     if(this.isLinux() || !this.hasEmojiSupport()) {
       var style = document.createElement('style');
       style.type = 'text/css';
-      style.innerHTML = '.dynamic-no-emoji { font-family: "SegoeUIEmoji"; }';
+      style.innerHTML = '.dynamic-no-emoji { font-family: "Noto Emoji, Apple Color Emoji, SegoeUIEmoji"; }';
       document.getElementsByTagName('head')[0].appendChild(style);
     }
   }

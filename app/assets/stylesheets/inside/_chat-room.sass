@@ -1,6 +1,7 @@
 #chat-room
   .nav.nav-tabs
     margin-bottom: $size-default-container-space
+    border-color: $color-center-title-background
     li > a
       color: $color-center-title-background
       &.active, &:hover, &:focus, &:active
@@ -12,19 +13,26 @@
     margin-bottom: $size-default-container-space
     .input-group
       float: left
+      .form-control
+        padding: 1.5%
   .chat-message-container
-    padding-right: $size-default-container-space
-    margin-right: -$size-default-container-space
+    direction: rtl
+    padding-left: $size-default-container-space
+    margin-left: -$size-default-container-space
     max-height: 500px
     overflow-y: auto
     overflow-x: hidden
     .chat-messages
+      direction: ltr
       border: 1px solid #ddd
       background-color: $color-main-background
       padding: $size-default-container-space/2
       margin-bottom: $size-default-container-space
       &:last-child
         margin-bottom: 0
+      .chat-message-header
+        .pull-right
+          color: grey
       .chat-message-body img
         max-width: 50%
         max-height: 300px

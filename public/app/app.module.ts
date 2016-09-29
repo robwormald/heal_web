@@ -1,4 +1,4 @@
-import { NgModule }      from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 import { FormsModule }   from '@angular/forms';
@@ -34,6 +34,7 @@ import { BBCodeComponent } from './templates/partials/bbcode/bbcode.component';
     BBCodeComponent,
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'lv' },
     appRoutingProviders
   ],
   bootstrap: [AppComponent]
