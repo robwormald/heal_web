@@ -34,24 +34,39 @@ export class AppearanceComponent implements OnInit {
         received:(data) => {
           switch (data.type) {
             case 'join':
-              return this.users.push(data.user as User);
+              var index = this.findUserIndex(data.user.id);
+              if(index) {
+                this.updateUsers(index, data);
+              }
+              else {
+                this.users.push(data.user as User);
+              }
+              break;
             case 'leave':
-              return this.users.splice(this.findUserIndex(data.user.id), 1);
+              this.users.splice(this.findUserIndex(data.user.id), 1);
+              break;
             case 'list':
               this.state.set('currentUser', data.current_user);
-              return this.users = [...this.users, ...data.users];
+              this.users = [...this.users, ...data.users];
+              break;
             case 'update':
-              if(data.user.id == this.state.get('currentUser').id) {
-                this.state.set('currentUser', data.user);
-              }
-              let index = this.findUserIndex(data.user.id);
-              return this.users[index] = data.user;
+              var index = this.findUserIndex(data.user.id);
+              this.updateUsers(index, data);
+              break;
             default:
 
           }
         }
       });
     }
+  }
+
+  private updateUsers(index: number, data: any): void {
+    if(data.user.id == this.state.get('currentUser').id) {
+      this.state.set('currentUser', data.user);
+    }
+
+    return this.users[index] = data.user;
   }
 
   private findUserIndex(id: number): any {
