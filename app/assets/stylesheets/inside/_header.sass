@@ -18,14 +18,21 @@ nav.navbar
   margin-bottom: 0px
   border-bottom: none
   background-color: $color-header-background
+  .navbar-brand
+    color: white
   .main-container
     padding-left: 10px
     padding-right: 10px
     #header-navbar
       li
         a
-          outline: none
           color: white
-          border-top: 3px solid transparent
+          outline: none
+          margin-left: 5px
+          border-left: 3px solid transparent
+          @media (min-width: $screen-sm-min)
+            margin-left: 0
+            border-left: 0
+            border-top: 3px solid transparent
         &:hover > a, &> a.active
-          border-top-color: white
+          border-color: white

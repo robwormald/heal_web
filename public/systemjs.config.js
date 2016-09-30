@@ -25,6 +25,7 @@
       'rxjs':                       'npm:rxjs',
       'actioncable-js': 'npm:actioncable-js/dist/action_cable.js',
       'XBBCODE': 'npm:xbbcode.js',
+      'ng2-bootstrap/ng2-collapse': 'npm:ng2-bootstrap/components/collapse',
       'ng2-popover': 'npm:ng2-popover/index.js',
     },
     // packages tells the System loader how to load when no filename and/or no extension
@@ -43,6 +44,9 @@
         defaultExtension: 'js'
       },
       'ng2-popover': {
+        defaultExtension: 'js'
+      },
+      'ng2-bootstrap/ng2-collapse': {
         defaultExtension: 'js'
       },
     }

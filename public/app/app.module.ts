@@ -4,6 +4,7 @@ import { HttpModule }    from '@angular/http';
 import { FormsModule }   from '@angular/forms';
 
 var Popover = require('ng2-popover');
+var Collapse = require('ng2-bootstrap/ng2-collapse');
 
 import './rxjs-extensions';
 import { routing, appRoutingProviders } from './app.routing';
@@ -23,6 +24,7 @@ import { BBCodeComponent } from './templates/partials/bbcode/bbcode.component';
     HttpModule,
     FormsModule,
     Popover.PopoverModule,
+    Collapse.CollapseModule,
     routing
   ],
   declarations: [
@@ -42,4 +44,4 @@ import { BBCodeComponent } from './templates/partials/bbcode/bbcode.component';
   bootstrap: [AppComponent]
 })
 
-export class AppModule { }
+export class AppModule {}
