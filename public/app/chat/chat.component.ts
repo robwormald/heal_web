@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
 
 import { BBCodeService } from './../global/bbcode.service';
 import { ChatRoom, ChatMessage } from './../objects';
@@ -20,7 +19,6 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   constructor(
     private chatService: ChatService,
-    private route: ActivatedRoute,
     private bbcode: BBCodeService
   ) {}
 

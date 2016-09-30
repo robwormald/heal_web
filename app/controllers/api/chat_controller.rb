@@ -2,7 +2,7 @@ class Api::ChatController < ApiController
   def index
     @chat_rooms = ChatRoom.where(GlobalQueries.permission_array, current_user.permissions)
     @chat_messages = get_messages(@chat_rooms.first.id)
-    render json: { chats: @chat_rooms, messages: @chat_messages.as_json(include: { user: { only: [:id, :username] } }) }
+    render json: { chats: @chat_rooms, messages: @chat_messages.as_json(include: { user: { only: Constants::SAFE_PARAMS[:user] } }) }
   end
 
   def create

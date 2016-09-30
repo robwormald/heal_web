@@ -13,6 +13,7 @@ import { HeaderComponent } from './templates/header.component';
 import { BodyComponent }   from './templates/body.component';
 import { HomeComponent }   from './home/home.component';
 import { ChatComponent }   from './chat/chat.component';
+import { AppearanceComponent }   from './appearance/appearance.component';
 import { ContainerBlockComponent }   from './templates/container-block.component';
 import { BBCodeComponent } from './templates/partials/bbcode/bbcode.component';
 
@@ -30,6 +31,7 @@ import { BBCodeComponent } from './templates/partials/bbcode/bbcode.component';
     BodyComponent,
     HomeComponent,
     ChatComponent,
+    AppearanceComponent,
     ContainerBlockComponent,
     BBCodeComponent,
   ],
