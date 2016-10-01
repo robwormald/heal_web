@@ -1,10 +1,20 @@
 <div class='poll-block' *ngIf='poll'>
-  <div>{{ poll.title }}</div>
+  <div class='poll-header'>{{ poll.title }}</div>
 
-  <div class='progress' *ngFor='let question of questions'>
-    {{ question.question }}
-    <div class='progress-bar' style='min-width: 2em; width: {{ question.answer_count }}%'>
-      {{ question.answer_count }}%
+  <div class='poll-body' *ngFor='let question of questions'>
+    <div class='poll-answers' *ngIf='answered'>
+      <div>{{ question.question }}</div>
+
+      <div class='poll-progress'>
+        <div class='poll-progress-full' [style]='question.widthStyle'>
+          {{ question.percent }}%
+        </div>
+      </div>
+    </div>
+
+    <div class='poll-questions' *ngIf='!answered'>
+      <input id='answer-{{ question.id }}' class='radio-custom' name='radio-group' type='radio' [(ngModel)]='selectedQuestion' [value]='question.id'>
+      <label [attr.for]='"answer-" + question.id'>{{ question.question }}</label>
     </div>
   </div>
 </div>
