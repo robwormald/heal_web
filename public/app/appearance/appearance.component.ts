@@ -75,9 +75,4 @@ export class AppearanceComponent implements OnInit, OnDestroy {
       if(this.users[i].id as number == id) return i;
     }
   }
-
-  private unsubscribe(): void {
-    window['App'].cable.subscriptions.remove(window['App'].appearance);
-    delete window['App'].appearance;
-  }
 }

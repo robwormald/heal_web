@@ -30,6 +30,12 @@ export class NotificationComponent implements OnInit, OnDestroy {
     this.websocket.destroy(this.channel);
   }
 
+  mobileClick(notification) {
+    if(window['mobilecheck']()) {
+      this.closeNotification(notification);
+    }
+  }
+
   closeNotification(notification): void {
     let index = this.notifications.indexOf(notification);
     if(index > -1) {
@@ -41,7 +47,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
     if(res.event == 'notification') {
       let notification = res.data as Notification;
       Object.assign(notification, this.notificationDesign[notification.type]);
-      this.notifications.push(notification);
+      this.notifications.unshift(notification);
     }
   }
 }

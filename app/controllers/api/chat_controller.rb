@@ -11,10 +11,15 @@ class Api::ChatController < ApiController
       message = ChatMessage.new(permit_params)
       message.user = current_user
       message.chat_room = chat_room
-      message.save
-      ChatMessageJob.perform_later(message)
+      if message.save
+        ChatMessageJob.perform_later(message)
+        return head :ok
+      else
+        ChannelHelpers.notification(current_user.id, 'danger', 'Error', message.errors.full_messages.join(", "))
+      end
     end
-    render json: :ok
+
+    head :bad_request
   end
 
   def show
