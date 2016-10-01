@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160927161638) do
+ActiveRecord::Schema.define(version: 20161001174220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,30 @@ ActiveRecord::Schema.define(version: 20160927161638) do
     t.datetime "created_at",                                                     null: false
     t.datetime "updated_at",                                                     null: false
     t.index ["title"], name: "index_chat_rooms_on_title", unique: true, using: :btree
+  end
+
+  create_table "poll_answers", force: :cascade do |t|
+    t.integer  "poll_question_id"
+    t.integer  "user_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["poll_question_id"], name: "index_poll_answers_on_poll_question_id", using: :btree
+    t.index ["user_id"], name: "index_poll_answers_on_user_id", using: :btree
+  end
+
+  create_table "poll_questions", force: :cascade do |t|
+    t.string   "question"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "poll_id"
+    t.index ["poll_id"], name: "index_poll_questions_on_poll_id", using: :btree
+  end
+
+  create_table "polls", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["title"], name: "index_polls_on_title", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade do |t|

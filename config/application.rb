@@ -12,6 +12,7 @@ module HealWeb
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.sass.preferred_syntax = :sass
+    config.active_job.queue_adapter = :sidekiq
 
     config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths << Rails.root.join('queries')

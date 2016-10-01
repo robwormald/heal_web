@@ -45,6 +45,10 @@ export class WebsocketService {
     this.websocket[name].instance.perform(action, data);
   }
 
+  setSubscription(name: string, subscription: any): void {
+    this.websocket[name].subscription = subscription;
+  }
+
   private listeners(observer): any {
     return {
       connected: (data) => observer.next({ event: 'connected' }),

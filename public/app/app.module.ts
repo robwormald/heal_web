@@ -18,6 +18,7 @@ import { AppearanceComponent }   from './appearance/appearance.component';
 import { ContainerBlockComponent }   from './templates/container-block.component';
 import { BBCodeComponent } from './templates/partials/bbcode/bbcode.component';
 import { NotificationComponent } from './templates/partials/notification/notification.component';
+import { PollComponent } from './poll/poll.component';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { NotificationComponent } from './templates/partials/notification/notific
     ContainerBlockComponent,
     BBCodeComponent,
     NotificationComponent,
+    PollComponent,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'lv' },

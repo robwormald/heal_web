@@ -23,7 +23,7 @@ export class NotificationComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     let subscription = this.websocket.init(this.channel).subscribe(this.received.bind(this));
-    window['App'][this.channel].subscription = subscription;
+    this.websocket.setSubscription(this.channel, subscription);
   }
 
   ngOnDestroy(): void {

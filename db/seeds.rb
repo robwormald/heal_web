@@ -17,3 +17,8 @@ test_user.save!
 ChatRoom.create!({ title: '#general' })
 ChatRoom.create!({ title: '#gaming' })
 ChatRoom.create!({ title: '#admin', permissions: Constants::ADMIN_SYSTEM_ROLES })
+
+poll = Poll.create!(title: "What`s up?")
+poll_answer_1 = PollQuestion.create!(poll: poll, question: 'Everitin')
+poll_answer_1 = PollQuestion.create!(poll: poll, question: 'Not mach')
+poll_answer_1 = PollQuestion.create!(poll: poll, question: 'Nasing')

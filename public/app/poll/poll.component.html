@@ -1,0 +1,10 @@
+<div class='poll-block' *ngIf='poll'>
+  <div>{{ poll.title }}</div>
+
+  <div class='progress' *ngFor='let question of questions'>
+    {{ question.question }}
+    <div class='progress-bar' style='min-width: 2em; width: {{ question.answer_count }}%'>
+      {{ question.answer_count }}%
+    </div>
+  </div>
+</div>

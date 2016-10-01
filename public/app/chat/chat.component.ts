@@ -76,7 +76,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private subscribe(id: number): void {
     let subscription = this.websocket.init(this.channel, { room: id }).subscribe(this.received.bind(this));
-    window['App'][this.channel].subscription = subscription;
+    this.websocket.setSubscription(this.channel, subscription);
   }
 
   private unsubscribe(): void {
