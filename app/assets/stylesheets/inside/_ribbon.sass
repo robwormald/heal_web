@@ -1,0 +1,42 @@
+.ribbon-block
+  $size-ribbon-top: 10px
+  $size-ribbon-side: 20px
+  $size-ribbon-diagn: ($size-ribbon-top + $size-ribbon-side)/2
+
+  @include display-flex
+
+  &.ribbon-danger
+    @include ribbon-colors(#CC0000, #A70000, #7D0000)
+  &.ribbon-success
+    @include ribbon-colors(#00CC00, #009E00, #007C00)
+  &.ribbon-info
+    @include ribbon-colors(#0CC0CC, #01ABB3, #01787E)
+  &.ribbon-warning
+    @include ribbon-colors(#FF9900, #C67700, #9B5D00)
+
+  .ribbon-container
+    color: white
+    position: relative
+    display: inline-block
+    padding: $size-ribbon-top/2
+    height: 100%
+    min-height: 3rem
+    min-width: $size-ribbon-side*2
+    pointer-events: none
+    &.ribbon-left:before, .ribbon-content:before
+      content: ""
+      position: absolute
+      border-style: solid
+      bottom: -$size-ribbon-top
+      z-index: -1
+    &.ribbon-left:before
+      left: -$size-ribbon-diagn
+      border-width: $size-ribbon-diagn $size-ribbon-diagn $size-ribbon-diagn $size-ribbon-top
+    .ribbon-content:before
+      left: 0
+      border-width: $size-ribbon-top 0 0 $size-ribbon-top
+  .ribbon-triangle-right
+    height: 100%
+    display: inline-block
+    border-style: solid
+    border-width: $size-ribbon-diagn 0 $size-ribbon-diagn $size-ribbon-top

@@ -7,3 +7,14 @@
 @mixin align-self($property)
   -webkit-align-self: $property
   align-self: $property
+
+@mixin ribbon-colors($main, $darker, $shadow)
+  .ribbon-container
+    background: $main
+    &.ribbon-left:before
+      border-color: $darker
+      border-left-color: transparent
+    .ribbon-content:before
+      border-color: $shadow transparent transparent transparent
+  .ribbon-triangle-right
+    border-color: transparent transparent transparent $main
