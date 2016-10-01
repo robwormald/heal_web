@@ -1,16 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http } from '@angular/http';
 
-import { ChatRoom, ChatMessage } from './../objects';
+import { ChatMessage } from './../objects';
 
 @Injectable()
 export class ChatService {
   constructor(private http: Http) { }
-
-  unsubscribe(): void {
-    window['App'].cable.subscriptions.remove(window['App'].chat);
-    delete window['App'].chat;
-  }
 
   sendMessage(id: number, message: string): Promise<any> {
     return this.http.post(`api/chat/${id}`, { body: message }).toPromise()

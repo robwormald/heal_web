@@ -3,10 +3,12 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class WebsocketService {
-  private cable: any = window['App'].cable;
+  private websocket: any = window['App'];
+  private cable: any = this.websocket.cable;
   private channels: any = {
-    home: { autoLoad: true,  data: { channel: 'HomeChannel' } },
-    chat: { autoLoad: false, data: { channel: 'ChatChannel' } },
+    home: { channel: 'HomeChannel' },
+    chat: { channel: 'ChatChannel' },
+    appearance: { channel: 'AppearanceChannel' },
   };
 
   constructor() {
@@ -16,30 +18,36 @@ export class WebsocketService {
   }
 
   init(name: string, data: any = {}): Observable<Array<number>> {
-    let channel = this.channels[name];
+    let channelData = this.channels[name];
+    let channel = this.websocket[name];
 
-    if(channel) {
-      if(channel.observable) {
+    if(channelData) {
+      if(channel) {
         return channel.observable;
       }
       else {
+        channel = this.websocket[name] = {};
         return channel.observable = new Observable(observer => {
-          Object.assign(channel.data, data);
-          channel.instance = this.cable.subscriptions.create(channel.data, this.listeners(observer));
+          Object.assign(channelData, data);
+          channel.instance = this.cable.subscriptions.create(channelData, this.listeners(observer));
         });
       }
     }
   }
 
   destroy(name: string): void {
-    let channel = this.channels[name];
-    this.cable.subscriptions.remove(channel.instance);
-    delete channel.observable;
-    delete channel.instance;
+    this.cable.subscriptions.remove(this.websocket[name].instance);
+    this.websocket[name].subscription.unsubscribe();
+    delete this.websocket[name];
+  }
+
+  perform(name: string, action: string, data: any = {}): void {
+    this.websocket[name].instance.perform(action, data);
   }
 
   private listeners(observer): any {
     return {
+      connected: (data) => observer.next({ event: 'connected' }),
       received: (data) => observer.next(data)
     }
   }

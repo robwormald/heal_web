@@ -10,7 +10,7 @@ import { WebsocketService } from './../../../global/websocket.service';
 
 export class NotificationComponent implements OnInit, OnDestroy {
   notifications: Notification[] = [];
-  subscription: any;
+  channel: string = 'home';
 
   notificationDesign: any = {
     danger:  { position: 'ribbon-left', mark: 'fa fa-exclamation' },
@@ -22,12 +22,12 @@ export class NotificationComponent implements OnInit, OnDestroy {
   constructor(private websocket: WebsocketService) {}
 
   ngOnInit(): void {
-    this.subscription = this.websocket.init('home').subscribe(this.received.bind(this));
+    let subscription = this.websocket.init(this.channel).subscribe(this.received.bind(this));
+    window['App'][this.channel].subscription = subscription;
   }
 
   ngOnDestroy(): void {
-    this.websocket.destroy('home');
-    this.subscription.unsubscribe();
+    this.websocket.destroy(this.channel);
   }
 
   closeNotification(notification): void {

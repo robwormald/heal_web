@@ -18,7 +18,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   chatMessages: ChatMessage[];
   message: string;
   inputDisabled: boolean;
-  subscription: any;
+  channel: string = 'chat';
 
   constructor(
     private chatService: ChatService,
@@ -75,15 +75,17 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   private subscribe(id: number): void {
-    this.subscription = this.websocket.init('chat', { room: id }).subscribe(this.received.bind(this));
+    let subscription = this.websocket.init(this.channel, { room: id }).subscribe(this.received.bind(this));
+    window['App'][this.channel].subscription = subscription;
   }
 
   private unsubscribe(): void {
-    this.websocket.destroy('chat');
-    this.subscription.unsubscribe();
+    this.websocket.destroy(this.channel);
   }
 
   private received(res: any): void {
-    this.chatMessages.unshift(res.data.message as ChatMessage);
+    if(res.event == 'new_message') {
+      this.chatMessages.unshift(res.data.message as ChatMessage);
+    }
   }
 }
