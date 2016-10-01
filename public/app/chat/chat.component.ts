@@ -1,13 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { BBCodeService } from './../global/bbcode.service';
 import { ChatRoom, ChatMessage } from './../objects';
+
+import { WebsocketService } from './../global/websocket.service';
+import { BBCodeService } from './../global/bbcode.service';
 import { ChatService } from './chat.service';
 
 @Component({
   selector: 'chat-component',
   templateUrl: 'app/chat/chat.component.html',
-  providers: [ChatService, BBCodeService]
+  providers: [ChatService, BBCodeService, WebsocketService]
 })
 
 export class ChatComponent implements OnInit, OnDestroy {
@@ -16,10 +18,12 @@ export class ChatComponent implements OnInit, OnDestroy {
   chatMessages: ChatMessage[];
   message: string;
   inputDisabled: boolean;
+  subscription: any;
 
   constructor(
     private chatService: ChatService,
-    private bbcode: BBCodeService
+    private bbcode: BBCodeService,
+    private websocket: WebsocketService
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +36,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.chatService.unsubscribe();
+    this.unsubscribe();
   }
 
   tabClassName(id: number): string {
@@ -40,21 +44,14 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   switchChatRooms(id: number): void {
-    this.currentChatId = id;
-    this.chatService.getMessages(id).then(chatMessages => {
-      this.chatMessages = chatMessages;
-      this.subscribe(id);
-    });
-  }
-
-  subscribe(id: number): void {
-    if(window['App'].chat) {
-      this.chatService.unsubscribe();
+    if(this.currentChatId != id) {
+      this.currentChatId = id;
+      this.chatService.getMessages(id).then(chatMessages => {
+        this.chatMessages = chatMessages;
+        this.unsubscribe();
+        this.subscribe(id);
+      });
     }
-
-    window['App'].chat = window['App'].cable.subscriptions.create({ channel: 'ChatChannel', room: id }, {
-      received: (data) => this.chatMessages.unshift(data.message as ChatMessage)
-    });
   }
 
   onKeyPress(e): void {
@@ -75,5 +72,18 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.inputDisabled = false;
       }).catch(() => this.inputDisabled = false);
     }
+  }
+
+  private subscribe(id: number): void {
+    this.subscription = this.websocket.init('chat', { room: id }).subscribe(this.received.bind(this));
+  }
+
+  private unsubscribe(): void {
+    this.websocket.destroy('chat');
+    this.subscription.unsubscribe();
+  }
+
+  private received(res: any): void {
+    this.chatMessages.unshift(res.data.message as ChatMessage);
   }
 }

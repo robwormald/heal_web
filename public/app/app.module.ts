@@ -17,6 +17,7 @@ import { ChatComponent }   from './chat/chat.component';
 import { AppearanceComponent }   from './appearance/appearance.component';
 import { ContainerBlockComponent }   from './templates/container-block.component';
 import { BBCodeComponent } from './templates/partials/bbcode/bbcode.component';
+import { NotificationComponent } from './templates/partials/notification/notification.component';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { BBCodeComponent } from './templates/partials/bbcode/bbcode.component';
     AppearanceComponent,
     ContainerBlockComponent,
     BBCodeComponent,
+    NotificationComponent,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'lv' },

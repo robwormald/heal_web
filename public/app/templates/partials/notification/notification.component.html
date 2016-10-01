@@ -1,0 +1,17 @@
+<div class='notification-block'>
+  <div class='notification-container animated bounceInDown' *ngFor='let notification of notifications'>
+    <div class='notification-header'>
+      <span class='pull-left'>{{ notification.title }}</span>
+      <span class='pull-right fa fa-times cursor-pointer' (click)='closeNotification(notification)'></span>
+    </div>
+
+    <div class='ribbon-block ribbon-{{ notification.type }}'>
+      <div class='ribbon-container {{ notification.position }} text-center'>
+        <strong class='ribbon-content'><i [ngClass]='notification.mark' aria-hidden='true'></i></strong>
+      </div>
+      <div class='ribbon-triangle-right'></div>
+
+      <span class='notification-body'>{{ notification.body }}</span>
+    </div>
+  </div>
+</div>

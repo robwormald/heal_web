@@ -16,13 +16,13 @@ export class AppearanceComponent implements OnInit {
   constructor(private state: StateService, router: Router) {
     router.events.subscribe((event: NavigationEvent) => {
       if(event instanceof NavigationEnd) {
-        window['App'].appearance.perform('location', { location: event.url });
+        // window['App'].appearance.perform('location', { location: event.url });
       }
     });
   }
 
   ngOnInit(): void {
-    this.subscribe();
+    // this.subscribe();
   }
 
   private subscribe(): void {
