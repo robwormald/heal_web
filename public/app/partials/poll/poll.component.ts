@@ -1,20 +1,19 @@
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { Poll } from './../objects/poll';
-import { PollQuestion } from './../objects/poll-question';
-import { PollAnswer } from './../objects/poll-answer';
-
 import { PollService } from './poll.service';
-import { WebsocketService } from './../global/websocket.service';
+import { WebsocketService } from './../../global/index';
+import { Poll, PollQuestion, PollAnswer } from './../../objects/index';
+
 
 @Component({
+  moduleId: module.id,
   selector: 'poll-component',
-  templateUrl: 'app/poll/poll.component.html',
+  templateUrl: 'poll.component.html',
   providers: [PollService, WebsocketService]
 })
 
-export class PollComponent {
+export class PollMenuPartialComponent {
   poll: Poll;
   questions: PollQuestion[];
   answered: PollAnswer;

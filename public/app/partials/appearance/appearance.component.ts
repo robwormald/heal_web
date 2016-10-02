@@ -1,17 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd, Event as NavigationEvent } from '@angular/router';
 
-import { StateService } from './../global/state.service';
-import { WebsocketService } from './../global/websocket.service';
-import { User } from './../objects';
+import { User } from './../../objects/index';
+import { StateService, WebsocketService } from './../../global/index';
 
 @Component({
+  moduleId: module.id,
   selector: 'online-users',
-  templateUrl: 'app/appearance/appearance.component.html',
+  templateUrl: 'appearance.component.html',
   providers: [StateService, WebsocketService]
 })
 
-export class AppearanceComponent implements OnInit, OnDestroy {
+export class AppearancePartialComponent implements OnInit, OnDestroy {
   users: User[] = [];
   channel: string = 'appearance';
 

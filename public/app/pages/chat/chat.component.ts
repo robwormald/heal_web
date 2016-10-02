@@ -1,18 +1,17 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { ChatRoom, ChatMessage } from './../objects';
-
-import { WebsocketService } from './../global/websocket.service';
-import { BBCodeService } from './../global/bbcode.service';
 import { ChatService } from './chat.service';
+import { ChatRoom, ChatMessage } from './../../objects/index';
+import { BBCodeService, WebsocketService } from './../../global/index';
 
 @Component({
+  moduleId: module.id,
   selector: 'chat-component',
-  templateUrl: 'app/chat/chat.component.html',
+  templateUrl: 'chat.component.html',
   providers: [ChatService, BBCodeService, WebsocketService]
 })
 
-export class ChatComponent implements OnInit, OnDestroy {
+export class ChatPageComponent implements OnInit, OnDestroy {
   chats: ChatRoom[] = [];
   currentChatId: number;
   chatMessages: ChatMessage[];

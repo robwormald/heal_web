@@ -1,14 +1,16 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Notification } from './../../../objects/notification';
-import { WebsocketService } from './../../../global/websocket.service';
+
+import { Notification } from './../../objects/index';
+import { WebsocketService } from './../../global/index';
 
 @Component({
+  moduleId: module.id,
   selector: 'notification-block',
-  templateUrl: 'app/templates/partials/notification/notification.component.html',
+  templateUrl: 'notification.component.html',
   providers: [WebsocketService]
 })
 
-export class NotificationComponent implements OnInit, OnDestroy {
+export class NotificationPartialComponent implements OnInit, OnDestroy {
   notifications: Notification[] = [];
   channel: string = 'home';
 

@@ -2,9 +2,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app.module';
 
-import { BBCodeService } from './global/bbcode.service';
-import { StateService } from './global/state.service';
-import { WebsocketService } from './global/websocket.service';
+import { BBCodeService, StateService, WebsocketService } from './global/index';
 
 let ActionCable = require('actioncable-js');
 

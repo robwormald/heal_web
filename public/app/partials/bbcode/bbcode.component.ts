@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
+  moduleId: module.id,
   selector: 'bbcode-toolbar',
-  templateUrl: 'app/templates/partials/bbcode/bbcode.component.html'
+  templateUrl: 'bbcode.component.html'
 })
 
-export class BBCodeComponent implements OnInit {
+export class BBCodePartialComponent implements OnInit {
   @Input('target') target = '';
 
   emojiList:string[] = [

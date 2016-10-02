@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
+  moduleId: module.id,
   selector: 'container-block',
-  templateUrl: 'app/templates/container-block.component.html'
+  templateUrl: 'container-block.component.html'
 })
 
-export class ContainerBlockComponent {
+export class ContainerBlockPartialComponent {
   @Input('title') containerTitle = '';
   @Input('center') containerCenter = false;
 }

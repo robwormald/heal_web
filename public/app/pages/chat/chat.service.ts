@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { ChatMessage } from './../objects';
+import { ChatMessage } from './../../objects';
 
 @Injectable()
 export class ChatService {

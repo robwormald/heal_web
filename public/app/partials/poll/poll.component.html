@@ -1,5 +1,7 @@
 <div class='poll-block' *ngIf='poll'>
-  <div class='poll-header'>{{ poll.title }}</div>
+  <div class='poll-header'>
+    <a routerLink='/polls/{{ poll.id }}'>{{ poll.title }}</a>
+  </div>
 
   <div class='poll-body' *ngFor='let question of questions'>
     <div class='poll-answers' *ngIf='answered'>

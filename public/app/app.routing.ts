@@ -1,16 +1,15 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent }   from './home/home.component';
-import { ChatComponent }   from './chat/chat.component';
+import { HomePageComponent, ChatPageComponent } from './pages/index';
 
 const appRoutes: Routes = [
   {
     path: 'chat',
-    component: ChatComponent,
+    component: ChatPageComponent,
     data: { title: 'Chat' }
   },
-  { path: '', component: HomeComponent },
+  { path: '', component: HomePageComponent },
   // { path: '**', component: PageNotFoundComponent }
 ];
 

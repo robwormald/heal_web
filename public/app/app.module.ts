@@ -7,18 +7,17 @@ var Popover = require('ng2-popover');
 var Collapse = require('ng2-bootstrap/ng2-collapse');
 
 import './rxjs-extensions';
+import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 
-import { AppComponent }    from './app.component';
-import { HeaderComponent } from './templates/header.component';
-import { BodyComponent }   from './templates/body.component';
-import { HomeComponent }   from './home/home.component';
-import { ChatComponent }   from './chat/chat.component';
-import { AppearanceComponent }   from './appearance/appearance.component';
-import { ContainerBlockComponent }   from './templates/container-block.component';
-import { BBCodeComponent } from './templates/partials/bbcode/bbcode.component';
-import { NotificationComponent } from './templates/partials/notification/notification.component';
-import { PollComponent } from './poll/poll.component';
+import { ChatPageComponent, HomePageComponent } from './pages/index';
+import {
+  AppearancePartialComponent,
+  ContainerBlockPartialComponent,
+  BBCodePartialComponent,
+  NotificationPartialComponent,
+  PollMenuPartialComponent,
+} from './partials/index';
 
 @NgModule({
   imports: [
@@ -31,15 +30,13 @@ import { PollComponent } from './poll/poll.component';
   ],
   declarations: [
     AppComponent,
-    HeaderComponent,
-    BodyComponent,
-    HomeComponent,
-    ChatComponent,
-    AppearanceComponent,
-    ContainerBlockComponent,
-    BBCodeComponent,
-    NotificationComponent,
-    PollComponent,
+    ChatPageComponent,
+    HomePageComponent,
+    AppearancePartialComponent,
+    ContainerBlockPartialComponent,
+    BBCodePartialComponent,
+    NotificationPartialComponent,
+    PollMenuPartialComponent,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'lv' },
