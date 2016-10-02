@@ -10,13 +10,14 @@ import './rxjs-extensions';
 import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 
+import { PollMenuComponent } from './menus/poll/poll-menu.component';
 import { ChatPageComponent, HomePageComponent } from './pages/index';
 import {
   AppearancePartialComponent,
   ContainerBlockPartialComponent,
   BBCodePartialComponent,
   NotificationPartialComponent,
-  PollMenuPartialComponent,
+  PollPartialComponent,
 } from './partials/index';
 
 @NgModule({
@@ -32,11 +33,14 @@ import {
     AppComponent,
     ChatPageComponent,
     HomePageComponent,
+
+    PollMenuComponent,
+
     AppearancePartialComponent,
     ContainerBlockPartialComponent,
     BBCodePartialComponent,
     NotificationPartialComponent,
-    PollMenuPartialComponent,
+    PollPartialComponent,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'lv' },

@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class PollService {
+export class PollMenuService {
   constructor(private http: Http) { }
 
   vote(poll_id: number, poll_question_id: number = null): Observable<any> {
