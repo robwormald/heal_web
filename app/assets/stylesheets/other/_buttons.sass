@@ -1,0 +1,26 @@
+.btn-flex
+  @include display-flex
+  .btn
+    width: 100%
+    margin-right: 5px
+  .btn:last-child
+    margin-right: inherit
+
+.btn-flex, .btn-container
+  margin-top: 5px
+  margin-bottom: 5px
+
+
+.btn
+  padding: 3px 10px
+  text-decoration: none
+  border-style: none
+  border: 2px solid
+  &.btn-danger
+    @include button-colors($color-scheme-danger)
+  &.btn-warning
+    @include button-colors($color-scheme-warning)
+  &.btn-success
+    @include button-colors($color-scheme-success)
+  &.btn-info
+    @include button-colors($color-scheme-info)

@@ -6,13 +6,13 @@
   @include display-flex
 
   &.ribbon-danger
-    @include ribbon-colors(#CC0000, #A70000, #7D0000)
-  &.ribbon-success
-    @include ribbon-colors(#00CC00, #009E00, #007C00)
-  &.ribbon-info
-    @include ribbon-colors(#0CC0CC, #01ABB3, #01787E)
+    @include ribbon-colors($color-scheme-danger, $color-scheme-danger-darker-1, $color-scheme-danger-darker-2)
   &.ribbon-warning
-    @include ribbon-colors(#FF9900, #C67700, #9B5D00)
+    @include ribbon-colors($color-scheme-warning, $color-scheme-warning-darker-1, $color-scheme-warning-darker-2)
+  &.ribbon-success
+    @include ribbon-colors($color-scheme-success, $color-scheme-success-darker-1, $color-scheme-success-darker-2)
+  &.ribbon-info
+    @include ribbon-colors($color-scheme-info, $color-scheme-info-darker-1, $color-scheme-info-darker-2)
 
   .ribbon-container
     color: white

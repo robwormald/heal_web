@@ -8,13 +8,21 @@
   -webkit-align-self: $property
   align-self: $property
 
-@mixin ribbon-colors($main, $darker, $shadow)
+@mixin ribbon-colors($color, $darker-1, $darker-2)
   .ribbon-container
-    background: $main
+    background: $color
     &.ribbon-left:before
-      border-color: $darker
+      border-color: $darker-1
       border-left-color: transparent
     .ribbon-content:before
-      border-color: $shadow transparent transparent transparent
+      border-color: $darker-2 transparent transparent transparent
   .ribbon-triangle-right
-    border-color: transparent transparent transparent $main
+    border-color: transparent transparent transparent $color
+
+@mixin button-colors($color)
+  color: $color
+  background-color: white
+  border-color: $color
+  &:hover, &:focus, &:active
+    color: white
+    background-color: $color
