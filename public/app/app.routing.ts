@@ -1,7 +1,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomePageComponent, ChatPageComponent } from './pages/index';
+import { HomePageComponent, ChatPageComponent, PollListPageComponent, PollViewPageComponent } from './pages/index';
 
 const appRoutes: Routes = [
   {
@@ -9,6 +9,8 @@ const appRoutes: Routes = [
     component: ChatPageComponent,
     data: { title: 'Chat' }
   },
+  { path: 'polls/:id', component: PollViewPageComponent },
+  { path: 'polls', component: PollListPageComponent },
   { path: '', component: HomePageComponent },
   // { path: '**', component: PageNotFoundComponent }
 ];

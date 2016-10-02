@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { PollMenuComponent } from './menus/poll/poll-menu.component';
-import { ChatPageComponent, HomePageComponent } from './pages/index';
+import { ChatPageComponent, HomePageComponent, PollListPageComponent, PollViewPageComponent } from './pages/index';
 import {
   AppearancePartialComponent,
   ContainerBlockPartialComponent,
@@ -33,6 +33,8 @@ import {
     AppComponent,
     ChatPageComponent,
     HomePageComponent,
+    PollListPageComponent,
+    PollViewPageComponent,
 
     PollMenuComponent,
 
