@@ -15,7 +15,7 @@ class Api::ChatController < ApiController
         ChatMessageJob.perform_later(message)
         return head :ok
       else
-        ChannelHelpers.notification(current_user.id, 'danger', 'Error', message.errors.full_messages.join(", "))
+        ChannelHelpers.error_notification(current_user.id, message.errors.full_messages.join(", "))
       end
     end
 

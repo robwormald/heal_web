@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :chat, only: [:index, :show] do
       post :create, on: :member
     end
+    resources :poll, only: [:create]
   end
 
   get '*path', to: 'home#index'

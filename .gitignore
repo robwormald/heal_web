@@ -18,6 +18,8 @@
 /public/app/**/*.js
 /public/app/**/*.map
 npm-debug.log
+.env
+Procfile
 
 # Ignore Byebug command history file.
 .byebug_history
