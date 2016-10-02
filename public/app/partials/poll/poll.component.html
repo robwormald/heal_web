@@ -1,5 +1,8 @@
 <div class='poll-block' *ngIf='poll'>
   <div class='poll-header'>
+    <span *ngIf='view'>
+      <a routerLink='/polls'>Polls</a> /
+    </span>
     <a routerLink='/polls/{{ poll.id }}'>{{ poll.title }}</a>
   </div>
 
@@ -24,4 +27,6 @@
     <button class='btn btn-info pull-left' (click)='vote()' *ngIf='!answered'>Vote</button>
     <span class='poll-vote-count'>(total {{ totalAnswers }} {{ totalAnswers == 1 ? 'vote' : 'votes' }})</span>
   </div>
+
+  <ng-content></ng-content>
 </div>

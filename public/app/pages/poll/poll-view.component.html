@@ -1,4 +1,14 @@
 <container-block [title]='"Polls"' [center]='true'>
-  <poll-partial>
+  <poll-partial
+    [poll]='poll'
+    [questions]='questions'
+    [answered]='answered'
+    [totalAnswers]='totalAnswers'
+    [view]='true'
+    (onVote)='vote($event)'
+  >
+    <div>
+      Comments come here :)
+    </div>
   </poll-partial>
 </container-block>

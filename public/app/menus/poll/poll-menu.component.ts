@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 
-import { PollMenuService } from './poll-menu.service';
+import { PollService } from './../../shared/services/poll.service';
 import { WebsocketService } from './../../global/index';
 import { Poll, PollQuestion, PollAnswer } from './../../objects/index';
 
@@ -9,7 +8,7 @@ import { Poll, PollQuestion, PollAnswer } from './../../objects/index';
   moduleId: module.id,
   selector: 'poll-menu',
   templateUrl: 'poll-menu.component.html',
-  providers: [PollMenuService, WebsocketService]
+  providers: [PollService, WebsocketService]
 })
 
 export class PollMenuComponent {
@@ -21,11 +20,9 @@ export class PollMenuComponent {
 
   constructor(
     private websocket: WebsocketService,
-    private pollService: PollMenuService,
-    private sanitizer: DomSanitizer,
+    private pollService: PollService,
   ) {
-    let subscription = this.websocket.init(this.channel).subscribe(this.received.bind(this));
-    this.websocket.setSubscription(this.channel, subscription);
+    this.websocket.init(this.channel).subscribe(this.received.bind(this));
   }
 
   vote(questionId: number): void {
@@ -39,21 +36,21 @@ export class PollMenuComponent {
       case 'connected':
         this.websocket.perform(this.channel, 'latest_poll');
         break;
+      case 'answered_poll':
+        if(res.data.poll && res.data.poll.id == this.poll.id) {
+          this.updatePollInformation(res);
+        }
+        break;
       case 'latest_poll':
-        this.poll = res.data.poll as Poll;
-        this.questions = res.data.questions as PollQuestion[];
-        this.answered = (res.data.answered || this.answered) as PollAnswer;
-        this.calculateWidth();
+        this.updatePollInformation(res)
         break;
     }
   }
 
-  private calculateWidth(): void {
-    this.totalAnswers = 0;
-    this.questions.map((question) => this.totalAnswers += question.answer_count);
-    this.questions.map((question) => {
-      question.percent = this.totalAnswers ? (question.answer_count/this.totalAnswers)*100 : 0;
-      question.widthStyle = this.sanitizer.bypassSecurityTrustStyle(`width: ${question.percent}%`);
-    });
+  private updatePollInformation(res): void {
+    this.poll = res.data.poll as Poll;
+    this.questions = res.data.questions as PollQuestion[];
+    this.answered = (res.data.answered || this.answered) as PollAnswer;
+    this.pollService.calculateWidth(this);
   }
 }

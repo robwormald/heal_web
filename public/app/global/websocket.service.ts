@@ -29,7 +29,7 @@ export class WebsocketService {
         channel = this.websocket[name] = {};
         return channel.observable = new Observable(observer => {
           Object.assign(channelData, data);
-          channel.instance = this.cable.subscriptions.create(channelData, this.listeners(observer));
+          channel.instance = this.cable.subscriptions.create(channelData, this.listeners(name, observer));
         });
       }
     }
@@ -45,13 +45,20 @@ export class WebsocketService {
     this.websocket[name].instance.perform(action, data);
   }
 
+  isConnected(name: string): boolean {
+    return this.websocket[name].connected;
+  }
+
   setSubscription(name: string, subscription: any): void {
     this.websocket[name].subscription = subscription;
   }
 
-  private listeners(observer): any {
+  private listeners(name, observer): any {
     return {
-      connected: (data) => observer.next({ event: 'connected' }),
+      connected: (data) => {
+        this.websocket[name].connected = true;
+        observer.next({ event: 'connected' });
+      },
       received: (data) => observer.next(data)
     }
   }

@@ -12,6 +12,7 @@ export class PollPartialComponent {
   @Input('questions') questions;
   @Input('answered') answered;
   @Input('totalAnswers') totalAnswers;
+  @Input('view') view = false;
   @Output() onVote = new EventEmitter<number>();
 
   vote(): void {
