@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 export class PollPartialComponent {
   selectedQuestion: number;
+  @Input('uniqId') uniqId;
   @Input('poll') poll;
   @Input('questions') questions;
   @Input('answered') answered;

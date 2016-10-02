@@ -18,8 +18,8 @@
     </div>
 
     <div class='poll-questions' *ngIf='!answered'>
-      <input id='answer-{{ question.id }}' class='radio-custom' name='radio-group' type='radio' [(ngModel)]='selectedQuestion' [value]='question.id'>
-      <label [attr.for]='"answer-" + question.id'>{{ question.question }}</label>
+      <input id='answer-{{ question.id }}-{{ uniqId }}' class='radio-custom' name='radio-group-{{ uniqId }}' type='radio' [(ngModel)]='selectedQuestion' [value]='question.id'>
+      <label [attr.for]='"answer-" + question.id + "-" + uniqId'>{{ question.question }}</label>
     </div>
   </div>
 

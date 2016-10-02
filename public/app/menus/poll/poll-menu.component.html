@@ -1,4 +1,5 @@
 <poll-partial
+  [uniqId]='"menu"'
   [poll]='poll'
   [questions]='questions'
   [answered]='answered'
@@ -6,3 +7,7 @@
   (onVote)='vote($event)'
 >
 </poll-partial>
+
+<div class='text-center' *ngIf='message'>
+  {{ message }}
+</div>

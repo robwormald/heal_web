@@ -16,6 +16,7 @@ export class PollMenuComponent {
   questions: PollQuestion[];
   answered: PollAnswer;
   totalAnswers: number = 0;
+  message: string;
   channel: string = 'home';
 
   constructor(
@@ -38,19 +39,25 @@ export class PollMenuComponent {
         break;
       case 'answered_poll':
         if(res.data.poll && res.data.poll.id == this.poll.id) {
-          this.updatePollInformation(res);
+          this.updatePollInformation(res.data);
         }
         break;
       case 'latest_poll':
-        this.updatePollInformation(res)
+        this.updatePollInformation(res.data)
         break;
     }
   }
 
-  private updatePollInformation(res): void {
-    this.poll = res.data.poll as Poll;
-    this.questions = res.data.questions as PollQuestion[];
-    this.answered = (res.data.answered || this.answered) as PollAnswer;
-    this.pollService.calculateWidth(this);
+  private updatePollInformation(data): void {
+    if(data.poll) {
+      this.message = null;
+      this.poll = data.poll as Poll;
+      this.questions = data.questions as PollQuestion[];
+      this.answered = (data.answered || this.answered) as PollAnswer;
+      this.pollService.calculateWidth(this);
+    }
+    else {
+      this.message = 'No polls yet :(';
+    }
   }
 }

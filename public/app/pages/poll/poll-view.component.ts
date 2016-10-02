@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { PollService } from './../../shared/services/poll.service';
 import { WebsocketService } from './../../global/index';
@@ -23,6 +23,7 @@ export class PollViewPageComponent {
   constructor(
     private websocket: WebsocketService,
     private pollService: PollService,
+    private router: Router,
     private route: ActivatedRoute
   ) {
     this.websocket.init(this.channel).subscribe(this.received.bind(this));
@@ -48,11 +49,11 @@ export class PollViewPageComponent {
         break;
       case 'answered_poll':
         if(res.data.poll && res.data.poll.id == this.poll.id) {
-          this.updatePollInformation(res);
+          this.updatePollInformation(res.data);
         }
         break;
       case 'current_poll':
-        this.updatePollInformation(res);
+        this.updatePollInformation(res.data);
         break;
     }
   }
@@ -64,10 +65,16 @@ export class PollViewPageComponent {
     this.websocket.perform(this.channel, 'current_poll', { poll_id: this.currentPollId });
   }
 
-  private updatePollInformation(res): void {
-    this.poll = res.data.poll as Poll;
-    this.questions = res.data.questions as PollQuestion[];
-    this.answered = (res.data.answered || this.answered) as PollAnswer;
-    this.pollService.calculateWidth(this);
+  private updatePollInformation(data): void {
+    if(data.poll) {
+      this.poll = data.poll as Poll;
+      this.questions = data.questions as PollQuestion[];
+      this.answered = (data.answered || this.answered) as PollAnswer;
+      this.pollService.calculateWidth(this);
+    }
+    else {
+      // TODO make redirect to notfound
+      this.router.navigate(['/']);
+    }
   }
 }
