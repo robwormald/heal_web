@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+import { AppStore } from './../../app.store';
 import { PollService } from './../../shared/services/poll.service';
 import { WebsocketService } from './../../global/index';
 import { Poll, PollQuestion, PollAnswer } from './../../objects/index';
@@ -22,6 +23,7 @@ export class PollMenuComponent {
   constructor(
     private websocket: WebsocketService,
     private pollService: PollService,
+    private store: AppStore,
   ) {
     this.websocket.init(this.channel).subscribe(this.received.bind(this));
   }
@@ -53,7 +55,9 @@ export class PollMenuComponent {
       this.message = null;
       this.poll = data.poll as Poll;
       this.questions = data.questions as PollQuestion[];
-      this.answered = (data.answered || this.answered) as PollAnswer;
+      if(data.answered && data.answered.user_id == this.store.getKeyValue('currentUser').id) {
+        this.answered = data.answered as PollAnswer;
+      }
       this.pollService.calculateWidth(this);
     }
     else {
