@@ -41,7 +41,7 @@ export class PollMenuComponent {
         break;
       case 'answered_poll':
         if(res.data.poll && res.data.poll.id == this.poll.id) {
-          this.updatePollInformation(res.data);
+          this.updatePollInformation(res.data, true);
         }
         break;
       case 'latest_poll':
@@ -50,12 +50,13 @@ export class PollMenuComponent {
     }
   }
 
-  private updatePollInformation(data): void {
+  private updatePollInformation(data: any, update: boolean = false): void {
     if(data.poll) {
       this.message = null;
       this.poll = data.poll as Poll;
       this.questions = data.questions as PollQuestion[];
-      if(data.answered && data.answered.user_id == this.store.getKeyValue('currentUser').id) {
+
+      if(update && data.answered && data.answered.user_id == this.store.getKeyValue('currentUser').id || data.answered) {
         this.answered = data.answered as PollAnswer;
       }
       this.pollService.calculateWidth(this);
