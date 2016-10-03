@@ -2,13 +2,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd, Event as NavigationEvent } from '@angular/router';
 
 import { User } from './../../objects/index';
-import { StateService, WebsocketService } from './../../global/index';
+import { AppStore } from './../../app.store';
+import { WebsocketService } from './../../global/index';
 
 @Component({
   moduleId: module.id,
   selector: 'online-users',
   templateUrl: 'appearance.component.html',
-  providers: [StateService, WebsocketService]
+  providers: [AppStore, WebsocketService]
 })
 
 export class AppearancePartialComponent implements OnInit, OnDestroy {
@@ -16,7 +17,7 @@ export class AppearancePartialComponent implements OnInit, OnDestroy {
   channel: string = 'appearance';
 
   constructor(
-    private state: StateService,
+    private store: AppStore,
     private router: Router,
     private websocket: WebsocketService
   ) {
@@ -43,7 +44,7 @@ export class AppearancePartialComponent implements OnInit, OnDestroy {
           this.users.splice(this.findUserIndex(res.data.user.id), 1);
           break;
         case 'list':
-          this.state.set('currentUser', res.data.current_user);
+          this.store.setKeyValue('currentUser', res.data.current_user);
           this.users = [...this.users, ...res.data.users];
           break;
         case 'update':
@@ -63,8 +64,8 @@ export class AppearancePartialComponent implements OnInit, OnDestroy {
   }
 
   private updateUsers(index: number, data: any): void {
-    if(data.user.id == this.state.get('currentUser').id) {
-      this.state.set('currentUser', data.user);
+    if(data.user.id == this.store.getKeyValue('currentUser').id) {
+      this.store.setKeyValue('currentUser', data.user);
     }
 
     return this.users[index] = data.user;

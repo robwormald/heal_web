@@ -8,6 +8,7 @@ var Collapse = require('ng2-bootstrap/ng2-collapse');
 
 import './rxjs-extensions';
 import { AppComponent } from './app.component';
+import { AppStore } from './app.store';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { PollMenuComponent } from './menus/poll/poll-menu.component';
@@ -46,7 +47,8 @@ import {
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'lv' },
-    appRoutingProviders
+    appRoutingProviders,
+    AppStore
   ],
   bootstrap: [AppComponent]
 })
