@@ -12,7 +12,7 @@ import { Poll, PollQuestion, PollAnswer } from './../../objects/index';
   providers: [PollService, WebsocketService]
 })
 
-export class PollViewPageComponent {
+export class PollViewComponent {
   poll: Poll;
   questions: PollQuestion[];
   answered: PollAnswer;

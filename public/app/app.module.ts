@@ -6,26 +6,28 @@ import { FormsModule }   from '@angular/forms';
 var Popover = require('ng2-popover');
 var Collapse = require('ng2-bootstrap/ng2-collapse');
 
+import { PollModule } from './pages/poll/poll.module';
+import { SharedModule } from './shared/modules/shared.module';
+
 import './rxjs-extensions';
 import { AppComponent } from './app.component';
 import { AppStore } from './app.store';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { PollMenuComponent } from './menus/poll/poll-menu.component';
-import { ChatPageComponent, HomePageComponent, PollListPageComponent, PollViewPageComponent } from './pages/index';
+import { ChatPageComponent, HomePageComponent } from './pages/index';
 import {
   AppearancePartialComponent,
-  ContainerBlockPartialComponent,
   BBCodePartialComponent,
   NotificationPartialComponent,
-  PollPartialComponent,
 } from './partials/index';
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
-    FormsModule,
+    SharedModule,
+    PollModule,
     Popover.PopoverModule,
     Collapse.CollapseModule,
     routing
@@ -34,16 +36,12 @@ import {
     AppComponent,
     ChatPageComponent,
     HomePageComponent,
-    PollListPageComponent,
-    PollViewPageComponent,
 
     PollMenuComponent,
 
     AppearancePartialComponent,
-    ContainerBlockPartialComponent,
     BBCodePartialComponent,
     NotificationPartialComponent,
-    PollPartialComponent,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'lv' },
