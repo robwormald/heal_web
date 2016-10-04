@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { routing           } from './poll.routing';
 import { SharedModule      } from './../../shared/modules/shared.module';
 import { PollComponent     } from './poll.component';
-import { PollHomeComponent } from './poll-home.component';
+import { PollListComponent } from './poll-list.component';
 import { PollViewComponent } from './poll-view.component';
 
 @NgModule({
@@ -13,7 +13,7 @@ import { PollViewComponent } from './poll-view.component';
   ],
   declarations: [
     PollComponent,
-    PollHomeComponent,
+    PollListComponent,
     PollViewComponent,
   ],
   exports: [PollComponent],

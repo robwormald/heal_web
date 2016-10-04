@@ -4,11 +4,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { AppStore } from './../../app.store';
 import { WebsocketService } from './../../global/index';
 
-import { Poll, PollQuestion, PollAnswer, PollObject } from './../../objects/index';
+import { Poll, PollQuestion, PollAnswer, PollView, PollList } from './../../objects/index';
 
 @Injectable()
 export class PollService {
   connected: boolean = false;
+  channel: string = 'poll';
 
   constructor(
     private websocket: WebsocketService,
@@ -16,25 +17,43 @@ export class PollService {
     private store: AppStore,
   ) {}
 
-  isConnected(name: string): boolean {
-    return this.websocket.isConnected(name);
+  subscribe(type: string, params: any): void {
+    this.websocket.init(this.channel).subscribe(this.receive.bind(this, type, params));
   }
 
-  subscribePoll(pollId: number): void {
-    this.websocket.init('poll').subscribe(this.receivePoll.bind(this, pollId));
+  perform(type: string, params: any): void {
+    if(this.websocket.isConnected(this.channel)) {
+      this.websocket.perform(this.channel, this.action(type), params);
+    }
+    else {
+      this.subscribe(type, params);
+    }
   }
 
-  getPoll(pollId: number): void {
-    this.websocket.perform('poll', 'current_poll', { poll_id: pollId });
+  private action(type: string): string {
+    switch(type) {
+      case 'list':
+        return 'poll_list';
+      case 'view':
+        return 'current_poll';
+    }
   }
 
-  private receivePoll(pollId: number, res: any): void {
+  private receive(type: string, params: any, res: any): any {
     switch(res.event) {
       case 'connected':
         if(!this.connected) {
           this.connected = true;
-          this.getPoll(pollId);
+          this.perform(type, params);
         }
+        break;
+      case 'poll_list':
+        let pollData = {
+          polls: res.data.polls as Poll[],
+          totalCount: res.data.total_count,
+        } as PollList;
+
+        this.store.setKeyValue('pollList', pollData);
         break;
       case 'current_poll':
       case 'answered_poll':
@@ -49,7 +68,7 @@ export class PollService {
         poll: data.poll as Poll,
         questions: data.questions as PollQuestion[],
         answered: this.getAnswered(data.answered)
-      } as PollObject;
+      } as PollView;
 
       this.calculateWidth(pollData);
       this.store.setKeyValue('currentPoll', pollData);
@@ -61,7 +80,7 @@ export class PollService {
     }
   }
 
-  private calculateWidth(data: PollObject): void {
+  private calculateWidth(data: PollView): void {
     data.totalAnswers = 0;
     data.questions.map((question) => data.totalAnswers += question.answer_count);
     data.questions.map((question) => {

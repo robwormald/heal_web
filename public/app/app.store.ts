@@ -1,17 +1,19 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { User, PollObject } from './objects/index';
+import { User, PollView, PollList } from './objects/index';
 
 interface State {
   currentUser: User;
-  currentPoll: PollObject;
-  latestPoll: PollObject;
+  currentPoll: PollView;
+  latestPoll: PollView;
+  pollList: PollList;
 };
 
 const state: State = {
   currentUser: {} as User,
-  currentPoll: {} as PollObject,
-  latestPoll: {} as PollObject,
+  currentPoll: {} as PollView,
+  latestPoll: {} as PollView,
+  pollList: {} as PollList,
 };
 
 const store = new BehaviorSubject<State>(state);

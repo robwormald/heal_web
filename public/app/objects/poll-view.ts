@@ -2,7 +2,7 @@ import { Poll         } from './poll';
 import { PollQuestion } from './poll-question';
 import { PollAnswer   } from './poll-answer';
 
-export class PollObject {
+export class PollView {
   poll: Poll;
   questions: PollQuestion[];
   answered: PollAnswer;

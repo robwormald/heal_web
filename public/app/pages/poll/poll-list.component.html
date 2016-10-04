@@ -2,7 +2,7 @@
   <a routerLink='/polls'>Polls</a>
 </div>
 
-<a routerLink='/polls/view/{{ poll.id }}' *ngFor='let poll of polls'>
+<a routerLink='/polls/view/{{ poll.id }}' *ngFor='let poll of pollList.polls'>
   <div class='poll-list-item'>
     {{ poll.title }}
   </div>

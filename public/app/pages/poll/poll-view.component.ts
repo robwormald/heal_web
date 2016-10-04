@@ -4,6 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { AppStore } from './../../app.store';
 import { PollService } from './poll.service';
 import { PollAnswerService } from './../../shared/services/poll-answer.service';
+import { PollView } from './../../objects/index';
 
 @Component({
   moduleId: module.id,
@@ -16,20 +17,16 @@ export class PollViewComponent {
   currentPoll: any = {};
 
   constructor(
-    private answerService: PollAnswerService,
-    private pollService: PollService,
     private store: AppStore,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private pollService: PollService,
+    private answerService: PollAnswerService,
   ) {
-    this.store.changes.pluck('currentPoll').subscribe((currentPoll) => this.currentPoll = currentPoll);
+    this.store.changes.pluck('currentPoll').subscribe((currentPoll: PollView) => this.currentPoll = currentPoll);
 
     this.route.params.subscribe((params: Params) => {
-      if(this.pollService.isConnected('poll')) {
-        this.pollService.getPoll(params['id']);
-      }
-      else {
-        this.pollService.subscribePoll(params['id']);
-      }
+      this.store.setKeyValue('currentPoll', {});
+      this.pollService.perform('view', { poll_id: params['id'] });
     });
   }
 

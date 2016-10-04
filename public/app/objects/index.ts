@@ -1,8 +1,9 @@
-export { User         } from './user';
-export { Poll         } from './poll';
-export { PollQuestion } from './poll-question';
-export { PollAnswer   } from './poll-answer';
-export { PollObject   } from './poll-object';
-export { ChatRoom     } from './chat-room';
-export { ChatMessage  } from './chat-message';
-export { Notification } from './notification';
+export * from './user';
+export * from './poll';
+export * from './poll-question';
+export * from './poll-answer';
+export * from './poll-view';
+export * from './poll-list';
+export * from './chat-room';
+export * from './chat-message';
+export * from './notification';
