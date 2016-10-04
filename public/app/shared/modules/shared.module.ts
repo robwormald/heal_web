@@ -18,7 +18,8 @@ import { ContainerBlockPartialComponent, PollPartialComponent } from './../../pa
   exports: [
     ContainerBlockPartialComponent,
     PollPartialComponent,
-    FormsModule
+    FormsModule,
+    CommonModule
   ]
 })
 

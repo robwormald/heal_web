@@ -8,6 +8,7 @@ export class WebsocketService {
   private channels: any = {
     home: { channel: 'HomeChannel' },
     chat: { channel: 'ChatChannel' },
+    poll: { channel: 'PollChannel' },
     appearance: { channel: 'AppearanceChannel' },
   };
 

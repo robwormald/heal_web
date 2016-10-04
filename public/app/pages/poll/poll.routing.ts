@@ -10,9 +10,12 @@ const routes: Routes = [{
   component: PollComponent,
   children: [{
     path: '',
+    redirectTo: 'list/1'
+  }, {
+    path: 'list/:page',
     component: PollHomeComponent
   }, {
-    path: ':id',
+    path: 'view/:id',
     component: PollViewComponent
   }]
 }];

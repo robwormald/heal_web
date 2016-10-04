@@ -1,3 +1,9 @@
-<container-block [title]='"Polls"' [center]='true'>
-  List
-</container-block>
+<div class='poll-home-link'>
+  <a routerLink='/polls'>Polls</a>
+</div>
+
+<a routerLink='/polls/view/{{ poll.id }}' *ngFor='let poll of polls'>
+  <div class='poll-list-item'>
+    {{ poll.title }}
+  </div>
+</a>

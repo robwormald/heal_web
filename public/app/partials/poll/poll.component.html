@@ -3,7 +3,7 @@
     <span *ngIf='view'>
       <a routerLink='/polls'>Polls</a> /
     </span>
-    <a routerLink='/polls/{{ poll.id }}'>{{ poll.title }}</a>
+    <a routerLink='/polls/view/{{ poll.id }}'>{{ poll.title }}</a>
   </div>
 
   <div class='poll-body' *ngFor='let question of questions'>
