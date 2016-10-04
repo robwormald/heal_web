@@ -1,9 +1,9 @@
 <poll-partial
   [uniqId]='"view"'
-  [poll]='poll'
-  [questions]='questions'
-  [answered]='answered'
-  [totalAnswers]='totalAnswers'
+  [poll]='currentPoll.poll'
+  [questions]='currentPoll.questions'
+  [answered]='currentPoll.answered'
+  [totalAnswers]='currentPoll.totalAnswers'
   [view]='true'
   (onVote)='vote($event)'
 >

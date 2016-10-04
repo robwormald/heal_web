@@ -37,7 +37,7 @@ export class PollHomeComponent implements OnInit {
         }
         break;
       case 'poll_list':
-        this.polls = res.data.polls as Polls;
+        this.polls = res.data.polls as Poll[];
         this.totalCount = res.data.totalCount;
         break;
     }

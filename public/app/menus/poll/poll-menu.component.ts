@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { AppStore } from './../../app.store';
-import { PollService } from './../../shared/services/poll.service';
+import { PollAnswerService } from './../../shared/services/poll-answer.service';
 import { WebsocketService } from './../../global/index';
 import { Poll, PollQuestion, PollAnswer } from './../../objects/index';
 
@@ -9,7 +9,7 @@ import { Poll, PollQuestion, PollAnswer } from './../../objects/index';
   moduleId: module.id,
   selector: 'poll-menu',
   templateUrl: 'poll-menu.component.html',
-  providers: [PollService, WebsocketService]
+  providers: [PollAnswerService, WebsocketService]
 })
 
 export class PollMenuComponent {
@@ -22,16 +22,14 @@ export class PollMenuComponent {
 
   constructor(
     private websocket: WebsocketService,
-    private pollService: PollService,
+    private answerService: PollAnswerService,
     private store: AppStore,
   ) {
     this.websocket.init(this.channel).subscribe(this.received.bind(this));
   }
 
   vote(questionId: number): void {
-    this.pollService.vote(this.poll.id, questionId).subscribe((res) => {
-      this.answered = res.data as PollAnswer;
-    });
+    this.answerService.vote('latestPoll', this.poll.id, questionId);
   }
 
   private received(res): void {
@@ -59,7 +57,7 @@ export class PollMenuComponent {
       if(update && data.answered && data.answered.user_id == this.store.getKeyValue('currentUser').id || data.answered) {
         this.answered = data.answered as PollAnswer;
       }
-      this.pollService.calculateWidth(this);
+      // this.answerService.calculateWidth(this);
     }
     else {
       this.message = 'No polls yet :(';

@@ -8,6 +8,10 @@ class PollChannel < ApplicationCable::Channel
     stop_all_streams
   end
 
+  def current_poll(data)
+    Poll::CurrentPollJob.perform_later(current_user.id, data['poll_id'])
+  end
+
   def poll_list(data)
     Poll::PollListJob.perform_later(current_user.id, data['page'])
   end

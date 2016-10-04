@@ -9,10 +9,6 @@ class HomeChannel < ApplicationCable::Channel
     stop_all_streams
   end
 
-  def current_poll(data)
-    Poll::CurrentPollJob.perform_later(current_user.id, data['poll_id'])
-  end
-
   def latest_poll
     Poll::LatestPollJob.perform_later(current_user.id)
   end
