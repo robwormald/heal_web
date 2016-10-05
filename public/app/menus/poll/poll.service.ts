@@ -4,12 +4,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { AppStore } from './../../app.store';
 import { WebsocketService } from './../../global/index';
 
-import { Poll, PollQuestion, PollAnswer, PollView, PollList } from './../../objects/index';
+import { Poll, PollQuestion, PollAnswer, PollView } from './../../objects/index';
 
 @Injectable()
 export class PollService {
   connected: boolean = false;
-  channel: string = 'poll';
+  channel: string = 'home';
 
   constructor(
     private websocket: WebsocketService,
@@ -17,45 +17,19 @@ export class PollService {
     private store: AppStore,
   ) {}
 
-  subscribe(type: string, params: any): void {
-    this.websocket.init(this.channel).subscribe(this.receive.bind(this, type, params));
+  subscribe(): void {
+    this.websocket.init(this.channel).subscribe(this.receive.bind(this));
   }
 
-  perform(type: string, params: any): void {
-    if(this.websocket.isConnected(this.channel)) {
-      this.websocket.perform(this.channel, this.action(type), params);
-    }
-    else {
-      this.subscribe(type, params);
-    }
-  }
-
-  private action(type: string): string {
-    switch(type) {
-      case 'list':
-        return 'poll_list';
-      case 'view':
-        return 'current_poll';
-    }
-  }
-
-  private receive(type: string, params: any, res: any): any {
+  private receive(res: any): any {
     switch(res.event) {
       case 'connected':
         if(!this.connected) {
           this.connected = true;
-          this.perform(type, params);
+          this.websocket.perform(this.channel, 'latest_poll');
         }
         break;
-      case 'poll_list':
-        let pollData = {
-          polls: res.data.polls as Poll[],
-          totalCount: res.data.total_count,
-        } as PollList;
-
-        this.store.setKeyValue('pollList', pollData);
-        break;
-      case 'current_poll':
+      case 'latest_poll':
       case 'answered_poll':
         this.updatePollInformation(res.data);
         break;
@@ -71,12 +45,10 @@ export class PollService {
       } as PollView;
 
       this.calculateWidth(pollData);
-      this.store.setKeyValue('currentPoll', pollData);
+      this.store.setKeyValue('latestPoll', pollData);
     }
     else {
-      // TODO make redirect to notfound
-      // this.router.navigate(['/']);
-      this.store.setKeyValue('currentPoll', { redirect: true });
+      this.store.setKeyValue('latestPoll', { message: 'No polls found :(' });
     }
   }
 

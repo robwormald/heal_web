@@ -1,13 +1,13 @@
 <poll-partial
   [uniqId]='"menu"'
-  [poll]='poll'
-  [questions]='questions'
-  [answered]='answered'
-  [totalAnswers]='totalAnswers'
+  [poll]='latestPoll.poll'
+  [questions]='latestPoll.questions'
+  [answered]='latestPoll.answered'
+  [totalAnswers]='latestPoll.totalAnswers'
   (onVote)='vote($event)'
 >
 </poll-partial>
 
-<div class='text-center' *ngIf='message'>
-  {{ message }}
+<div class='text-center' *ngIf='latestPoll.message'>
+  {{ latestPoll.message }}
 </div>

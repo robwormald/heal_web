@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, Event as NavigationEvent } from '@angular/router';
 
-import { EmojiSupportService } from './global/index';
+import { EmojiSupportService, WebsocketService } from './global/index';
 
 @Component({
   moduleId: module.id,
   selector: 'my-app',
   templateUrl: 'app.component.html',
-  providers: [EmojiSupportService]
+  providers: [EmojiSupportService, WebsocketService]
 })
 
 export class AppComponent implements OnInit {
