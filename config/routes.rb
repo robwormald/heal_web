@@ -1,7 +1,12 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root 'home#index'
 
   resources :home, only: [:index]
+  authenticate :user do
+    mount Sidekiq::Web => '/sidekiq'
+  end
   mount ActionCable.server => '/cable'
 
   devise_for :users, skip: [:registrations, :passwords, :sessions], path: ''
