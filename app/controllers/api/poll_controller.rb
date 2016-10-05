@@ -1,7 +1,7 @@
 class Api::PollController < ApiController
   def create
     permitted_params = answer_params;
-    answer = PollAnswer.where(user_id: current_user.id, poll_question_id: permitted_params[:poll_question_id]).first_or_initialize(permitted_params)
+    answer = PollAnswer.where(user_id: current_user.id).joins(:poll_question).where({ poll_questions: { poll_id: params[:poll_id] } }).first_or_initialize(permitted_params)
 
     if answer.nil? || answer.persisted?
       ChannelHelpers.error_notification(current_user.id, 'No vote selected or already voted')
