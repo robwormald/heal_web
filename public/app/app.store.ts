@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { User, PollView, PollList } from './objects/index';
 
 interface State {
+  onlineUsers: User[];
   currentUser: User;
   currentPoll: PollView;
   latestPoll: PollView;
@@ -10,6 +11,7 @@ interface State {
 };
 
 const state: State = {
+  onlineUsers: [] as User[],
   currentUser: {} as User,
   currentPoll: {} as PollView,
   latestPoll: {} as PollView,

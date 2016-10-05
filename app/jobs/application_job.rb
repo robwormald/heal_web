@@ -6,4 +6,8 @@ class ApplicationJob < ActiveJob::Base
       .where(poll_id: poll_id)
       .order(id: :asc).group(:id)
   end
+
+  def parse_user(user)
+    user.as_json(only: Constants::SAFE_PARAMS[:user])
+  end
 end

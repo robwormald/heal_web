@@ -19,6 +19,9 @@ export class PollService {
 
   subscribe(type: string, params: any): void {
     this.websocket.init(this.channel).subscribe(this.receive.bind(this, type, params));
+    if(type == 'view') {
+      this.websocket.init('home').subscribe(this.recieveHome.bind(this));
+    }
   }
 
   perform(type: string, params: any): void {
@@ -39,7 +42,17 @@ export class PollService {
     }
   }
 
-  private receive(type: string, params: any, res: any): any {
+  private recieveHome(res: any): void {
+    switch(res.event) {
+      case 'answered_poll':
+        if(res.data.poll.id == this.store.getKeyValue('currentPoll').poll.id) {
+          this.updatePollInformation(res.data);
+        }
+        break;
+    }
+  }
+
+  private receive(type: string, params: any, res: any): void {
     switch(res.event) {
       case 'connected':
         if(!this.connected) {
@@ -56,7 +69,6 @@ export class PollService {
         this.store.setKeyValue('pollList', pollData);
         break;
       case 'current_poll':
-      case 'answered_poll':
         this.updatePollInformation(res.data);
         break;
     }
@@ -91,6 +103,6 @@ export class PollService {
 
   private getAnswered(answered: PollAnswer): any {
     let user_id = this.store.getKeyValue('currentUser').id;
-    return answered && answered.user_id == user_id ? answered : null;
+    return answered && answered.user_id == user_id ? answered : this.store.getKeyValue('currentPoll').answered;
   }
 }

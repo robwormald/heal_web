@@ -1,38 +1,22 @@
 # Be sure to restart your server when you modify this file. Action Cable runs in a loop that does not support auto reloading.
 class AppearanceChannel < ApplicationCable::Channel
   def subscribed
-    change_online_status(true)
-    ActionCable.server.broadcast('appearance', ChannelHelpers.params(:join, { user: as_json(current_user) }))
-
     stream_from 'appearance'
+    stream_from "appearance_#{current_user.id}"
+    Appearance::UserListJob.perform_later(current_user)
+    Appearance::AppearanceJob.perform_later(current_user, 'join')
   end
 
   def unsubscribed
-    change_online_status(false)
-    ActionCable.server.broadcast('appearance', ChannelHelpers.params(:leave, { user: as_json(current_user) }))
-  end
-
-  def user_list
-    users = User.where(online: true);
-    transmit(ChannelHelpers.params(:list, { users: as_json(users), current_user: as_json(current_user) }))
+    stop_all_streams
+    Appearance::AppearanceJob.perform_later(current_user, 'leave')
   end
 
   def location(data)
-    current_user.update(location: data['location'])
-    ActionCable.server.broadcast('appearance', ChannelHelpers.params(:update, { user: as_json(current_user) }))
+    Appearance::LocationJob.perform_later(current_user, data['location'])
   end
 
   def sample_notif
     ActionCable.server.broadcast("home_#{current_user.id}", ChannelHelpers.params(:notification, { type: 'danger', title: 'Sample', body: 'Notification' }))
-  end
-
-  private
-
-  def as_json(data)
-    data.as_json(only: Constants::SAFE_PARAMS[:user])
-  end
-
-  def change_online_status(status)
-    current_user.update(online: status)
   end
 end

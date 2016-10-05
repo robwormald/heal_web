@@ -7,7 +7,7 @@ import { WebsocketService } from './../../global/index';
 import { Poll, PollQuestion, PollAnswer, PollView } from './../../objects/index';
 
 @Injectable()
-export class PollService {
+export class PollMenuService {
   connected: boolean = false;
   channel: string = 'home';
 
@@ -29,8 +29,12 @@ export class PollService {
           this.websocket.perform(this.channel, 'latest_poll');
         }
         break;
-      case 'latest_poll':
       case 'answered_poll':
+        if(res.data.poll.id == this.store.getKeyValue('latestPoll').poll.id) {
+          this.updatePollInformation(res.data);
+        }
+        break;
+      case 'latest_poll':
         this.updatePollInformation(res.data);
         break;
     }
@@ -63,6 +67,6 @@ export class PollService {
 
   private getAnswered(answered: PollAnswer): any {
     let user_id = this.store.getKeyValue('currentUser').id;
-    return answered && answered.user_id == user_id ? answered : null;
+    return answered && answered.user_id == user_id ? answered : this.store.getKeyValue('latestPoll').answered;
   }
 }

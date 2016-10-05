@@ -1,79 +1,36 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd, Event as NavigationEvent } from '@angular/router';
 
 import { User } from './../../objects/index';
 import { AppStore } from './../../app.store';
-import { WebsocketService } from './../../global/index';
+import { AppearanceService } from './appearance.service';
 
 @Component({
   moduleId: module.id,
   selector: 'online-users',
   templateUrl: 'appearance.component.html',
-  providers: [AppStore, WebsocketService]
+  providers: [AppearanceService]
 })
 
-export class AppearancePartialComponent implements OnInit, OnDestroy {
-  users: User[] = [];
-  channel: string = 'appearance';
+export class AppearancePartialComponent implements OnDestroy {
+  onlineUsers: User[] = [];
 
   constructor(
     private store: AppStore,
     private router: Router,
-    private websocket: WebsocketService
+    private appearanceService: AppearanceService,
   ) {
+    this.store.changes.pluck('onlineUsers').subscribe((onlineUsers: User[]) => this.onlineUsers = onlineUsers);
+    this.appearanceService.subscribe();
+
     router.events.subscribe((event: NavigationEvent) => {
       if(event instanceof NavigationEnd) {
-        this.websocket.perform(this.channel, 'location', { location: event.url });
-      }
-    });
-  }
-
-  ngOnInit(): void {
-    this.websocket.init(this.channel).subscribe((res: any) => {
-      switch (res.event) {
-        case 'join':
-          var index = this.findUserIndex(res.data.user.id);
-          if(index) {
-            this.updateUsers(index, res.data);
-          }
-          else {
-            this.users.push(res.data.user as User);
-          }
-          break;
-        case 'leave':
-          this.users.splice(this.findUserIndex(res.data.user.id), 1);
-          break;
-        case 'list':
-          this.store.setKeyValue('currentUser', res.data.current_user);
-          this.users = [...this.users, ...res.data.users];
-          break;
-        case 'update':
-          var index = this.findUserIndex(res.data.user.id);
-          this.updateUsers(index, res.data);
-          break;
-        case 'connected':
-          this.websocket.perform(this.channel, 'user_list');
-          this.websocket.perform(this.channel, 'sample_notif');
-          break;
+        this.appearanceService.perform(event.url);
       }
     });
   }
 
   ngOnDestroy(): void {
-    this.websocket.destroy(this.channel);
-  }
-
-  private updateUsers(index: number, data: any): void {
-    if(data.user.id == this.store.getKeyValue('currentUser').id) {
-      this.store.setKeyValue('currentUser', data.user);
-    }
-
-    return this.users[index] = data.user;
-  }
-
-  private findUserIndex(id: number): any {
-    for(let i in this.users) {
-      if(this.users[i].id as number == id) return i;
-    }
+    this.appearanceService.unsubscribe();
   }
 }

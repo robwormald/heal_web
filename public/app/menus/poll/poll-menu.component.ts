@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { AppStore } from './../../app.store';
-import { PollService } from './poll.service';
+import { PollMenuService } from './poll-menu.service';
 import { PollAnswerService } from './../../shared/services/poll-answer.service';
 import { PollView } from './../../objects/index';
 
@@ -9,14 +9,14 @@ import { PollView } from './../../objects/index';
   moduleId: module.id,
   selector: 'poll-menu',
   templateUrl: 'poll-menu.component.html',
-  providers: [PollService, PollAnswerService]
+  providers: [PollMenuService, PollAnswerService]
 })
 
 export class PollMenuComponent {
   latestPoll: any = {};
 
   constructor(
-    private pollService: PollService,
+    private pollService: PollMenuService,
     private answerService: PollAnswerService,
     private store: AppStore,
   ) {
