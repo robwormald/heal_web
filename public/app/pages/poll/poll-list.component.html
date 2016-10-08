@@ -7,3 +7,5 @@
     {{ poll.title }}
   </div>
 </a>
+
+<pagination [total]='pollList.totalCount' [page]='pollList.currentPage' url='/polls/list/'></pagination>

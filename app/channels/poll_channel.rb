@@ -13,6 +13,6 @@ class PollChannel < ApplicationCable::Channel
   end
 
   def poll_list(data)
-    Poll::PollListJob.perform_later(current_user.id, data['page'])
+    Poll::PollListJob.perform_later(current_user.id, data['page'].to_i)
   end
 end

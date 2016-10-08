@@ -34,18 +34,10 @@
         main: './main.js',
         defaultExtension: 'js'
       },
-      rxjs: {
-        defaultExtension: 'js'
-      },
-      'actioncable-js': {
-        defaultExtension: 'js'
-      },
-      'XBBCODE': {
-        defaultExtension: 'js'
-      },
-      'ng2-popover': {
-        defaultExtension: 'js'
-      },
+      rxjs: { defaultExtension: 'js' },
+      'XBBCODE': { defaultExtension: 'js' },
+      'ng2-popover': { defaultExtension: 'js' },
+      'actioncable-js': { defaultExtension: 'js' },
       'ng2-bootstrap/ng2-collapse': {
         defaultExtension: 'js'
       },

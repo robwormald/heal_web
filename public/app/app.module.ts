@@ -10,8 +10,8 @@ import { PollModule } from './pages/poll/poll.module';
 import { SharedModule } from './shared/modules/shared.module';
 
 import './rxjs-extensions';
-import { AppComponent } from './app.component';
 import { AppStore } from './app.store';
+import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { PollMenuComponent } from './menus/poll/poll-menu.component';

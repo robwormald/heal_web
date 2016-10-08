@@ -64,6 +64,7 @@ export class PollService {
         let pollData = {
           polls: res.data.polls as Poll[],
           totalCount: res.data.total_count,
+          currentPage: res.data.current_page as number,
         } as PollList;
 
         this.store.setKeyValue('pollList', pollData);

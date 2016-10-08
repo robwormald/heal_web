@@ -1,0 +1,5 @@
+<ul class='pagination-block text-center' *ngIf='shouldShow'>
+  <li *ngFor='let page of pageArray'>
+    <a class='btn btn-info' routerLinkActive='active' routerLink='{{ redirectUrl + page }}'>{{ page }}</a>
+  </li>
+</ul>
