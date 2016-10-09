@@ -26,7 +26,7 @@ class Api::ChatController < ApiController
     @chat_room = ChatRoom.where(id: params[:id]).where(GlobalQueries.permission_array, current_user.permissions).first
     if(@chat_room)
       @chat_messages = get_messages(@chat_room.id)
-      render json: @chat_messages
+      render json: @chat_messages.as_json(include: { user: { only: Constants::SAFE_PARAMS[:user] } })
     else
       render json: []
     end
