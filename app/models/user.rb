@@ -2,7 +2,8 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
 
-  has_many :messages, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :chat_messages, dependent: :destroy
 
   devise :database_authenticatable, :confirmable, :registerable, :recoverable, :trackable, :validatable
 

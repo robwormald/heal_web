@@ -21,6 +21,7 @@ ChatRoom.create!({ title: '#admin', permissions: Constants::ADMIN_SYSTEM_ROLES }
 poll_1 = Poll.create!(title: "Is it first?")
 poll_1_answer_1 = PollQuestion.create!(poll: poll_1, question: 'Yup')
 poll_1_answer_2 = PollQuestion.create!(poll: poll_1, question: 'Nope')
+Comment.create!(commentable: poll_1, user: main_user, body: 'First comment')
 
 poll_2 = Poll.create!(title: "What`s up?")
 poll_2_answer_1 = PollQuestion.create!(poll: poll_2, question: 'Everitin')
