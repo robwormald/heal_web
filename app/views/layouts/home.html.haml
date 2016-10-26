@@ -7,6 +7,7 @@
     %title HealWeb
     = csrf_meta_tags
     = stylesheet_link_tag    'inside', media: 'all'
+    = stylesheet_link_tag    session[:theme] || 'themes-red', media: 'all'
     = javascript_include_tag 'application'
 
     %script{ src: 'systemjs.config.js' }

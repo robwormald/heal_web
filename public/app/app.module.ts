@@ -20,6 +20,7 @@ import {
   AppearancePartialComponent,
   BBCodePartialComponent,
   NotificationPartialComponent,
+  ThemesPickerComponent,
 } from './partials/index';
 
 @NgModule({
@@ -42,6 +43,7 @@ import {
     AppearancePartialComponent,
     BBCodePartialComponent,
     NotificationPartialComponent,
+    ThemesPickerComponent,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'lv' },

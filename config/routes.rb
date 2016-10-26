@@ -26,6 +26,9 @@ Rails.application.routes.draw do
       post :create, on: :member
     end
     resources :poll, only: [:create]
+    resources :themes, only: [] do
+      post :change, on: :collection
+    end
   end
 
   get '*path', to: 'home#index'

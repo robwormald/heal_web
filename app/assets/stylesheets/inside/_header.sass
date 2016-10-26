@@ -1,4 +1,7 @@
 .header-helper
+  $size-side-triangles: 30px
+
+  height: $size-side-triangles
   background-color: white
   line-height: 2
   .triangle
@@ -6,18 +9,27 @@
     height: 0
     border-style: solid
     &.pull-left
-      padding-left: 15px
-      border-width: 30px 0 0 30px
-      border-color: transparent transparent transparent $color-main-background
+      padding-left: $size-side-triangles/2
+      border-width: $size-side-triangles 0 0 $size-side-triangles
     &.pull-right
-      padding-right: 15px
-      border-width: 30px 30px 0 0
-      border-color: transparent $color-main-background transparent transparent
+      padding-right: $size-side-triangles/2
+      border-width: $size-side-triangles $size-side-triangles 0 0
+  .theme-picker > .theme-color
+    margin: 0 2.5px
+    margin-top: $size-side-triangles/4
+    width: $size-side-triangles/2
+    height: $size-side-triangles/2
+    display: inline-block
+    &.red
+      background-color: red
+    &.green
+      background-color: green
+    &.blue
+      background-color: blue
 
 nav.navbar
   margin-bottom: 0px
   border-bottom: none
-  background-color: $color-header-background
   .navbar-brand
     color: white
   .main-container

@@ -1,6 +1,3 @@
-$color-input-background: #fff
-$color-input-border: $color-center-title-background
-
 .checkbox-custom, .radio-custom
   opacity: 0
   position: absolute
@@ -11,19 +8,13 @@ $color-input-border: $color-center-title-background
 
 .checkbox-custom + label:before, .radio-custom + label:before
   content: ''
-  background: $color-input-background
-  border: 3px solid $color-input-border
+  border: 3px solid
   display: inline-block
   vertical-align: middle
   width: 20px
   height: 20px
   margin-right: 10px
   text-align: center
-
-.radio-custom:checked + label:before,
-.checkbox-custom:checked + label:before
-  background: $color-input-border
-  border-color: $color-input-background
 
 .radio-custom + label:before
   border-radius: 50%
