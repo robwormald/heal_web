@@ -15,7 +15,7 @@ export class ThemesPickerComponent {
   constructor(private service: ThemesPickerService) {}
 
   changeTheme(color: string): void {
-    this.service.changeTheme(color).then(() =>{
+    this.service.changeTheme(color).then(() => {
       location.reload(true);
     });
   }

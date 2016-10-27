@@ -1,0 +1,20 @@
+$color-main-shade-1:     #000000
+$color-main-shade-2:     #212121
+$color-main-background:  #303030
+$color-main-dialogs:     #424242
+
+$body-color: #BBBBBB
+
+@import "themes/brightness"
+
+body
+  color: $body-color
+
+a
+  color: #008b8b
+  &:active, &:focus, &:hover
+    color: #2ea0a0
+
+.form-control, .input-group-addon
+  background-color: $color-main-background
+  border-color: $color-main-shade-2

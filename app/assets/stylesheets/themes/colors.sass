@@ -1,0 +1,34 @@
+#home-block > #home-layout
+  .left-column, .right-column
+    .container-block .container-title
+      border-bottom-color: $color-header-background
+  .center-column .container-block .container-header .container-space
+    background-color: $color-center-title-background
+
+  // Pages
+  #chat-room
+    .nav.nav-tabs
+      border-color: $color-center-title-background
+      li > a
+        color: $color-center-title-background
+        &.active, &:hover, &:focus, &:active
+          background-color: $color-center-title-background
+
+  // Elements
+  .poll-block .poll-body .poll-progress .poll-progress-full
+    background-color: $color-center-title-background
+
+#home-block
+  // inputs
+  .radio-custom + label:before,
+  .checkbox-custom + label:before
+    background: transparent
+    border-color: $color-center-title-background
+
+  .radio-custom:checked + label:before,
+  .checkbox-custom:checked + label:before
+    background: $color-center-title-background
+    border-color: transparent
+
+  nav.navbar
+    background-color: $color-header-background

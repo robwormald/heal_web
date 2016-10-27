@@ -1,0 +1,58 @@
+body
+  background-color: $color-main-background
+
+#home-block > #home-layout
+  .center-column .container-block .container-header
+    .container-title
+      border-top-color: $color-main-dialogs
+    .container-space
+      border-top-color: $color-main-background
+      .triangle
+        border-color: transparent transparent transparent $color-main-dialogs
+
+  .container-block
+    background-color: $color-main-dialogs
+
+  // Pages
+  #chat-room
+    .nav.nav-tabs li > a
+      &.active, &:hover, &:focus, &:active
+        color: $color-main-dialogs
+    .chat-message-container .chat-messages
+      background-color: $color-main-background
+      border-color: $color-main-shade-2
+      .xbbcode-blockquote
+        background-color: $color-main-dialogs
+        border-color: $color-main-shade-1
+
+  #poll-page
+    .poll-list-item
+      background-color: $color-main-background
+      &:hover
+        background-color: $color-main-shade-2
+
+  // Elements
+  .poll-block .poll-body .poll-progress
+    background-color: $color-main-background
+    .poll-progress-full
+      color: $color-main-background
+
+#home-block
+  .header-helper
+    background-color: $color-main-dialogs
+    .triangle
+      &.pull-left
+        border-color: transparent transparent transparent $color-main-background
+      &.pull-right
+        border-color: transparent $color-main-background transparent transparent
+  .bbcode-toolbar .bbcode-button
+    background-color: $color-main-shade-2
+    border-color: $color-main-shade-1
+    &:focus, &:active, &:hover
+      background-color: $color-main-shade-1
+
+  .btn
+    &.btn-danger, &.btn-warning, &.btn-success, &.btn-info
+      background-color: $color-main-dialogs
+      &:hover, &:focus, &:active, &.active
+        color: $color-main-dialogs

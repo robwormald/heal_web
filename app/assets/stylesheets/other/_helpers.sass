@@ -21,8 +21,6 @@
 
 @mixin button-colors($color)
   color: $color
-  background-color: white
   border-color: $color
   &:hover, &:focus, &:active, &.active
-    color: white
-    background-color: $color
+    background-color: $color !important

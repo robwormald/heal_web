@@ -36,7 +36,7 @@
         .container-header
           @include display-flex
           .container-title
-            border-top: $size-top-border solid white
+            border-top: $size-top-border solid
             padding-right: 20px
             padding-left: 20px
             font-size: 20px
@@ -50,11 +50,9 @@
               height: 0
               border-style: solid
               border-width: $size-space-heigth 0 0 $size-space-heigth
-              border-color: transparent transparent transparent white
               margin-top: -$size-top-border
               @include align-self(flex-end)
         .container-body
           padding: $size-default-container-space
     .container-block
-      background-color: white
       margin-bottom: $size-default-container-space
