@@ -18,3 +18,13 @@ a
 .form-control, .input-group-addon
   background-color: $color-main-background
   border-color: $color-main-shade-2
+  color: inherit
+
+.form-control:focus
+  border-color: inherit
+  box-shadow: none
+
+.popover.top
+  background-color: $color-main-dialogs
+  .arrow:after
+    border-top-color: $color-main-dialogs
