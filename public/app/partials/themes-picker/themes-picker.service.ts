@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ThemesPickerService {
   constructor(private http: Http) {}
 
-  changeTheme(color: string): Promise<any> {
-    return this.http.post(`api/themes/change`, { color }).toPromise()
-      .catch(this.handleError);
+  getThemes(): Observable<any> {
+    return this.http.get(`api/themes`).map(res => res.json());
   }
 
-  private handleError(error: any): Promise<any> {
-    return Promise.reject(error.message || error);
+  changeColor(color: string): Observable<any> {
+    return this.http.post(`api/themes/color`, { color });
+  }
+
+  changeBrightness(brightness: string): Observable<any> {
+    return this.http.post(`api/themes/brightness`, { brightness });
   }
 }

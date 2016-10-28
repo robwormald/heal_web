@@ -26,7 +26,7 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.chatService.getChats().then(result => {
+    this.chatService.getChats().subscribe((result) => {
       this.chats = result.chats as ChatRoom[];
       this.chatMessages = result.messages as ChatMessage[];
       this.currentChatId = this.chats[0].id;
@@ -45,7 +45,7 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   switchChatRooms(id: number): void {
     if(this.currentChatId != id) {
       this.currentChatId = id;
-      this.chatService.getMessages(id).then(chatMessages => {
+      this.chatService.getMessages(id).subscribe((chatMessages) => {
         this.chatMessages = chatMessages;
         this.unsubscribe();
         this.subscribe(id);
@@ -66,10 +66,10 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   onSend(): void {
     if(!this.inputDisabled && this.message && this.message.length) {
       this.inputDisabled = true;
-      this.chatService.sendMessage(this.currentChatId, this.message).then(() => {
+      this.chatService.sendMessage(this.currentChatId, this.message).subscribe(() => {
         this.message = '';
         this.inputDisabled = false;
-      }).catch(() => this.inputDisabled = false);
+      });
     }
   }
 

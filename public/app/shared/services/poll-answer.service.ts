@@ -1,6 +1,5 @@
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
 import { AppStore } from './../../app.store';
 import { PollAnswer } from './../../objects/index';
@@ -14,7 +13,7 @@ export class PollAnswerService {
 
   vote(type: string, poll_id: number, poll_question_id: number = null): void {
     this.http.post('api/poll', this.voteParams(poll_id, poll_question_id))
-      .map(response => response.json())
+      .map(res => res.json())
       .subscribe((res) => {
         let currentPoll = this.store.getKeyValue(type);
         currentPoll.answered = res.data as PollAnswer;

@@ -1,3 +1,4 @@
 <span class='theme-picker pull-right'>
-  <div class='cursor-pointer theme-color {{ color }}' *ngFor='let color of colors' (click)='changeTheme(color)'></div>
+  <div class='cursor-pointer theme-color {{ brightness }}' (click)='changeBrightness(brightness)'></div>
+  <div class='cursor-pointer theme-color {{ color }}' *ngFor='let color of colors' (click)='changeColor(color)'></div>
 </span>

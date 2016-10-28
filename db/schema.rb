@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161009164848) do
+ActiveRecord::Schema.define(version: 20161028124755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,15 @@ ActiveRecord::Schema.define(version: 20161009164848) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["title"], name: "index_polls_on_title", unique: true, using: :btree
+  end
+
+  create_table "user_preferences", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "color",      default: 0
+    t.integer  "brightness", default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["user_id"], name: "index_user_preferences_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

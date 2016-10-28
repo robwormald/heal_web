@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ThemesPickerService } from './themes-picker.service';
 
@@ -9,14 +9,28 @@ import { ThemesPickerService } from './themes-picker.service';
   providers: [ThemesPickerService]
 })
 
-export class ThemesPickerComponent {
-  colors: string[] = ['red', 'green', 'blue'];
+export class ThemesPickerComponent implements OnInit {
+  brightness: string = '';
+  colors: string[] = [];
 
   constructor(private service: ThemesPickerService) {}
 
-  changeTheme(color: string): void {
-    this.service.changeTheme(color).then(() => {
-      location.reload(true);
+  ngOnInit(): void {
+    this.service.getThemes().subscribe((res) => {
+      this.colors = res.colors;
+      this.brightness = res.brightness;
     });
+  }
+
+  changeColor(color: string): void {
+    this.service.changeColor(color).subscribe(() => this.reloadPage());
+  }
+
+  changeBrightness(brightness: string): void {
+    this.service.changeBrightness(brightness).subscribe(() => this.reloadPage());
+  }
+
+  private reloadPage(): void {
+    location.reload(true);
   }
 }

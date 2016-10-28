@@ -9,16 +9,16 @@ Rails.application.routes.draw do
   end
   mount ActionCable.server => '/cable'
 
-  devise_for :users, skip: [:registrations, :passwords, :sessions], path: ''
+  devise_for :users, skip: [:registrations, :passwords, :sessions], path: '', controllers: { confirmations: 'user/confirmations' }
   devise_scope :user do
-    get '/forgot-password'      => 'devise/passwords#new',        as: :new_user_password
-    post '/forgot-password'     => 'devise/passwords#create',     as: :user_password
-    get '/forgot-password/edit' => 'devise/passwords#edit',       as: :edit_user_password
-    get '/register'             => 'devise/registrations#new',    as: :new_user_registration
-    post '/register'            => 'devise/registrations#create', as: :user_registration
-    get '/login'                => 'devise/sessions#new',         as: :new_user_session
-    post '/logout'              => 'devise/sessions#create',      as: :user_session
-    get '/logout'               => 'devise/sessions#destroy',     as: :destroy_user_session
+    get '/forgot-password'      => 'user/passwords#new',        as: :new_user_password
+    post '/forgot-password'     => 'user/passwords#create',     as: :user_password
+    get '/forgot-password/edit' => 'user/passwords#edit',       as: :edit_user_password
+    get '/register'             => 'user/registrations#new',    as: :new_user_registration
+    post '/register'            => 'user/registrations#create', as: :user_registration
+    get '/login'                => 'user/sessions#new',         as: :new_user_session
+    post '/logout'              => 'user/sessions#create',      as: :user_session
+    get '/logout'               => 'user/sessions#destroy',     as: :destroy_user_session
   end
 
   namespace :api do
@@ -26,8 +26,9 @@ Rails.application.routes.draw do
       post :create, on: :member
     end
     resources :poll, only: [:create]
-    resources :themes, only: [] do
-      post :change, on: :collection
+    resources :themes, only: [:index] do
+      post :color, on: :collection
+      post :brightness, on: :collection
     end
   end
 

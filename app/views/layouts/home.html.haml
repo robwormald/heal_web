@@ -7,9 +7,8 @@
     %title HealWeb
     = csrf_meta_tags
     = stylesheet_link_tag    'inside', media: 'all'
-    -# = stylesheet_link_tag    'brightness-light', media: 'all'
-    = stylesheet_link_tag    'brightness-dark', media: 'all'
-    = stylesheet_link_tag    session[:theme] || 'themes-red', media: 'all'
+    = stylesheet_link_tag    session[:brightness], media: 'all'
+    = stylesheet_link_tag    session[:color], media: 'all'
     = javascript_include_tag 'application'
 
     %script{ src: 'systemjs.config.js' }
