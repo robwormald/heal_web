@@ -14,10 +14,9 @@ import { AppStore } from './app.store';
 import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 
-import { PollMenuComponent } from './menus/poll/poll-menu.component';
+import { PollMenuComponent, OnlineMenuComponent } from './menus/index';
 import { ChatPageComponent, HomePageComponent } from './pages/index';
 import {
-  AppearancePartialComponent,
   BBCodePartialComponent,
   NotificationPartialComponent,
   ThemesPickerComponent,
@@ -41,8 +40,8 @@ import {
     HomePageComponent,
 
     PollMenuComponent,
+    OnlineMenuComponent,
 
-    AppearancePartialComponent,
     BBCodePartialComponent,
     NotificationPartialComponent,
     ThemesPickerComponent,

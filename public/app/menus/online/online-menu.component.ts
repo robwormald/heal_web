@@ -3,35 +3,35 @@ import { Router, NavigationEnd, Event as NavigationEvent } from '@angular/router
 
 import { User } from './../../objects/index';
 import { AppStore } from './../../app.store';
-import { AppearanceService } from './appearance.service';
+import { OnlineMenuService } from './online-menu.service';
 import { WebsocketService } from './../../global/index';
 
 @Component({
   moduleId: module.id,
-  selector: 'online-users',
-  templateUrl: 'appearance.component.html',
-  providers: [AppearanceService, WebsocketService]
+  selector: 'online-menu',
+  templateUrl: 'online-menu.component.html',
+  providers: [OnlineMenuService, WebsocketService]
 })
 
-export class AppearancePartialComponent implements OnDestroy {
+export class OnlineMenuComponent implements OnDestroy {
   onlineUsers: User[] = [];
 
   constructor(
     private store: AppStore,
     private router: Router,
-    private appearanceService: AppearanceService,
+    private service: OnlineMenuService,
   ) {
     this.store.changes.pluck('onlineUsers').subscribe((onlineUsers: User[]) => this.onlineUsers = onlineUsers);
-    this.appearanceService.subscribe();
+    this.service.subscribe();
 
     router.events.subscribe((event: NavigationEvent) => {
       if(event instanceof NavigationEnd) {
-        this.appearanceService.perform(event.url);
+        this.service.perform(event.url);
       }
     });
   }
 
   ngOnDestroy(): void {
-    this.appearanceService.unsubscribe();
+    this.service.unsubscribe();
   }
 }

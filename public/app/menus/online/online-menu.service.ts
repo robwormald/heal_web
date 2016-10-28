@@ -5,7 +5,7 @@ import { AppStore } from './../../app.store';
 import { WebsocketService } from './../../global/index';
 
 @Injectable()
-export class AppearanceService {
+export class OnlineMenuService {
   channel: string = 'appearance';
 
   constructor(
