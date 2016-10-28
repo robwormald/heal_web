@@ -1,37 +1,37 @@
 #home-block > #home-layout
   .left-column, .right-column
     .container-block .container-title
-      border-bottom-color: $color-header-background
+      border-bottom-color: $color-main-primary
   .center-column .container-block .container-header .container-space
-    background-color: $color-center-title-background
+    background-color: $color-main-secondary
 
   // Pages
   #chat-room
     .nav.nav-tabs
-      border-color: $color-center-title-background
+      border-color: $color-main-secondary
       li > a
-        color: $color-center-title-background
+        color: $color-main-secondary
         &.active, &:hover, &:focus, &:active
-          background-color: $color-center-title-background
+          background-color: $color-main-secondary
 
   // Elements
   .poll-block .poll-body .poll-progress .poll-progress-full
-    background-color: $color-center-title-background
+    background-color: $color-main-secondary
 
 #home-block
   // inputs
   .radio-custom + label:before,
   .checkbox-custom + label:before
     background: transparent
-    border-color: $color-center-title-background
+    border-color: $color-main-secondary
 
   .radio-custom:checked + label:before,
   .checkbox-custom:checked + label:before
-    background: $color-center-title-background
+    background: $color-main-secondary
     border-color: transparent
 
   nav.navbar
-    background-color: $color-header-background
+    background-color: $color-main-primary
 
   .btn.btn-generic
-    @include button-colors($color-center-title-background)
+    @include button-colors($color-main-secondary)
