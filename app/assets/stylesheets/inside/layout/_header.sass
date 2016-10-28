@@ -1,0 +1,21 @@
+header.navbar.navbar-default.navbar-fixed-top
+  margin-bottom: 0px
+  border-bottom: none
+  .navbar-header > .navbar-brand
+    color: $color-main-header-text
+  .container-fluid
+    max-width: $size-container-max-width
+    padding-left: 10px
+    padding-right: 10px
+    #header-navbar li
+      a
+        color: $color-main-header-text
+        outline: none
+        margin-left: 5px
+        border-left: 3px solid transparent
+        @media (min-width: $screen-sm-min)
+          margin-left: 0
+          border-left: 0
+          border-top: 3px solid transparent
+      &:hover > a, &> a.active
+        border-color: $color-main-header-text

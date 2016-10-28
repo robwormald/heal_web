@@ -21,6 +21,8 @@ import {
   BBCodePartialComponent,
   NotificationPartialComponent,
   ThemesPickerComponent,
+  HeaderComponent,
+  FooterComponent,
 } from './partials/index';
 
 @NgModule({
@@ -44,6 +46,8 @@ import {
     BBCodePartialComponent,
     NotificationPartialComponent,
     ThemesPickerComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'lv' },

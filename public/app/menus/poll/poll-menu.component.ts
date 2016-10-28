@@ -4,12 +4,13 @@ import { AppStore } from './../../app.store';
 import { PollMenuService } from './poll-menu.service';
 import { PollAnswerService } from './../../shared/services/poll-answer.service';
 import { PollView } from './../../objects/index';
+import { WebsocketService } from './../../global/index';
 
 @Component({
   moduleId: module.id,
   selector: 'poll-menu',
   templateUrl: 'poll-menu.component.html',
-  providers: [PollMenuService, PollAnswerService]
+  providers: [PollMenuService, PollAnswerService, WebsocketService]
 })
 
 export class PollMenuComponent {

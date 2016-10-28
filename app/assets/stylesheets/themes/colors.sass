@@ -1,4 +1,7 @@
-#home-block > #home-layout
+header.navbar.navbar-default.navbar-fixed-top
+  background-color: $color-main-primary
+
+main#main-block > #home-layout
   .left-column, .right-column
     .container-block .container-title
       border-bottom-color: $color-main-primary
@@ -18,7 +21,7 @@
   .poll-block .poll-body .poll-progress .poll-progress-full
     background-color: $color-main-secondary
 
-#home-block
+main#main-block
   // inputs
   .radio-custom + label:before,
   .checkbox-custom + label:before
@@ -29,9 +32,6 @@
   .checkbox-custom:checked + label:before
     background: $color-main-secondary
     border-color: transparent
-
-  nav.navbar
-    background-color: $color-main-primary
 
   .btn.btn-generic
     @include button-colors($color-main-secondary)

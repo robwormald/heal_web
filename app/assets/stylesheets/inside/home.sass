@@ -1,60 +1,11 @@
 body
   font-family: 'Open Sans', sans-serif
 
-#home-block
-  @import "_header.sass"
-  @import "pages/_chat-room.sass"
-  @import "pages/_polls.sass"
-  @import "_bbcode.sass"
-  @import "_notification.sass"
-  @import "_poll.sass"
-  @import "_pagination.sass"
-  @import "../dependencies/xbbcode"
-  padding-top: 53px
+my-app
+  @include display-flex
+  flex-direction: column
+  min-height: 100vh
 
-  .main-container
-    max-width: $size-container-max-width
-    padding-left: 0
-    padding-right: 0
-  #home-layout
-    margin-top: 50px
-
-    .left-column, .center-column, .right-column
-      margin-bottom: $size-default-container-space
-      padding-left: $size-default-container-space/2
-      padding-right: $size-default-container-space/2
-    .left-column, .right-column
-      .container-block
-        padding: $size-default-container-space
-        .container-title
-          border-bottom: 3px solid
-          font-size: 16px
-          margin-bottom: $size-default-container-space
-    .center-column
-      .container-block
-        $size-top-border: 8px
-        $size-space-heigth: 40px
-
-        .container-header
-          @include display-flex
-          .container-title
-            border-top: $size-top-border solid
-            padding-right: 20px
-            padding-left: 20px
-            font-size: 20px
-          .container-space
-            @include display-flex
-            border-top: $size-top-border solid
-            width: 100%
-            height: $size-space-heigth
-            .triangle
-              width: 0
-              height: 0
-              border-style: solid
-              border-width: $size-space-heigth 0 0 $size-space-heigth
-              margin-top: -$size-top-border
-              @include align-self(flex-end)
-        .container-body
-          padding: $size-default-container-space
-    .container-block
-      margin-bottom: $size-default-container-space
+@import "layout/_header.sass"
+@import "layout/_main.sass"
+@import "layout/_footer.sass"

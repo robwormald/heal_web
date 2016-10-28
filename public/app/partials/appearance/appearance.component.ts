@@ -4,12 +4,13 @@ import { Router, NavigationEnd, Event as NavigationEvent } from '@angular/router
 import { User } from './../../objects/index';
 import { AppStore } from './../../app.store';
 import { AppearanceService } from './appearance.service';
+import { WebsocketService } from './../../global/index';
 
 @Component({
   moduleId: module.id,
   selector: 'online-users',
   templateUrl: 'appearance.component.html',
-  providers: [AppearanceService]
+  providers: [AppearanceService, WebsocketService]
 })
 
 export class AppearancePartialComponent implements OnDestroy {
