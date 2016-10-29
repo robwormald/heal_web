@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { EmojiSupportService } from './global/index';
 
 @Component({
@@ -9,7 +9,13 @@ import { EmojiSupportService } from './global/index';
 })
 
 export class AppComponent implements OnInit {
-  constructor(private emojiSupport: EmojiSupportService) {
+  private viewContainerRef: ViewContainerRef;
+
+  constructor(
+    private emojiSupport: EmojiSupportService,
+    viewContainerRef: ViewContainerRef
+  ) {
+    this.viewContainerRef = viewContainerRef;
   }
 
   ngOnInit(): void {

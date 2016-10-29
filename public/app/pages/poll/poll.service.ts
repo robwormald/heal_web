@@ -99,7 +99,7 @@ export class PollService {
     data.questions.map((question) => {
       question.percent = data.totalAnswers ? (question.answer_count/data.totalAnswers)*100 : 0;
       if(question.percent) {
-        question.percent = question.percent.toFixed(2);
+        question.percent = parseFloat(question.percent.toFixed(2));
       }
       question.widthStyle = this.sanitizer.bypassSecurityTrustStyle(`width: ${question.percent}%`);
     });
