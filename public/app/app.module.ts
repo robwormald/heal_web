@@ -20,6 +20,7 @@ import {
   BBCodePartialComponent,
   NotificationPartialComponent,
   ThemesPickerComponent,
+
   HeaderComponent,
   FooterComponent,
 } from './partials/index';
@@ -45,6 +46,7 @@ import {
     BBCodePartialComponent,
     NotificationPartialComponent,
     ThemesPickerComponent,
+
     HeaderComponent,
     FooterComponent,
   ],

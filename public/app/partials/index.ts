@@ -6,3 +6,4 @@ export * from './pagination/pagination.component';
 export * from './themes-picker/themes-picker.component';
 export * from './layout/header.component';
 export * from './layout/footer.component';
+export * from './rate/rate.component';

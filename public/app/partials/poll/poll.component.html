@@ -4,6 +4,7 @@
       <a routerLink='/polls'>Polls</a> /
     </span>
     <a routerLink='/polls/view/{{ poll.id }}'>{{ poll.title }}</a>
+    <rate-partial type='poll' id='{{ poll.id }}' class='pull-right'></rate-partial>
   </div>
 
   <div class='poll-body' *ngFor='let question of questions'>

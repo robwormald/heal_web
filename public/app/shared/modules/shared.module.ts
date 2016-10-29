@@ -3,7 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule  } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { ContainerBlockPartialComponent, PollPartialComponent, PaginationPartialComponent } from './../../partials/index';
+import {
+  ContainerBlockPartialComponent,
+  PollPartialComponent,
+  PaginationPartialComponent,
+  RatePartialComponent,
+} from './../../partials/index';
 
 @NgModule({
   imports: [
@@ -15,11 +20,13 @@ import { ContainerBlockPartialComponent, PollPartialComponent, PaginationPartial
     ContainerBlockPartialComponent,
     PollPartialComponent,
     PaginationPartialComponent,
+    RatePartialComponent,
   ],
   exports: [
     ContainerBlockPartialComponent,
     PollPartialComponent,
     PaginationPartialComponent,
+    RatePartialComponent,
     FormsModule,
     CommonModule,
   ]

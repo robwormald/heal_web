@@ -1,0 +1,7 @@
+<span class='rate-button cursor-pointer'>
+  <span class='rate-element {{ userIcon }}' (click)='showRateOptions = !showRateOptions' *ngIf='!showRateOptions'></span>
+
+  <span *ngIf='showRateOptions'>
+    <span class='rate-element {{ rateIcon }}' (click)='rate(rateIcon)' *ngFor='let rateIcon of rateOptions'></span>
+  </span>
+</span>

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  acts_as_voter
+
   alias_attribute :preference, :user_preference
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }

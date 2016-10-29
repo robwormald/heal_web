@@ -30,6 +30,11 @@ Rails.application.routes.draw do
       post :color, on: :collection
       post :brightness, on: :collection
     end
+
+    resources :rate, only: [] do
+      post :view, on: :collection
+      post :rate, on: :collection
+    end
   end
 
   get '*path', to: 'home#index'

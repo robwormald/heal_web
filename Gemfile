@@ -20,13 +20,14 @@ gem 'redis', '~> 3.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'devise'
-gem 'haml'
+gem 'devise', '~> 4.2.0'
+gem 'haml', '~> 4.0.7'
 gem 'haml-rails', '~> 0.9'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-sass', '~> 4.6.2'
 gem 'sidekiq', '~> 4.2.2'
 gem 'kaminari', '~> 0.17.0'
+gem 'thumbs_up', '~> 0.6.9'
 
 group :development, :test do
   gem 'pry'
