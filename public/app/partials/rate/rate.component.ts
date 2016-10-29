@@ -32,6 +32,10 @@ export class RatePartialComponent implements OnInit {
     });
   }
 
+  plusOrMinus(vote: boolean): string {
+    return vote ? 'fa fa-plus' : 'fa fa-minus';
+  }
+
   private recieveResponse(res: any): void {
     this.userIcon = this.service.getUserIcon(res.user);
     this.ratings = res.ratings;

@@ -1,8 +1,16 @@
-.rate-button
-  .rate-element
-    &.none:before
-      content: '😶'
-    &.for:before
-      content: '😊'
-    &.against:before
-      content: '😔'
+.rate-section
+  .rate-button
+    .rate-element
+      &.none:before
+        content: '😶'
+      &.for:before
+        content: '😊'
+      &.against:before
+        content: '😔'
+  .rating-view
+    .badge
+      display: inline-block
+      &.fa-plus
+        color: $color-themes-green-primary
+      &.fa-minus
+        color: $color-themes-red-primary

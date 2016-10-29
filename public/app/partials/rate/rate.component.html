@@ -1,7 +1,20 @@
-<span class='rate-button cursor-pointer'>
-  <span class='rate-element {{ userIcon }}' (click)='showRateOptions = !showRateOptions' *ngIf='!showRateOptions'></span>
+<span class='rate-section'>
+  <span class='rate-button cursor-pointer'>
+    <span class='rate-element {{ userIcon }}' (click)='showRateOptions = !showRateOptions' *ngIf='!showRateOptions'></span>
 
-  <span *ngIf='showRateOptions'>
-    <span class='rate-element {{ rateIcon }}' (click)='rate(rateIcon)' *ngFor='let rateIcon of rateOptions'></span>
+    <span *ngIf='showRateOptions'>
+      <span class='rate-element {{ rateIcon }}' (click)='rate(rateIcon)' *ngFor='let rateIcon of rateOptions'></span>
+    </span>
   </span>
+
+  <a (click)='ratingModal.show()' class='cursor-pointer' *ngIf='ratings.length'>Ratings</a>
+
+  <div bsModal #ratingModal='bs-modal' class='modal fade' tabindex='-1' role='dialog'>
+    <modal-partial (onExit)='ratingModal.hide()' title='Ratings' size='sm'>
+      <div class='rating-view' *ngFor='let rating of ratings'>
+        <user-partial [user]='rating.voter'></user-partial>
+        <span class='pull-right badge {{ plusOrMinus(rating.vote) }}'></span>
+      </div>
+    </modal-partial>
+  </div>
 </span>
