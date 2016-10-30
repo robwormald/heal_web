@@ -39,3 +39,15 @@ main#main-block
     border-left-color: $color-main-secondary
     .modal-header
       background-color: $color-main-secondary
+
+  \::-webkit-scrollbar-button:vertical:decrement
+    height: 0px
+
+\::-webkit-scrollbar-thumb
+  background: $color-main-secondary
+  &:hover, &:active
+    background: rgba($color-main-secondary, 0.7)
+
+\::-webkit-scrollbar-button:vertical:decrement
+  height: $size-header-height
+  background-color: $color-main-primary
