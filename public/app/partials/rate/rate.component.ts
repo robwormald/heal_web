@@ -15,6 +15,7 @@ export class RatePartialComponent implements OnInit {
   userIcon: string = 'none';
   ratingSum: string;
   ratings: any[] = [];
+  currentRatings: any[] = [];
 
   @Input('id') id;
   @Input('type') type;
@@ -35,6 +36,10 @@ export class RatePartialComponent implements OnInit {
 
   plusOrMinus(vote: boolean): string {
     return vote ? 'fa fa-plus' : 'fa fa-minus';
+  }
+
+  changePage(currentItems: any[]): void {
+    this.currentRatings = currentItems;
   }
 
   private recieveResponse(res: any): void {

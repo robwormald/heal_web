@@ -11,10 +11,12 @@
 
   <div bsModal #ratingModal='bs-modal' class='modal fade' tabindex='-1' role='dialog'>
     <modal-partial (onExit)='ratingModal.hide()' title='Ratings' size='sm'>
-      <div class='rating-view' *ngFor='let rating of ratings'>
+      <div class='rating-view' *ngFor='let rating of currentRatings'>
         <user-partial [user]='rating.voter'></user-partial>
         <span class='pull-right badge {{ plusOrMinus(rating.vote) }}'></span>
       </div>
+
+      <pagination [total]='ratings.length' [items]='ratings' (onPage)='changePage($event)'></pagination>
 
       <div class='text-center'>
         (total {{ ratings.length }} ratings)

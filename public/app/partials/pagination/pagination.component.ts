@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -12,12 +12,15 @@ export class PaginationPartialComponent implements OnChanges {
   @Input('url') redirectUrl:string;
   @Input('per') perPage:number = 10;
   @Input('side') sideCount:number = 3;
+  @Input('items') items:any[];
+  @Output() onPage = new EventEmitter();
 
   lastPage: number;
   pageArray: number[];
+  currentItems: any[];
   shouldShow: boolean = false;
 
-  ngOnChanges(changes: any): void {
+  ngOnChanges(): void {
     this.lastPage = Math.ceil((this.totalCount/this.perPage) || 1);
     let page = this.currentPage || 1;
 
@@ -29,6 +32,23 @@ export class PaginationPartialComponent implements OnChanges {
     let array = [1, ...sides.left, page, ...sides.right, this.lastPage];
     this.pageArray = this.uniq(array);
     this.shouldShow = this.pageArray.length > 1;
+    if(this.items) {
+      setTimeout(() => this.setCurrentItems(this.currentPage), 1);
+    }
+  }
+
+  onClick(page: number): void {
+    if(this.items) {
+      this.currentPage = page;
+      this.setCurrentItems(page);
+    }
+  }
+
+  private setCurrentItems(page: number): void {
+    let start = (page - 1) * this.perPage;
+    let next = start + this.perPage;
+    this.currentItems = this.items.slice(start, next);
+    this.onPage.emit(this.currentItems);
   }
 
   private createArray(start: number, end: number): number[] {
