@@ -24,4 +24,11 @@ export class RatePartialService {
       return 'none';
     }
   }
+
+  getRatingSum(ratings: any[]): string {
+    let sum = ratings.reduce((sum, rating) => {
+      return sum + (rating.vote ? 1 : -1);
+    }, 0);
+    return `${sum > 0 ? '+' : ''}${sum}`;
+  }
 }

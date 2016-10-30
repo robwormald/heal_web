@@ -13,6 +13,7 @@ export class RatePartialComponent implements OnInit {
   rateOptions: string[] = ['against', 'none', 'for'];
   showRateOptions: boolean;
   userIcon: string = 'none';
+  ratingSum: string;
   ratings: any[] = [];
 
   @Input('id') id;
@@ -39,5 +40,6 @@ export class RatePartialComponent implements OnInit {
   private recieveResponse(res: any): void {
     this.userIcon = this.service.getUserIcon(res.user);
     this.ratings = res.ratings;
+    this.ratingSum = this.service.getRatingSum(this.ratings);
   }
 }
