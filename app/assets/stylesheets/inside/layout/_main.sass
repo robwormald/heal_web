@@ -9,16 +9,15 @@ main#main-block
   @import "../elements/_pagination.sass"
   @import "../elements/_rate.sass"
   @import "../elements/_modal.sass"
+  @import "../elements/_comments.sass"
 
   @import "../../dependencies/xbbcode"
 
   flex: 1
   padding-top: $size-header-height
 
-  bbcode-partial + .input-group
-    float: left
-    .form-control
-      padding: 1.5%
+  bbcode-partial + .input-group > .form-control
+    padding: 1.5%
 
   .main-container
     max-width: $size-container-max-width

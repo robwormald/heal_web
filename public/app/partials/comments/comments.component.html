@@ -1,17 +1,22 @@
-<bbcode-partial target='comments-textarea'></bbcode-partial>
+<div class='comments-section'>
+  <bbcode-partial target='comments-textarea'></bbcode-partial>
 
-<div class='input-group'>
-  <textarea [(ngModel)]='comment' id='comments-textarea' class='form-control dynamic-no-emoji' placeholder='Comment' rows='2'></textarea>
-  <span class='input-group-addon cursor-pointer' (click)='onComment()'>
-    <span class='glyphicon glyphicon-comment'></span>
-  </span>
-</div>
+  <div class='input-group'>
+    <textarea [(ngModel)]='comment' id='comments-textarea' class='form-control dynamic-no-emoji' placeholder='Comment' rows='2'></textarea>
+    <span class='input-group-addon cursor-pointer' (click)='onComment()'>
+      <span class='glyphicon glyphicon-comment'></span>
+    </span>
+  </div>
 
-<div class='row' *ngFor="let comment of comments">
-  <div class='col-xs-12 pull-left'>
-    <user-partial [user]='comment.user'></user-partial>
-    <div>
-      {{ comment.body }}
+  <div class='comments-list'>
+    <div class='comments-item' *ngFor='let comment of comments'>
+      <div class='comments-header'>
+        <user-partial [user]='comment.user'></user-partial>
+        <span class='pull-right'>{{ comment.created_at }}</span>
+      </div>
+      <div class='comments-body'>
+        {{ comment.body }}
+      </div>
     </div>
   </div>
 </div>
