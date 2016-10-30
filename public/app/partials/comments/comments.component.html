@@ -8,15 +8,17 @@
     </span>
   </div>
 
-  <div class='comments-list'>
-    <div class='comments-item' *ngFor='let comment of comments'>
-      <div class='comments-header'>
-        <user-partial [user]='comment.user'></user-partial>
-        <span class='pull-right'>{{ comment.created_at }}</span>
-      </div>
-      <div class='comments-body'>
-        {{ comment.body }}
+  <pagination [total]='comments.length' [items]='comments' (onPage)='changePage($event)'>
+    <div class='comments-list'>
+      <div class='comments-item' *ngFor='let comment of currentComments'>
+        <div class='comments-header'>
+          <user-partial [user]='comment.user'></user-partial>
+          <span class='pull-right'>{{ comment.created_at }}</span>
+        </div>
+        <div class='comments-body'>
+          {{ comment.body }}
+        </div>
       </div>
     </div>
-  </div>
+  </pagination>
 </div>

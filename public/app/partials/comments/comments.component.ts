@@ -17,6 +17,7 @@ export class CommentsPartialComponent implements OnInit {
 
   comment: string;
   comments: Comment[] = [];
+  currentComments: Comment[] = [];
   inputDisabled: boolean;
 
   constructor(
@@ -32,6 +33,10 @@ export class CommentsPartialComponent implements OnInit {
 
   parseBBcode(comment: Comment): string {
     return comment.parsed || (comment.parsed = this.bbcode.parse(comment.body))
+  }
+
+  changePage(items: Comment[]): void {
+    this.currentComments = items;
   }
 
   onComment(): void {

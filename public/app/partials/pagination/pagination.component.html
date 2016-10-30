@@ -4,3 +4,14 @@
     <a class='btn btn-generic cursor-pointer {{ page == currentPage ? "active" : "" }}' (click)='onClick(page)' *ngIf='items'>{{ page }}</a>
   </li>
 </ul>
+
+<span #contentWrapper>
+  <ng-content></ng-content>
+</span>
+
+<ul class='pagination-block text-center' *ngIf='shouldShow && contentWrapper.children.length'>
+  <li *ngFor='let page of pageArray'>
+    <a class='btn btn-generic' routerLinkActive='active' routerLink='{{ redirectUrl + page }}' *ngIf='!items'>{{ page }}</a>
+    <a class='btn btn-generic cursor-pointer {{ page == currentPage ? "active" : "" }}' (click)='onClick(page)' *ngIf='items'>{{ page }}</a>
+  </li>
+</ul>

@@ -35,7 +35,7 @@ class Api::CommentsController < ApiController
   end
 
   def success_json(object)
-    comments = object.comments.includes(:user)
+    comments = object.comments.includes(:user).order(created_at: :desc)
     comments = comments.as_json(only: Constants::SAFE_PARAMS[:comment], include: { user: { only: Constants::SAFE_PARAMS[:user] } })
 
     { comments: comments }

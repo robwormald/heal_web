@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <div class='text-center'>
+  <div class='poll-button text-center'>
     <button class='btn btn-generic pull-left' (click)='vote()' *ngIf='!answered'>Vote</button>
     <span class='poll-vote-count'>(total {{ totalAnswers }} {{ totalAnswers == 1 ? 'vote' : 'votes' }})</span>
   </div>
