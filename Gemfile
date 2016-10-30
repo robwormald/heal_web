@@ -28,7 +28,6 @@ gem 'font-awesome-sass', '~> 4.6.2'
 gem 'sidekiq', '~> 4.2.2'
 gem 'kaminari', '~> 0.17.0'
 gem 'thumbs_up', '~> 0.6.9'
-gem 'acts_as_commentable'
 
 group :development, :test do
   gem 'pry'
