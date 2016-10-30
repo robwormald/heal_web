@@ -35,6 +35,10 @@ Rails.application.routes.draw do
       post :view, on: :collection
       post :rate, on: :collection
     end
+
+    resources :comments, only: [:create] do
+      post :list, on: :collection
+    end
   end
 
   get '*path', to: 'home#index'

@@ -6,15 +6,13 @@ import { Observable } from 'rxjs/Observable';
 export class CommentsPartialService {
   constructor(private http: Http) {}
 
-  getComments(): Observable<any> {
-    return this.http.post(`api/comments`).map(res => res.json());
+  getComments(id: number, type: string): Observable<any> {
+    let commentable = { id, type };
+    return this.http.post(`api/comments/list`, { commentable }).map(res => res.json());
   }
-  // 
-  // changeColor(color: string): Observable<any> {
-  //   return this.http.post(`api/themes/color`, { color });
-  // }
-  //
-  // changeBrightness(brightness: string): Observable<any> {
-  //   return this.http.post(`api/themes/brightness`, { brightness });
-  // }
+
+  createComment(id: number, type: string, comment: string): Observable<any> {
+    let commentable = { id, type, comment };
+    return this.http.post(`api/comments`, { commentable }).map(res => res.json());
+  }
 }

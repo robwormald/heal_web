@@ -6,3 +6,12 @@
     <span class='glyphicon glyphicon-comment'></span>
   </span>
 </div>
+
+<div class='row' *ngFor="let comment of comments">
+  <div class='col-xs-12 pull-left'>
+    <user-partial [user]='comment.user'></user-partial>
+    <div>
+      {{ comment.body }}
+    </div>
+  </div>
+</div>
