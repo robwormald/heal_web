@@ -1,13 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, AfterViewChecked } from '@angular/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'bbcode-toolbar',
+  selector: 'bbcode-partial',
   templateUrl: 'bbcode.component.html'
 })
 
-export class BBCodePartialComponent implements OnInit {
+export class BBCodePartialComponent implements AfterViewChecked {
   @Input('target') target = '';
+  addedEventListener: boolean = false;
 
   emojiList:string[] = [
     "😀", "😂", "😄", "😇", "😉", "😊", "😋", "😍", "😘", "😜",
@@ -52,16 +53,22 @@ export class BBCodePartialComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngAfterViewChecked(): void {
+    if(this.addedEventListener) return;
+
     let input = document.getElementById(this.target);
-    input.addEventListener('keyup', (e) => {
-      for(let emoticon in this.emoticonsList) {
-        let replaced = emoticon.replace(/([()[{*+.$^\\|?])/g, '\\$1');
-        let regex = new RegExp(replaced, 'gim');
-        input['value'] = input['value'].replace(regex, this.emoticonsList[emoticon]);
-        this.updateWithAngular(input);
-      }
-    });
+    console.error(this.target, input);
+    if(input) {
+      this.addedEventListener = true;
+      input.addEventListener('keyup', (e) => {
+        for(let emoticon in this.emoticonsList) {
+          let replaced = emoticon.replace(/([()[{*+.$^\\|?])/g, '\\$1');
+          let regex = new RegExp(replaced, 'gim');
+          input['value'] = input['value'].replace(regex, this.emoticonsList[emoticon]);
+          this.updateWithAngular(input);
+        }
+      });
+    }
   }
 
   public onClick(code: string, emoji: string): void {

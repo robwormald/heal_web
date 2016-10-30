@@ -1,0 +1,8 @@
+<bbcode-partial target='comments-textarea'></bbcode-partial>
+
+<div class='input-group'>
+  <textarea [(ngModel)]='comment' id='comments-textarea' class='form-control dynamic-no-emoji' placeholder='Comment' rows='2'></textarea>
+  <span class='input-group-addon cursor-pointer' (click)='onComment()'>
+    <span class='glyphicon glyphicon-comment'></span>
+  </span>
+</div>

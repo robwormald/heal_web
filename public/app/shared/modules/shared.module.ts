@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule  } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+var Popover = require('ng2-popover');
 var Modal = require('ng2-bootstrap/ng2-modal');
 
 import {
@@ -12,6 +13,8 @@ import {
   RatePartialComponent,
   ModalPartialComponent,
   UserPartialComponent,
+  BBCodePartialComponent,
+  CommentsPartialComponent,
 } from './../../partials/index';
 
 @NgModule({
@@ -19,6 +22,7 @@ import {
     CommonModule,
     FormsModule,
     RouterModule,
+    Popover.PopoverModule,
     Modal.ModalModule,
   ],
   declarations: [
@@ -28,6 +32,8 @@ import {
     RatePartialComponent,
     ModalPartialComponent,
     UserPartialComponent,
+    BBCodePartialComponent,
+    CommentsPartialComponent,
   ],
   exports: [
     ContainerBlockPartialComponent,
@@ -36,6 +42,8 @@ import {
     RatePartialComponent,
     ModalPartialComponent,
     UserPartialComponent,
+    BBCodePartialComponent,
+    CommentsPartialComponent,
     FormsModule,
     CommonModule,
   ]

@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 import { FormsModule }   from '@angular/forms';
 
-var Popover = require('ng2-popover');
 var Collapse = require('ng2-bootstrap/ng2-collapse');
 
 import { PollModule } from './pages/poll/poll.module';
@@ -17,7 +16,6 @@ import { routing, appRoutingProviders } from './app.routing';
 import { PollMenuComponent, OnlineMenuComponent } from './menus/index';
 import { ChatPageComponent, HomePageComponent } from './pages/index';
 import {
-  BBCodePartialComponent,
   NotificationPartialComponent,
   ThemesPickerComponent,
 
@@ -31,7 +29,6 @@ import {
     HttpModule,
     SharedModule,
     PollModule,
-    Popover.PopoverModule,
     Collapse.CollapseModule,
     routing
   ],
@@ -43,7 +40,6 @@ import {
     PollMenuComponent,
     OnlineMenuComponent,
 
-    BBCodePartialComponent,
     NotificationPartialComponent,
     ThemesPickerComponent,
 
