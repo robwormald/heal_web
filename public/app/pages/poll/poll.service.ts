@@ -17,15 +17,22 @@ export class PollService {
     private store: AppStore,
   ) {}
 
-  subscribe(type: string, params: any): void {
-    this.websocket.init(this.channel).subscribe(this.receive.bind(this, type, params));
+  subscribe(type: string, params: any = {}): void {
+    let subscription = this.websocket.init(this.channel).subscribe(this.receive.bind(this, type, params));
+    this.websocket.setSubscription(this.channel, subscription);
+
     if(type == 'view') {
-      this.websocket.init('home').subscribe(this.recieveHome.bind(this));
+      subscription = this.websocket.init('home').subscribe(this.recieveHome.bind(this));
+      this.websocket.setSubscription('home', subscription);
     }
   }
 
+  unsubscribe(): void {
+    this.websocket.destroy(this.channel);
+  }
+
   perform(type: string, params: any): void {
-    if(this.websocket.isConnected(this.channel)) {
+    if(this.websocket.initialized(this.channel) && this.websocket.isConnected(this.channel)) {
       this.websocket.perform(this.channel, this.action(type), params);
     }
     else {

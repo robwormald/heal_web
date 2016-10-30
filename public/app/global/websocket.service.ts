@@ -12,12 +12,6 @@ export class WebsocketService {
     appearance: { channel: 'AppearanceChannel' },
   };
 
-  constructor() {
-    for(let key in this.channels) {
-      if(this.channels[key].autoLoad) this.init(key);
-    }
-  }
-
   init(name: string, data: any = {}): Observable<Array<number>> {
     let channelData = this.channels[name];
     let channel = this.websocket[name];
@@ -34,6 +28,10 @@ export class WebsocketService {
         });
       }
     }
+  }
+
+  initialized(name: string): boolean {
+    return !!this.websocket[name];
   }
 
   destroy(name: string): void {

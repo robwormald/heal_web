@@ -1,24 +1,18 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 import { WebsocketService } from './../../global/index';
+import { PollService } from './poll.service';
 
 @Component({
   moduleId: module.id,
   templateUrl: './poll.component.html',
-  providers: [WebsocketService]
+  providers: [WebsocketService, PollService]
 })
 
-export class PollComponent implements OnInit, OnDestroy {
-  channel: string = 'poll';
-
-  constructor(private websocket: WebsocketService) {}
-
-  ngOnInit(): void {
-    let subscription = this.websocket.init(this.channel).subscribe();
-    this.websocket.setSubscription(this.channel, subscription);
-  }
+export class PollComponent implements OnDestroy {
+  constructor(private pollService: PollService) {}
 
   ngOnDestroy(): void {
-    this.websocket.destroy(this.channel);
+    this.pollService.unsubscribe();
   }
 }
