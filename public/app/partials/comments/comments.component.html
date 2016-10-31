@@ -1,26 +1,26 @@
 <div class='comments-section'>
-  <bbcode-partial target='comments-textarea'></bbcode-partial>
-
-  <div class='input-group'>
-    <textarea [(ngModel)]='comment' id='comments-textarea' class='form-control dynamic-no-emoji' placeholder='Comment' rows='2'></textarea>
-    <span class='input-group-addon cursor-pointer' (click)='onComment()'>
-      <span class='glyphicon glyphicon-comment'></span>
-    </span>
-  </div>
+  <textarea-partial uniqId='comments-textarea' placeholder='Comment' (onSubmit)='create($event)'></textarea-partial>
 
   <pagination [total]='comments.length' [items]='comments' (onPage)='changePage($event)'>
     <div class='comments-list'>
       <div class='comments-item' *ngFor='let comment of currentComments'>
-        <div class='comments-header'>
-          <user-partial [user]='comment.user'></user-partial>
+        <span *ngIf='!comment.editing'>
+          <div class='comments-header'>
+            <user-partial [user]='comment.user'></user-partial>
 
-          <span class='pull-right'>{{ comment.created_at }}</span>
+            <span class='pull-right'>{{ comment.created_at }}</span>
 
-          <span class='pull-right'>
-            <span class='fa fa-trash' (click)='destroyComment(comment.id)' *ngIf='currentUser.canModerate(comment.user.id)'></span>
-          </span>
-        </div>
-        <div class='comments-body' [innerHTML]='parseBBcode(comment)'></div>
+            <span class='pull-right' *ngIf='currentUser.canModerate(comment.user.id)'>
+              <span class='fa fa-trash' (click)='destroy(comment)'></span>
+              <span class='fa fa-pencil' (click)='edit(comment)'></span>
+            </span>
+          </div>
+          <div class='comments-body' [innerHTML]='parseBBcode(comment)'></div>
+        </span>
+
+        <span *ngIf='comment.editing'>
+          <textarea-partial uniqId='comments-textarea-edit-{{ comment.id }}' placeholder='Comment' [value]='comment.body' (onSubmit)='update(comment, $event)'></textarea-partial>
+        </span>
       </div>
     </div>
   </pagination>

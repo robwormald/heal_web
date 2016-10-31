@@ -1,5 +1,5 @@
 class Api::CommentsController < ApiController
-  before_action :has_access, only: [:destroy]
+  before_action :has_access, only: [:destroy, :update]
 
   def list
     if object = find_commentable
@@ -23,11 +23,20 @@ class Api::CommentsController < ApiController
     render json: success_json(commentable)
   end
 
+  def update
+    if @comment.update_attributes(body: params[:body])
+      commentable = find_commentable(@comment.commentable_id, @comment.commentable_type.downcase)
+      render json: success_json(commentable)
+    else
+      head :bad_request
+    end
+  end
+
   private
 
   def has_access
     @comment = Comment.where(id: params[:id]).includes(:user).take
-    @comment && can_moderate(@comment.id)
+    head :bad_request unless @comment && can_moderate(@comment.id)
   end
 
   def create_comment

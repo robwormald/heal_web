@@ -1,12 +1,16 @@
 .comments-section
   margin-top: $size-default-container-space
-  .input-group
+  .input-group:first-of-type
     margin-bottom: $size-default-container-space*2
   .comments-list
     .comments-item
-      border: 1px solid
       margin-top: $size-default-container-space
       &:first-of-type
         margin-top: 0px
       .comments-header, .comments-body
+        border: 1px solid
         padding: 5px
+      .comments-header
+        border-bottom: 0px
+      .comments-body
+        border-top: 0px

@@ -11,12 +11,16 @@ export class CommentsPartialService {
     return this.http.post(`api/comments/list`, { commentable }).map(res => res.json());
   }
 
-  createComment(id: number, type: string, comment: string): Observable<any> {
+  create(id: number, type: string, comment: string): Observable<any> {
     let commentable = { id, type, comment };
     return this.http.post(`api/comments`, { commentable }).map(res => res.json());
   }
 
-  destroyComment(comment_id: number): Observable<any> {
+  destroy(comment_id: number): Observable<any> {
     return this.http.delete(`api/comments/${comment_id}`).map(res => res.json());
+  }
+
+  update(comment_id: number, body: string): Observable<any> {
+    return this.http.put(`api/comments/${comment_id}`, { body }).map(res => res.json());
   }
 }

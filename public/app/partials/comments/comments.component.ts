@@ -16,11 +16,9 @@ export class CommentsPartialComponent implements OnInit {
   @Input('id') id;
   @Input('type') type;
 
-  comment: string;
   comments: Comment[] = [];
   currentComments: Comment[] = [];
   currentUser: User;
-  inputDisabled: boolean;
 
   constructor(
     private store: AppStore,
@@ -43,19 +41,28 @@ export class CommentsPartialComponent implements OnInit {
     this.currentComments = items;
   }
 
-  destroyComment(id: number): void {
-    this.service.destroyComment(id).subscribe((res) => this.comments = res.comments);
+  create(event: any): void {
+    this.service.create(this.id, this.type, event.value).subscribe((res) => {
+      this.comments = res.comments;
+      event.callback();
+    });
   }
 
-  onComment(): void {
-    if(!this.inputDisabled && this.comment && this.comment.length) {
-      this.inputDisabled = true;
+  destroy(comment: Comment): void {
+    this.service.destroy(comment.id).subscribe((res) => this.comments = res.comments);
+  }
 
-      this.service.createComment(this.id, this.type, this.comment).subscribe((res) => {
-        this.comment = '';
-        this.comments = res.comments;
-        this.inputDisabled = false;
-      });
+  edit(comment: Comment): void {
+    this.comments.map((c) => c.editing = false);
+    comment.editing = !comment.editing;
+  }
+
+  update(comment: Comment, event: any): void {
+    if(comment.body == event.value) {
+      comment.editing = false;
+    }
+    else {
+      this.service.update(comment.id, event.value).subscribe((res) => this.comments = res.comments);
     }
   }
 }

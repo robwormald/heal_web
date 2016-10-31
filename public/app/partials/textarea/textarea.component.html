@@ -1,0 +1,8 @@
+<bbcode-partial [target]='uniqId' *ngIf='bbcode'></bbcode-partial>
+
+<div class='input-group'>
+  <textarea [id]='uniqId' class='form-control dynamic-no-emoji' [placeholder]='placeholder' [rows]='rows' [(ngModel)]='value'></textarea>
+  <span class='input-group-addon cursor-pointer' (click)='submit()'>
+    <span class='glyphicon glyphicon-comment'></span>
+  </span>
+</div>

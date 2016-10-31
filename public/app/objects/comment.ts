@@ -3,4 +3,5 @@ export class Comment {
   body: string;
   created_at: Date;
   parsed?: string;
+  editing?: boolean;
 }
