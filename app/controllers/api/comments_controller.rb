@@ -1,4 +1,6 @@
 class Api::CommentsController < ApiController
+  before_action :has_access, only: [:destroy]
+
   def list
     if object = find_commentable
       render json: success_json(object)
@@ -15,19 +17,31 @@ class Api::CommentsController < ApiController
     end
   end
 
+  def destroy
+    @comment.destroy
+    commentable = find_commentable(@comment.commentable_id, @comment.commentable_type.downcase)
+    render json: success_json(commentable)
+  end
+
   private
+
+  def has_access
+    @comment = Comment.where(id: params[:id]).includes(:user).take
+    @comment && can_moderate(@comment.id)
+  end
 
   def create_comment
     find_commentable.comments.new(user: current_user, body: strong_params[:comment]).save
   end
 
-  def find_commentable
+  def find_commentable(id = nil, type = nil)
     hash = {
       'poll' => Poll,
     }
 
-    type = strong_params[:type]
-    hash[type].find_by(id: strong_params[:id]) if hash[type].present?
+    commentable_id = id || strong_params[:id]
+    commentable_type = type || strong_params[:type]
+    hash[commentable_type].find_by(id: commentable_id) if hash[commentable_type].present?
   end
 
   def strong_params

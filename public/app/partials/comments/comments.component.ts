@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Comment } from './../../objects/index';
+import { AppStore } from './../../app.store';
+import { Comment, User } from './../../objects/index';
 import { BBCodeService } from './../../global/index';
 import { CommentsPartialService } from './comments.service';
 
@@ -18,14 +19,17 @@ export class CommentsPartialComponent implements OnInit {
   comment: string;
   comments: Comment[] = [];
   currentComments: Comment[] = [];
+  currentUser: User;
   inputDisabled: boolean;
 
   constructor(
+    private store: AppStore,
     private service: CommentsPartialService,
     private bbcode: BBCodeService,
   ) {}
 
   ngOnInit(): void {
+    this.store.changes.pluck('currentUser').subscribe((currentUser: User) => this.currentUser = currentUser);
     this.service.getComments(this.id, this.type).subscribe((res) => {
       this.comments = res.comments;
     });
@@ -37,6 +41,10 @@ export class CommentsPartialComponent implements OnInit {
 
   changePage(items: Comment[]): void {
     this.currentComments = items;
+  }
+
+  destroyComment(id: number): void {
+    this.service.destroyComment(id).subscribe((res) => this.comments = res.comments);
   }
 
   onComment(): void {

@@ -3,7 +3,7 @@ module Constants
   ADMIN_SYSTEM_ROLES = ['moderator', 'administrator']
 
   SAFE_PARAMS = {
-    user: [:id, :username, :online, :location],
+    user: [:id, :username, :online, :location, :permissions],
     rating: [:id, :vote, :created_at],
     comment: [:id, :body, :created_at]
   }

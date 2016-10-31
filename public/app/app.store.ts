@@ -34,11 +34,21 @@ export class AppStore {
   }
 
   setKeyValue(key: string, value: any): void {
+    value = this.addMethods(key, value);
     var state:State = Object.assign({}, this.getState(), { [key]: value });
     this.setState(state);
   }
 
   getKeyValue(key: string): any {
     return this.getState()[key];
+  }
+
+  private addMethods(key: string, value: any): any {
+    switch(key) {
+      case 'currentUser':
+        return new User(value);
+      default:
+        return value;
+    }
   }
 }

@@ -13,11 +13,14 @@
       <div class='comments-item' *ngFor='let comment of currentComments'>
         <div class='comments-header'>
           <user-partial [user]='comment.user'></user-partial>
+
           <span class='pull-right'>{{ comment.created_at }}</span>
+
+          <span class='pull-right'>
+            <span class='fa fa-trash' (click)='destroyComment(comment.id)' *ngIf='currentUser.canModerate(comment.user.id)'></span>
+          </span>
         </div>
-        <div class='comments-body'>
-          {{ comment.body }}
-        </div>
+        <div class='comments-body' [innerHTML]='parseBBcode(comment)'></div>
       </div>
     </div>
   </pagination>

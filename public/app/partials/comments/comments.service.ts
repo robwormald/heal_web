@@ -15,4 +15,8 @@ export class CommentsPartialService {
     let commentable = { id, type, comment };
     return this.http.post(`api/comments`, { commentable }).map(res => res.json());
   }
+
+  destroyComment(comment_id: number): Observable<any> {
+    return this.http.delete(`api/comments/${comment_id}`).map(res => res.json());
+  }
 }
