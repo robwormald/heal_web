@@ -2,7 +2,14 @@
 
 <div class='input-group'>
   <textarea [id]='uniqId' class='form-control dynamic-no-emoji' [placeholder]='placeholder' [rows]='rows' [(ngModel)]='value'></textarea>
-  <span class='input-group-addon cursor-pointer' (click)='submit()'>
-    <span class='glyphicon glyphicon-comment'></span>
+  <span class='input-group-addon' *ngIf='canCancel'>
+    <div class='split-input-addon'>
+      <div class='fa fa-comment cursor-pointer' (click)='submit()'></div>
+      <div class='fa fa-times cursor-pointer' (click)='cancel()'></div>
+    </div>
+  </span>
+
+  <span class='input-group-addon cursor-pointer' *ngIf='!canCancel' (click)='submit()'>
+    <span class='fa fa-comment'></span>
   </span>
 </div>

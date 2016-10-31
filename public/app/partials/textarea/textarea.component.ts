@@ -14,13 +14,19 @@ export class TextareaPartialComponent {
   @Input('value') value = '';
   @Input('rows') rows: number = 2;
   @Input('bbcode') bbcode: boolean = true;
+  @Input('canCancel') canCancel: boolean = false;
   @Output() onSubmit = new EventEmitter();
+  @Output() onCancel = new EventEmitter();
 
   submit(): void {
     if(!this.disabled && this.value && this.value.length) {
       this.disabled = true;
       this.onSubmit.emit({ value: this.value, callback: this.callback.bind(this) });
     }
+  }
+
+  cancel(): void {
+    this.onCancel.emit();
   }
 
   callback(): void {

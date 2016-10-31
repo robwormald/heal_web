@@ -1,0 +1,19 @@
+textarea-partial
+  .input-group
+    height: 100%
+    .split-input-addon
+      min-height: 100%
+      display: flex
+      flex-direction: column
+      div.fa
+        $size-spacing: 6px
+
+        flex: 1
+        margin: 0px (-$size-spacing*2)
+        padding: ($size-spacing - 2) $size-spacing*2
+        &:first-of-type
+          margin-top: -$size-spacing
+          border-bottom: 1px solid
+        &:last-of-type
+          margin-bottom: -$size-spacing
+          border-top: 1px solid

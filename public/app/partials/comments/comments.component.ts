@@ -53,8 +53,9 @@ export class CommentsPartialComponent implements OnInit {
   }
 
   edit(comment: Comment): void {
+    let editing = comment.editing;
     this.comments.map((c) => c.editing = false);
-    comment.editing = !comment.editing;
+    comment.editing = !editing;
   }
 
   update(comment: Comment, event: any): void {
