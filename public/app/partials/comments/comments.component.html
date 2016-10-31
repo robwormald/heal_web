@@ -10,9 +10,9 @@
 
             <span class='pull-right'>{{ comment.created_at }}</span>
 
-            <span class='pull-right' *ngIf='currentUser.canModerate(comment.user.id)'>
-              <span class='fa fa-trash' (click)='destroy(comment)'></span>
-              <span class='fa fa-pencil' (click)='edit(comment)'></span>
+            <span class='pull-right comments-action' *ngIf='currentUser.canModerate(comment.user.id)'>
+              <span class='fa fa-pencil cursor-pointer' (click)='edit(comment)'></span>
+              <span class='fa fa-trash cursor-pointer' (click)='destroy(comment)'></span>
             </span>
           </div>
           <div class='comments-body' [innerHTML]='parseBBcode(comment)'></div>
