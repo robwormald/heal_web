@@ -17,6 +17,7 @@ import {
   CommentsPartialComponent,
   TextareaPartialComponent,
   DatePartialComponent,
+  MonitorPartialComponent,
 } from './../../partials/index';
 
 @NgModule({
@@ -38,6 +39,7 @@ import {
     CommentsPartialComponent,
     TextareaPartialComponent,
     DatePartialComponent,
+    MonitorPartialComponent,
   ],
   exports: [
     ContainerBlockPartialComponent,
@@ -50,6 +52,7 @@ import {
     CommentsPartialComponent,
     TextareaPartialComponent,
     DatePartialComponent,
+    MonitorPartialComponent,
     FormsModule,
     CommonModule,
   ]

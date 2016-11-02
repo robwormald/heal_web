@@ -1,0 +1,12 @@
+<div class='monitor-section'>
+  <div class='container-fluid'>
+    <div class='monitor' *ngFor='let server of serverMonitors'>
+      <span>
+        {{ server.name }}<br />
+        {{ server.ip }}:{{ server.port }}<br />
+        {{ server.map }}<br />
+        {{ server.current_count }}/{{ server.total_count }}<br />
+      </span>
+    </div>
+  </div>
+</div>

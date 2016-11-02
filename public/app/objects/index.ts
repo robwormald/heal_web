@@ -8,3 +8,4 @@ export * from './chat-room';
 export * from './chat-message';
 export * from './notification';
 export * from './comment';
+export * from './server-monitor';

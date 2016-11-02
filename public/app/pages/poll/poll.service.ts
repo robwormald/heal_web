@@ -8,8 +8,8 @@ import { Poll, PollQuestion, PollAnswer, PollView, PollList } from './../../obje
 
 @Injectable()
 export class PollService {
-  connected: boolean = false;
   channel: string = 'poll';
+  connected: boolean = false;
 
   constructor(
     private websocket: WebsocketService,

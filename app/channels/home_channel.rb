@@ -12,4 +12,8 @@ class HomeChannel < ApplicationCable::Channel
   def latest_poll
     Poll::LatestPollJob.perform_later(current_user.id)
   end
+
+  def server_monitor
+    Home::ServerMonitorJob.perform_later(current_user.id)
+  end
 end

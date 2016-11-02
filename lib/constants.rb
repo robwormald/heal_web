@@ -7,4 +7,12 @@ module Constants
     rating: [:id, :vote, :created_at],
     comment: [:id, :body, :created_at]
   }
+
+  GAME_SERVER_VARIABLES = [
+    { dns: 'dd2.heal.lv', port: '27015' },
+    { dns: 'dd2.keep.lv', port: '27015' },
+    { dns: 'dc.keep.lv', port: '27015' },
+    { dns: 'dc.keep.lv', port: '27016' },
+    { ip: '37.203.34.27', port: '27016' },
+  ]
 end

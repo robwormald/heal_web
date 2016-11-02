@@ -29,6 +29,7 @@ gem 'sidekiq', '~> 4.2.2'
 gem 'kaminari', '~> 0.17.0'
 gem 'thumbs_up', '~> 0.6.9'
 gem 'paranoia', '~> 2.2.0'
+gem 'steam-condenser', '~> 1.3.11'
 
 group :development, :test do
   gem 'pry'

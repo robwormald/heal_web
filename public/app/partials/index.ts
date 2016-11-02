@@ -12,3 +12,4 @@ export * from './user/user.component';
 export * from './comments/comments.component';
 export * from './textarea/textarea.component';
 export * from './date/date.component';
+export * from './monitor/monitor.component';
