@@ -52,7 +52,7 @@ export class RatePartialComponent implements OnInit {
   }
 
   private recieveResponse(res: any): void {
-    if(!Object.keys(res).length) return;
+    if(!(res && res.ratings)) return;
 
     this.userIcon = this.service.getUserIcon(res.user);
     this.ratings = res.ratings;
