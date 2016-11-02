@@ -16,6 +16,7 @@ import {
   BBCodePartialComponent,
   CommentsPartialComponent,
   TextareaPartialComponent,
+  DatePartialComponent,
 } from './../../partials/index';
 
 @NgModule({
@@ -36,6 +37,7 @@ import {
     BBCodePartialComponent,
     CommentsPartialComponent,
     TextareaPartialComponent,
+    DatePartialComponent,
   ],
   exports: [
     ContainerBlockPartialComponent,
@@ -47,6 +49,7 @@ import {
     BBCodePartialComponent,
     CommentsPartialComponent,
     TextareaPartialComponent,
+    DatePartialComponent,
     FormsModule,
     CommonModule,
   ]

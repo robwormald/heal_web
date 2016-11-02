@@ -11,3 +11,4 @@ export * from './modal/modal.component';
 export * from './user/user.component';
 export * from './comments/comments.component';
 export * from './textarea/textarea.component';
+export * from './date/date.component';
