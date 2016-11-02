@@ -7,10 +7,10 @@
         <span *ngIf='!comment.editing'>
           <div class='comments-header'>
             <user-partial [user]='comment.user'></user-partial>
-
-            <span class='pull-right'>{{ comment.created_at }}</span>
+            <span>{{ comment.created_at }}</span>
 
             <span class='pull-right comments-action' *ngIf='currentUser.canModerate(comment.user.id)'>
+              <rate-partial type='comment' [id]='comment.id' [data]='comment.rateData || {}'></rate-partial>
               <span class='fa fa-pencil cursor-pointer' (click)='edit(comment)'></span>
               <span class='fa fa-trash cursor-pointer' (click)='destroy(comment)'></span>
             </span>

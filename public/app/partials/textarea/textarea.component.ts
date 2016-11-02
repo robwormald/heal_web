@@ -19,7 +19,7 @@ export class TextareaPartialComponent {
   @Output() onCancel = new EventEmitter();
 
   submit(): void {
-    if(!this.disabled && this.value && this.value.length) {
+    if(!this.disabled && this.value.length) {
       this.disabled = true;
       this.onSubmit.emit({ value: this.value, callback: this.callback.bind(this) });
     }

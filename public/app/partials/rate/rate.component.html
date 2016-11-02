@@ -1,4 +1,6 @@
 <span class='rate-section'>
+  <a (click)='ratingModal.show()' class='cursor-pointer' *ngIf='ratings.length'>Ratings ({{ ratingSum }})</a>
+
   <span class='rate-button cursor-pointer'>
     <span class='rate-element {{ userIcon }}' (click)='showRateOptions = !showRateOptions' *ngIf='!showRateOptions'></span>
 
@@ -6,8 +8,6 @@
       <span class='rate-element {{ rateIcon }}' (click)='rate(rateIcon)' *ngFor='let rateIcon of rateOptions'></span>
     </span>
   </span>
-
-  <a (click)='ratingModal.show()' class='cursor-pointer' *ngIf='ratings.length'>Ratings ({{ ratingSum }})</a>
 
   <div bsModal #ratingModal='bs-modal' class='modal fade' tabindex='-1' role='dialog'>
     <modal-partial (onExit)='ratingModal.hide()' title='Ratings' size='sm'>

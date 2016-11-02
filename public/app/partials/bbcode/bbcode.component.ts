@@ -57,7 +57,6 @@ export class BBCodePartialComponent implements AfterViewChecked {
     if(this.addedEventListener) return;
 
     let input = document.getElementById(this.target);
-    console.error(this.target, input);
     if(input) {
       this.addedEventListener = true;
       input.addEventListener('keyup', (e) => {

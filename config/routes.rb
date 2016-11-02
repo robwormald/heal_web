@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     resources :rate, only: [] do
       post :view, on: :collection
       post :rate, on: :collection
+      post :list, on: :collection
     end
 
     resources :comments, only: [:create, :destroy, :update] do

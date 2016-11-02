@@ -4,4 +4,5 @@ export class Comment {
   created_at: Date;
   parsed?: string;
   editing?: boolean;
+  rateData?: Object;
 }

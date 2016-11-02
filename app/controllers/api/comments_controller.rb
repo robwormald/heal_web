@@ -36,7 +36,7 @@ class Api::CommentsController < ApiController
 
   def has_access
     @comment = Comment.where(id: params[:id]).includes(:user).take
-    head :bad_request unless @comment && can_moderate(@comment.id)
+    head :bad_request unless @comment && can_moderate(@comment.user.id)
   end
 
   def create_comment

@@ -4,12 +4,13 @@ import { AppStore } from './../../app.store';
 import { Comment, User } from './../../objects/index';
 import { BBCodeService } from './../../global/index';
 import { CommentsPartialService } from './comments.service';
+import { RatePartialService } from './../rate/rate.service';
 
 @Component({
   moduleId: module.id,
   selector: 'comments-partial',
   templateUrl: './comments.component.html',
-  providers: [BBCodeService, CommentsPartialService]
+  providers: [BBCodeService, CommentsPartialService, RatePartialService]
 })
 
 export class CommentsPartialComponent implements OnInit {
@@ -23,6 +24,7 @@ export class CommentsPartialComponent implements OnInit {
   constructor(
     private store: AppStore,
     private service: CommentsPartialService,
+    private rateService: RatePartialService,
     private bbcode: BBCodeService,
   ) {}
 
@@ -39,6 +41,14 @@ export class CommentsPartialComponent implements OnInit {
 
   changePage(items: Comment[]): void {
     this.currentComments = items;
+    let ids = this.currentComments.map((comment) => comment.id);
+
+    this.rateService.getMultipleRatings(ids, 'comment').subscribe((res) => {
+      this.currentComments = this.currentComments.map((comment) => {
+        comment.rateData = { ratings: res.ratings[comment.id], user: res.user[comment.id] }
+        return comment;
+      });
+    });
   }
 
   create(event: any): void {

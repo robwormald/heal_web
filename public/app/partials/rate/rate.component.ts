@@ -19,10 +19,19 @@ export class RatePartialComponent implements OnInit {
 
   @Input('id') id;
   @Input('type') type;
+  @Input('data') data;
 
   constructor(private service: RatePartialService) {}
 
+  ngOnChanges(): void {
+    if(!this.data) return;
+
+    this.recieveResponse(this.data);
+  }
+
   ngOnInit(): void {
+    if(this.data) return;
+
     this.service.getRating(this.id, this.type)
       .subscribe((res) => this.recieveResponse(res));
   }
@@ -43,6 +52,8 @@ export class RatePartialComponent implements OnInit {
   }
 
   private recieveResponse(res: any): void {
+    if(!Object.keys(res).length) return;
+
     this.userIcon = this.service.getUserIcon(res.user);
     this.ratings = res.ratings;
     this.ratingSum = this.service.getRatingSum(this.ratings);

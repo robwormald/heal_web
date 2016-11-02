@@ -11,6 +11,11 @@ export class RatePartialService {
     return this.http.post(`api/rate/view`, { rating }).map(res => res.json());
   }
 
+  getMultipleRatings(ids: number[], type: string): Observable<any> {
+    let rating = { ids, type };
+    return this.http.post(`api/rate/list`, { rating }).map(res => res.json());
+  }
+
   setRating(id: number, type: string, method: string): Observable<any> {
     let rating = { id, type, method };
     return this.http.post(`api/rate/rate`, { rating }).map(res => res.json());

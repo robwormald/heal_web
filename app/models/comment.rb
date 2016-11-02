@@ -1,5 +1,6 @@
 class Comment < ApplicationRecord
   acts_as_paranoid
+  acts_as_voteable
 
   belongs_to :user
   belongs_to :commentable, polymorphic: true
