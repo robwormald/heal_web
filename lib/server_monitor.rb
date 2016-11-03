@@ -2,7 +2,9 @@ module ServerMonitor
   def self.query
     redis = Redis.new
     servers = self.get_servers_data
-    redis.set('server_monitor', servers.as_json.to_json)
+    data = servers.to_json
+    redis.set('server_monitor', data)
+    data
   end
 
   private
