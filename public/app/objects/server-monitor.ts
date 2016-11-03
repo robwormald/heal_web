@@ -6,4 +6,5 @@ export class ServerMonitor {
   players_count: number;
   total_count: number;
   players: any[];
+  online: boolean;
 }

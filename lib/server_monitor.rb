@@ -13,12 +13,24 @@ module ServerMonitor
     servers = Constants::GAME_SERVER_VARIABLES.map do |variable|
       server_ip = IPAddr.new(get_ip(variable))
       server = GoldSrcServer.new(server_ip, variable[:port])
-      server.init
-
-      self.map_server_data(server, variable)
+      begin
+        server.init
+        self.map_server_data(server, variable)
+      rescue Errno::ECONNREFUSED
+        self.map_server_data_offline(variable)
+      end
     end
 
     self.sort(servers, :current_count)
+  end
+
+  def self.map_server_data_offline(variable)
+    {
+      ip: variable[:dns] || variable[:ip],
+      port: variable[:port],
+      current_count: -1,
+      online: false,
+    }
   end
 
   def self.map_server_data(server, variable)
@@ -27,9 +39,10 @@ module ServerMonitor
       ip: variable[:dns] || variable[:ip],
       map: info_hash[:map_name],
       name: info_hash[:server_name],
-      port: info_hash[:server_port],
+      port: variable[:port],
       current_count: info_hash[:number_of_players] + info_hash[:number_of_bots],
       total_count: info_hash[:max_players],
+      online: true,
       players: map_player_data(server.players)
     }
   end

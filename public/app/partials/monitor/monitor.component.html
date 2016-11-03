@@ -1,11 +1,16 @@
 <div class='monitor-section'>
   <div class='container-fluid'>
     <div class='monitor' *ngFor='let server of serverMonitors'>
-      <span>
+      <span *ngIf='server.online'>
         {{ server.name }}<br />
         {{ server.ip }}:{{ server.port }}<br />
         {{ server.map }}<br />
         {{ server.current_count }}/{{ server.total_count }}<br />
+      </span>
+
+      <span *ngIf='!server.online'>
+        {{ server.ip }}:{{ server.port }}<br />
+        server offline<br />
       </span>
     </div>
   </div>
