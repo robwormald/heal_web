@@ -28,6 +28,8 @@ export class MonitorPartialComponent implements OnInit {
   }
 
   openPlayerList(players, modal): void {
+    if(!players.length) return;
+
     this.serverPlayers = players;
     modal.show();
   }
