@@ -14,6 +14,7 @@ import { WebsocketService } from './../../global/index';
 
 export class MonitorPartialComponent implements OnInit {
   serverMonitors: ServerMonitor[];
+  serverPlayers: any[];
 
   constructor(
     private store: AppStore,
@@ -24,5 +25,19 @@ export class MonitorPartialComponent implements OnInit {
     this.service.subscribe();
     this.store.changes.pluck('serverMonitors')
       .subscribe((serverMonitors: ServerMonitor[]) => this.serverMonitors = serverMonitors);
+  }
+
+  openPlayerList(players, modal): void {
+    this.serverPlayers = players;
+    modal.show();
+  }
+
+  onImageLoad(event): void {
+    let parent = event.target.parentElement;
+    parent.style.display = 'block';
+  }
+
+  onImageError(event): void {
+    event.target.src = '/assets/noimg.jpg';
   }
 }

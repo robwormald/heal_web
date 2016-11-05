@@ -1,17 +1,39 @@
 <div class='monitor-section'>
   <div class='container-fluid'>
     <div class='monitor' *ngFor='let server of serverMonitors'>
-      <span *ngIf='server.online'>
-        {{ server.name }}<br />
-        {{ server.ip }}:{{ server.port }}<br />
-        {{ server.map }}<br />
-        {{ server.current_count }}/{{ server.total_count }}<br />
+      <span class='server-info' *ngIf='server.online'>
+        <div class='server-options'>{{ server.name }}</div>
+        <div class='server-options'>{{ server.ip }}:{{ server.port }}</div>
+        <div class='server-options map-players-image-block'>
+          <div class='player-block text-right'>
+            <span class='player-count'>
+              <a class='cursor-pointer' (click)='openPlayerList(server.players, playerListModal)'>
+                {{ server.current_count }}/{{ server.total_count }}
+              </a>
+            </span>
+          </div>
+
+          <img src='/assets/{{ server.map }}.jpg' (load)='onImageLoad($event)' (error)='onImageError($event)' alt='' />
+
+          <span class='map-name'>{{ server.map }}</span>
+        </div>
       </span>
 
-      <span *ngIf='!server.online'>
-        {{ server.ip }}:{{ server.port }}<br />
-        server offline<br />
+      <span class='server-info' *ngIf='!server.online'>
+        <div class='server-options'>{{ server.ip }}:{{ server.port }}</div>
+        <div class='server-options'>server offline</div>
       </span>
     </div>
+  </div>
+
+  <div bsModal #playerListModal='bs-modal' class='modal fade' tabindex='-1' role='dialog'>
+    <modal-partial (onExit)='playerListModal.hide()' title='Players' size='sm'>
+      <div class='row' *ngFor='let player of serverPlayers'>
+        <div class='col-xs-12'>
+          <span class='pull-left'>{{ player.name }}</span>
+          <span class='pull-right'>{{ player.score }}</span>
+        </div>
+      </div>
+    </modal-partial>
   </div>
 </div>

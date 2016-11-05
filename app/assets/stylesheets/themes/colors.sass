@@ -36,11 +36,6 @@ main#main-block
   .btn.btn-generic
     @include button-colors($color-main-secondary)
 
-  .modal .modal-dialog .modal-content
-    border-left-color: $color-main-secondary
-    .modal-header
-      background-color: $color-main-secondary
-
   \::-webkit-scrollbar-button:vertical:decrement
     height: 0px
 
@@ -52,6 +47,12 @@ main#main-block
 footer
   .monitor-section
     background-color: $color-main-primary
+
+
+.modal .modal-dialog .modal-content
+  border-left-color: $color-main-secondary
+  .modal-header
+    background-color: $color-main-secondary
 
 \::-webkit-scrollbar-thumb
   background: $color-main-secondary

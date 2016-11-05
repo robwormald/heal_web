@@ -1,7 +1,9 @@
-$color-main-shade-1:     #E0E0E0
-$color-main-shade-2:     #F5F5F5
-$color-main-background:  #F1F1F1
-$color-main-dialogs:     #FFFFFF
+@import "other/_variables"
+
+$color-main-shade-1:    $color-main-light-shade-1
+$color-main-shade-2:    $color-main-light-shade-2
+$color-main-background: $color-main-light-background
+$color-main-dialogs:    $color-main-light-dialogs
 
 @import "themes/brightness"
 
@@ -11,7 +13,3 @@ main#main-block
       border-color: $color-main-shade-1
     .comments-header
       background-color: $color-main-shade-1
-
-footer
-  .monitor-section
-    color: $color-main-shade-1

@@ -10,7 +10,7 @@
   </span>
 
   <div bsModal #ratingModal='bs-modal' class='modal fade' tabindex='-1' role='dialog'>
-    <modal-partial (onExit)='ratingModal.hide()' title='Ratings' size='sm'>
+    <modal-partial (onExit)='ratingModal.hide()' title='Ratings' size='sm' (click)='ratingModal.hide()'>
       <div class='rating-view' *ngFor='let rating of currentRatings'>
         <user-partial [user]='rating.voter'></user-partial>
         <span class='pull-right badge {{ plusOrMinus(rating.vote) }}'></span>
