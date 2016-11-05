@@ -9,3 +9,5 @@ export * from './chat-message';
 export * from './notification';
 export * from './comment';
 export * from './server-monitor';
+export * from './article';
+export * from './article-list';

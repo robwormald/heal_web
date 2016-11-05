@@ -26,6 +26,9 @@ Rails.application.routes.draw do
       post :create, on: :member
     end
     resources :poll, only: [:create]
+    resources :article, only: [] do
+      get 'list/:page' => :list, on: :collection
+    end
     resources :themes, only: [:index] do
       post :color, on: :collection
       post :brightness, on: :collection

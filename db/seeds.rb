@@ -28,7 +28,10 @@ poll_2_answer_1 = PollQuestion.create!(poll: poll_2, question: 'Everitin')
 poll_2_answer_2 = PollQuestion.create!(poll: poll_2, question: 'Not mach')
 poll_2_answer_3 = PollQuestion.create!(poll: poll_2, question: 'Nasing')
 
-title = Faker::Lorem.sentence(3, true, 4)
-description = Faker::Lorem.sentences(5).join(" ")
+description = Faker::Lorem.sentences(7).join(" ")
 body = Faker::Lorem.paragraphs(5).join("\n\n")
-Article.create!(title: title, description: description, user: main_user, body: body, image: 'http://i.imgur.com/w4hzIxd.png')
+Article.create!(title: 'Title #1', description: description, user: main_user, body: body, image: 'http://i.imgur.com/w4hzIxd.png')
+
+description = Faker::Lorem.sentences(7).join(" ")
+body = Faker::Lorem.paragraphs(5).join("\n\n")
+Article.create!(title: 'Title #2', description: description, user: main_user, body: body, image: 'http://i.imgur.com/w4hzIxd.png')

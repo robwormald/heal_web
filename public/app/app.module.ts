@@ -6,6 +6,7 @@ import { FormsModule }   from '@angular/forms';
 var Collapse = require('ng2-bootstrap/ng2-collapse');
 
 import { PollModule } from './pages/poll/poll.module';
+import { ArticleModule } from './pages/article/article.module';
 import { SharedModule } from './shared/modules/shared.module';
 
 import './rxjs-extensions';
@@ -14,7 +15,7 @@ import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { PollMenuComponent, OnlineMenuComponent } from './menus/index';
-import { ChatPageComponent, HomePageComponent } from './pages/index';
+import { ChatPageComponent } from './pages/index';
 import {
   NotificationPartialComponent,
   ThemesPickerComponent,
@@ -29,13 +30,13 @@ import {
     HttpModule,
     SharedModule,
     PollModule,
+    ArticleModule,
     Collapse.CollapseModule,
     routing
   ],
   declarations: [
     AppComponent,
     ChatPageComponent,
-    HomePageComponent,
 
     PollMenuComponent,
     OnlineMenuComponent,
