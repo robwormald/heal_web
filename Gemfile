@@ -34,6 +34,7 @@ gem 'steam-condenser', '~> 1.3.11'
 
 group :development, :test do
   gem 'pry'
+  gem 'faker', '~> 1.6.6'
   gem 'rspec-rails', '~> 3.5'
 end
 
