@@ -13,7 +13,7 @@
             </span>
           </div>
 
-          <img src='/assets/{{ server.map }}.jpg' (load)='onImageLoad($event)' (error)='onImageError($event)' alt='' />
+          <img src='{{ imagePath }}{{ server.map }}.jpg' (load)='onImageLoad($event)' (error)='onImageError($event)' alt='' />
 
           <span class='map-name'>{{ server.map }}</span>
         </div>

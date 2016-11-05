@@ -13,6 +13,8 @@ import { WebsocketService } from './../../global/index';
 })
 
 export class MonitorPartialComponent implements OnInit {
+  // imagePath: string = '/assets/';
+  imagePath: string = 'http://heal.lv/style/icons/maps/';
   serverMonitors: ServerMonitor[];
   serverPlayers: any[];
 
@@ -40,6 +42,6 @@ export class MonitorPartialComponent implements OnInit {
   }
 
   onImageError(event): void {
-    event.target.src = '/assets/noimg.jpg';
+    event.target.src = this.imagePath + 'noimg.jpg';
   }
 }
