@@ -30,6 +30,10 @@ Rails.application.routes.draw do
       get 'list/:page' => :list, on: :collection
       get 'view/:id' => :view, on: :collection
     end
+    resources :user, only: [] do
+      get 'list/:page' => :list, on: :collection
+      get 'view/:id' => :view, on: :collection
+    end
     resources :themes, only: [:index] do
       post :color, on: :collection
       post :brightness, on: :collection

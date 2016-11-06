@@ -5,8 +5,7 @@ import { FormsModule }   from '@angular/forms';
 
 import { CollapseModule } from 'ng2-bootstrap/components/collapse';
 
-import { PollModule } from './pages/poll/poll.module';
-import { ArticleModule } from './pages/article/article.module';
+import { ArticleModule, PollModule, UserModule } from './pages/index';
 import { SharedModule } from './shared/modules/shared.module';
 
 import './rxjs-extensions';
@@ -14,7 +13,7 @@ import { AppStore } from './app.store';
 import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 
-import { PollMenuComponent, OnlineMenuComponent } from './menus/index';
+import { PollMenuComponent, OnlineMenuComponent, UserMenuComponent } from './menus/index';
 import { ChatPageComponent } from './pages/index';
 import {
   NotificationPartialComponent,
@@ -29,8 +28,9 @@ import {
     BrowserModule,
     HttpModule,
     SharedModule,
-    PollModule,
     ArticleModule,
+    PollModule,
+    UserModule,
     CollapseModule,
     routing
   ],
@@ -40,6 +40,7 @@ import {
 
     PollMenuComponent,
     OnlineMenuComponent,
+    UserMenuComponent,
 
     NotificationPartialComponent,
     ThemesPickerComponent,

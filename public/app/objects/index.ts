@@ -1,4 +1,5 @@
 export * from './user';
+export * from './user-list';
 export * from './poll';
 export * from './poll-question';
 export * from './poll-answer';
