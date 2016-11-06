@@ -2,11 +2,11 @@
   <div class='article-item'>
     <div class='article-header'>
       <span class='article-tile'>{{ currentArticle.title }}</span>
-      <rate-partial type='article' [id]='currentArticle.id'></rate-partial>
+      <date-partial [date]='currentArticle.created_at'></date-partial>
 
       <span class='pull-right'>
+        <rate-partial type='article' [id]='currentArticle.id'></rate-partial>
         <user-partial [user]='currentArticle.user'></user-partial>
-        <date-partial [date]='currentArticle.created_at'></date-partial>
       </span>
     </div>
 
