@@ -25,8 +25,8 @@
       'rxjs':                       'npm:rxjs',
       'actioncable-js': 'npm:actioncable-js/dist/action_cable.js',
       'XBBCODE': 'npm:xbbcode.js',
-      'ng2-bootstrap/ng2-collapse': 'npm:ng2-bootstrap/components/collapse',
-      'ng2-bootstrap/ng2-modal': 'npm:ng2-bootstrap/components/modal',
+      'ng2-bootstrap/components/modal': 'npm:ng2-bootstrap/components/modal',
+      'ng2-bootstrap/components/collapse': 'npm:ng2-bootstrap/components/collapse',
       'ng2-popover': 'npm:ng2-popover/index.js',
       'ng2-breadcrumb/ng2-breadcrumb': 'npm:ng2-breadcrumb/ng2-breadcrumb',
     },
@@ -41,9 +41,6 @@
       'ng2-popover': { defaultExtension: 'js' },
       'actioncable-js': { defaultExtension: 'js' },
       'ng2-breadcrumb': { defaultExtension: 'js' },
-      'ng2-bootstrap/ng2-collapse': {
-        defaultExtension: 'js'
-      },
     }
   });
 })(this);

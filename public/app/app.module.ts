@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 import { FormsModule }   from '@angular/forms';
 
-var Collapse = require('ng2-bootstrap/ng2-collapse');
+import { CollapseModule } from 'ng2-bootstrap/components/collapse';
 
 import { PollModule } from './pages/poll/poll.module';
 import { ArticleModule } from './pages/article/article.module';
@@ -31,7 +31,7 @@ import {
     SharedModule,
     PollModule,
     ArticleModule,
-    Collapse.CollapseModule,
+    CollapseModule,
     routing
   ],
   declarations: [

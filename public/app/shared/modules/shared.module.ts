@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule  } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-var Popover = require('ng2-popover');
-var Modal = require('ng2-bootstrap/ng2-modal');
-
+import { PopoverModule  } from 'ng2-popover';
+import { ModalModule    } from 'ng2-bootstrap/components/modal';
 import { Ng2BreadcrumbModule, BreadcrumbService } from 'ng2-breadcrumb/ng2-breadcrumb';
 
 import {
@@ -27,8 +26,8 @@ import {
     CommonModule,
     FormsModule,
     RouterModule,
-    Popover.PopoverModule,
-    Modal.ModalModule,
+    PopoverModule,
+    ModalModule,
     Ng2BreadcrumbModule,
   ],
   declarations: [
