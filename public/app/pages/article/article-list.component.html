@@ -1,15 +1,15 @@
 <div class='article-item' *ngFor='let article of articleList.articles'>
   <div class='article-header'>
     <span class='article-tile'>{{ article.title }}</span>
+    <date-partial [date]='article.created_at'></date-partial>
 
     <span class='pull-right'>
       <user-partial [user]='article.user'></user-partial>
-      <date-partial [date]='article.created_at'></date-partial>
     </span>
   </div>
 
   <div class='article-body'>
-    <img class='article-image img-responsive' [src]='article.image' [title]='article.title' />
+    <img class='article-image img-responsive hidden-xs' [src]='article.image' [title]='article.title' />
     {{ article.description }}
   </div>
 
