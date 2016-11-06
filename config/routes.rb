@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :poll, only: [:create]
     resources :article, only: [] do
       get 'list/:page' => :list, on: :collection
+      get 'view/:id' => :view, on: :collection
     end
     resources :themes, only: [:index] do
       post :color, on: :collection

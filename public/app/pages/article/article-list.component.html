@@ -1,22 +1,20 @@
-<div class='article-list'>
-  <div class='article-item' *ngFor='let article of articleList.articles'>
-    <div class='article-header'>
-      <span class='article-tile'>{{ article.title }}</span>
+<div class='article-item' *ngFor='let article of articleList.articles'>
+  <div class='article-header'>
+    <span class='article-tile'>{{ article.title }}</span>
 
-      <span class='pull-right'>
-        <user-partial [user]='article.user'></user-partial>
-        <date-partial [date]='article.created_at'></date-partial>
-      </span>
-    </div>
+    <span class='pull-right'>
+      <user-partial [user]='article.user'></user-partial>
+      <date-partial [date]='article.created_at'></date-partial>
+    </span>
+  </div>
 
-    <div class='article-body'>
-      <img class='article-image img-responsive' [src]='article.image' />
-      {{ article.description }}
-    </div>
+  <div class='article-body'>
+    <img class='article-image img-responsive' [src]='article.image' [title]='article.title' />
+    {{ article.description }}
+  </div>
 
-    <div class='article-footer text-right'>
-      <a routerLink='/articles/view/{{ article.id }}'>Read more</a>
-    </div>
+  <div class='article-footer text-right'>
+    <a routerLink='/articles/view/{{ article.id }}'>Read more</a>
   </div>
 </div>
 

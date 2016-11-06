@@ -1,7 +1,5 @@
 <div class='comments-section'>
-  <textarea-partial uniqId='comments-textarea' placeholder='Comment' (onSubmit)='create($event)'></textarea-partial>
-
-  <pagination [total]='comments.length' [items]='comments' (onPage)='changePage($event)'>
+  <pagination [total]='comments.length' [items]='comments' (onPage)='changePage($event)' *ngIf='comments.length'>
     <div class='comments-list'>
       <div class='comments-item' *ngFor='let comment of currentComments'>
         <span *ngIf='!comment.editing'>
@@ -27,4 +25,6 @@
       </div>
     </div>
   </pagination>
+
+  <textarea-partial uniqId='comments-textarea' placeholder='Comment' (onSubmit)='create($event)'></textarea-partial>
 </div>

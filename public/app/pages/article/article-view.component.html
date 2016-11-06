@@ -1,0 +1,20 @@
+<span *ngIf='currentArticle.id'>
+  <div class='article-item'>
+    <div class='article-header'>
+      <span class='article-tile'>{{ currentArticle.title }}</span>
+      <rate-partial type='article' [id]='currentArticle.id'></rate-partial>
+
+      <span class='pull-right'>
+        <user-partial [user]='currentArticle.user'></user-partial>
+        <date-partial [date]='currentArticle.created_at'></date-partial>
+      </span>
+    </div>
+
+    <div class='article-body'>
+      <img class='article-image img-responsive' [src]='currentArticle.image' [title]='currentArticle.title' />
+      <span [innerHTML]='parseBBcode(currentArticle)'></span>
+    </div>
+  </div>
+
+  <comments-partial type='article' [id]='currentArticle.id'></comments-partial>
+</span>

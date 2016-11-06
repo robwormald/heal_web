@@ -8,4 +8,11 @@ class Api::ArticleController < ApiController
 
     render json: { articles: articles, count: Article.count, page: page, per: PER_PAGE }
   end
+
+  def view
+    article = Article.includes(:user).where(id: params[:id]).take
+    article = article.as_json(include: { user: { only: Constants::SAFE_PARAMS[:user] } })
+
+    render json: { article: article }
+  end
 end

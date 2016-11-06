@@ -24,4 +24,10 @@ export class ArticleService {
         this.store.setKeyValue('articleList', articleList);
       });
   }
+
+  getArticle(id: number): void {
+    this.http.get(`api/article/view/${id}`)
+      .map(res => res.json())
+      .subscribe(res => this.store.setKeyValue('currentArticle', res.article));
+  }
 }

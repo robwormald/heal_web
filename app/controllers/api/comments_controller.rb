@@ -46,6 +46,7 @@ class Api::CommentsController < ApiController
   def find_commentable(id = nil, type = nil)
     hash = {
       'poll' => Poll,
+      'article' => Article,
     }
 
     commentable_id = id || strong_params[:id]

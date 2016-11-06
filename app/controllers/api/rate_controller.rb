@@ -57,6 +57,7 @@ class Api::RateController < ApiController
     {
       'poll' => Poll,
       'comment' => Comment,
+      'article' => Article,
     }[strong_params[:type]]
   end
 
