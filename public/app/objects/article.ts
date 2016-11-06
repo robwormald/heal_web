@@ -8,4 +8,5 @@ export class Article {
   image: string;
   user: User;
   created_at: Date;
+  parsed?: string;
 }
