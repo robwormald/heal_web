@@ -22,6 +22,6 @@ export class ArticleComponent {
 
   private setArticleTitle(): string {
     let article = this.store.getKeyValue('currentArticle');
-    return article.title;
+    return article.title || ' ';
   }
 }

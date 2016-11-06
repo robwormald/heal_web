@@ -1,10 +1,12 @@
 <div class='poll-block' *ngIf='poll'>
   <div class='poll-header'>
+    <a routerLink='/polls/view/{{ poll.id }}' *ngIf='!view'>{{ poll.title }}</a>
+
     <span *ngIf='view'>
-      <a routerLink='/polls'>Polls</a> /
+      {{ poll.title }}
+      <date-partial [date]='poll.created_at'></date-partial>
+      <rate-partial type='poll' [id]='poll.id' class='pull-right'></rate-partial>
     </span>
-    <a routerLink='/polls/view/{{ poll.id }}'>{{ poll.title }}</a>
-    <rate-partial type='poll' [id]='poll.id' class='pull-right' *ngIf='view'></rate-partial>
   </div>
 
   <div class='poll-body' *ngFor='let question of questions'>
