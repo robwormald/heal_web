@@ -28,6 +28,7 @@
       'ng2-bootstrap/ng2-collapse': 'npm:ng2-bootstrap/components/collapse',
       'ng2-bootstrap/ng2-modal': 'npm:ng2-bootstrap/components/modal',
       'ng2-popover': 'npm:ng2-popover/index.js',
+      'ng2-breadcrumb/ng2-breadcrumb': 'npm:ng2-breadcrumb/ng2-breadcrumb',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -39,6 +40,7 @@
       'XBBCODE': { defaultExtension: 'js' },
       'ng2-popover': { defaultExtension: 'js' },
       'actioncable-js': { defaultExtension: 'js' },
+      'ng2-breadcrumb': { defaultExtension: 'js' },
       'ng2-bootstrap/ng2-collapse': {
         defaultExtension: 'js'
       },
