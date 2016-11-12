@@ -3,28 +3,17 @@
   flex-flow: wrap
   .list-item
     flex: 1
-    flex-basis: 45%
-    max-width: 47.5%
+    flex-basis: 100%
     margin: 5px 0
     a
-      outline: 0
       color: #333
       display: block
       padding: 5px 10px
       border: 1px solid #00BEE9
-    &:nth-child(odd)
-      a.active
-        border-left-width: 10px
-      &:hover, &:active, &:focus
-        a
-          border-left-width: 10px
-          border-color: rgba(#00BEE9, 0.5)
-    &:nth-child(even)
-      margin-left: 5%
-      text-align: right
-      a.active
-        border-right-width: 10px
-      &:hover, &:active, &:focus
-        a
-          border-right-width: 10px
-          border-color: rgba(#00BEE9, 0.5)
+      .fa
+        width: 16px
+        height: 16px
+      &:hover, &:active, &:focus, &.active
+        border-left-width: 7.5px
+        .fa
+          color: #00BEE9
