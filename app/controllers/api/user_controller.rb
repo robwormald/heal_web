@@ -10,9 +10,12 @@ class Api::UserController < ApiController
   end
 
   def view
-    article = Article.includes(:user).where(id: params[:id]).take
-    article = article.as_json(include: { user: { only: Constants::SAFE_PARAMS[:user] } })
+    if params[:id].blank? || params[:id].to_i == 0
+      user = current_user
+    else
+      user = User.where(id: params[:id]).take
+    end
 
-    render json: { article: article }
+    render json: { user: User.parse(user, :current_user) }
   end
 end

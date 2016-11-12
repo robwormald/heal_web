@@ -27,8 +27,10 @@
       'XBBCODE': 'npm:xbbcode.js',
       'ng2-bootstrap/components/modal': 'npm:ng2-bootstrap/components/modal',
       'ng2-bootstrap/components/collapse': 'npm:ng2-bootstrap/components/collapse',
+      'ng2-bootstrap/components/datepicker': 'npm:ng2-bootstrap/components/datepicker',
       'ng2-popover': 'npm:ng2-popover/index.js',
       'ng2-breadcrumb/ng2-breadcrumb': 'npm:ng2-breadcrumb/ng2-breadcrumb',
+      'moment': 'npm:moment',
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -41,6 +43,10 @@
       'ng2-popover': { defaultExtension: 'js' },
       'actioncable-js': { defaultExtension: 'js' },
       'ng2-breadcrumb': { defaultExtension: 'js' },
+      'moment': {
+        main: './moment.js',
+        defaultExtension: 'js'
+      },
     }
   });
 })(this);

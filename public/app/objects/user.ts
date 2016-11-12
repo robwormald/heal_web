@@ -4,6 +4,9 @@ export class User {
   email: string;
   created_at: Date;
   permissions: string[];
+  residence?: string;
+  birthday?: string;
+  signature?: string;
 
   constructor(user) {
     Object.assign(this, user);

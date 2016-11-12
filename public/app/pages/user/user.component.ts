@@ -17,6 +17,7 @@ export class UserComponent {
     this.breadcrumb.hideRoute('/users/list');
     this.breadcrumb.hideRouteRegex('^/users/list/[0-9]');
     this.breadcrumb.addFriendlyNameForRoute('/users', 'Users');
+    this.breadcrumb.addFriendlyNameForRoute('/users/edit', 'Profile');
     // this.breadcrumb.addCallbackForRouteRegex('^/users/view/[0-9]$', this.setUserTitle.bind(this));
   }
 

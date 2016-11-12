@@ -28,6 +28,6 @@ export class UserService {
   getUser(id: number): void {
     this.http.get(`api/user/view/${id}`)
       .map(res => res.json())
-      .subscribe(res => this.store.setKeyValue('currentUser', res.user));
+      .subscribe(res => this.store.setKeyValue('currentViewUser', res.user));
   }
 }

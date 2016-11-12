@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule  } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { PopoverModule  } from 'ng2-popover';
-import { ModalModule    } from 'ng2-bootstrap/components/modal';
+import { PopoverModule    } from 'ng2-popover';
+import { ModalModule      } from 'ng2-bootstrap/components/modal';
+import { DatepickerModule } from 'ng2-bootstrap/components/datepicker';
 import { Ng2BreadcrumbModule, BreadcrumbService } from 'ng2-breadcrumb/ng2-breadcrumb';
 
 import {
@@ -19,6 +20,7 @@ import {
   TextareaPartialComponent,
   DatePartialComponent,
   MonitorPartialComponent,
+  FormPartialComponent,
 } from './../../partials/index';
 
 @NgModule({
@@ -28,6 +30,7 @@ import {
     RouterModule,
     PopoverModule,
     ModalModule,
+    DatepickerModule,
     Ng2BreadcrumbModule,
   ],
   declarations: [
@@ -42,6 +45,7 @@ import {
     TextareaPartialComponent,
     DatePartialComponent,
     MonitorPartialComponent,
+    FormPartialComponent,
   ],
   exports: [
     ContainerBlockPartialComponent,
@@ -55,6 +59,7 @@ import {
     TextareaPartialComponent,
     DatePartialComponent,
     MonitorPartialComponent,
+    FormPartialComponent,
     FormsModule,
     CommonModule,
     Ng2BreadcrumbModule,

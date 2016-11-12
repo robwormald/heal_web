@@ -5,6 +5,7 @@ import { User, PollView, PollList, ServerMonitor } from './objects/index';
 interface State {
   onlineUsers: User[];
   currentUser: User;
+  currentViewUser: User;
   currentPoll: PollView;
   latestPoll: PollView;
   pollList: PollList;
@@ -14,6 +15,7 @@ interface State {
 const state: State = {
   onlineUsers: [] as User[],
   currentUser: {} as User,
+  currentViewUser: {} as User,
   currentPoll: {} as PollView,
   latestPoll: {} as PollView,
   pollList: {} as PollList,

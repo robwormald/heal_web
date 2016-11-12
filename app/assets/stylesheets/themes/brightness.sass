@@ -15,9 +15,6 @@ main#main-block > #home-layout
 
   // Pages
   #chat-room
-    .nav.nav-tabs li > a
-      &.active, &:hover, &:focus, &:active
-        color: $color-main-dialogs
     .chat-message-container .chat-messages
       background-color: $color-main-background
       border-color: $color-main-shade-2
@@ -53,7 +50,7 @@ main#main-block
 
   .btn
     background-color: $color-main-dialogs
-    &.btn-danger, &.btn-warning, &.btn-success, &.btn-info, &.btn-generic
+    &.btn-danger, &.btn-warning, &.btn-success, &.btn-info, &.btn-generic, &.btn-default
       &:hover, &:focus, &:active, &.active
         color: $color-main-dialogs
 
@@ -63,6 +60,13 @@ main#main-block
   .comments-section .comments-list .comments-item
     .comments-body
       background-color: $color-main-background
+
+  .nav.nav-tabs li > a
+    &.active, &:hover, &:focus, &:active
+      color: $color-main-dialogs
+
+  datepicker table
+    background-color: $color-main-background
 
   textarea-partial .input-group .split-input-addon
     div.fa

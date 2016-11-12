@@ -3,6 +3,6 @@ class Appearance::AppearanceJob < ApplicationJob
 
   def perform(user, event)
     user.update(online: event == 'join')
-    ActionCable.server.broadcast('appearance', ChannelHelpers.params(event, { user: parse_user(user) }))
+    ActionCable.server.broadcast('appearance', ChannelHelpers.params(event, { user: User.parse(user) }))
   end
 end

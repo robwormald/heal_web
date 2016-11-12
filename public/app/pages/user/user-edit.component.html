@@ -1,0 +1,7 @@
+<ul class='nav nav-tabs'>
+  <li *ngFor='let tab of tabsKeys' class='cursor-pointer' (click)='switchTab(tab)'>
+    <a [ngClass]='tabClassName(tab)'>{{ tab }}</a>
+  </li>
+</ul>
+
+<form-partial [fields]='tabsData[currentTab]' [model]='currentViewUser' (onSubmit)='onSubmit($event)' [specificId]='currentTab + "-"'></form-partial>

@@ -22,6 +22,10 @@ class User < ApplicationRecord
     false
   end
 
+  def self.parse(user, params = nil)
+    user.as_json(only: Constants::SAFE_PARAMS[params || :user])
+  end
+
   private
 
   def add_preferences

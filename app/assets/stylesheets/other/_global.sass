@@ -11,7 +11,8 @@ textarea
   resize: none
 
 a, button, .form-control
-  outline: none
+  &, &:focus
+    outline: none
 
 a
   &:hover, &:active, &:focus
@@ -31,3 +32,9 @@ a
 
 .no-border-radius
   border-radius: 0
+
+.capital-letter:first-letter
+  text-transform: uppercase
+
+.form-group:last-of-type
+  margin-bottom: 0px
