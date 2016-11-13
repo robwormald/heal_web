@@ -26,14 +26,12 @@
     </div>
   </div>
 
-  <div bsModal #playerListModal='bs-modal' class='modal fade' tabindex='-1' role='dialog'>
-    <modal-partial (onExit)='playerListModal.hide()' title='Players' size='sm'>
-      <div class='row' *ngFor='let player of serverPlayers'>
-        <div class='col-xs-12'>
-          <span class='pull-left'>{{ player.name }}</span>
-          <span class='pull-right'>{{ player.score }}</span>
-        </div>
+  <modal-partial bsModal #playerListModal='bs-modal' class='modal fade' title='Players' size='sm'>
+    <div class='row' *ngFor='let player of serverPlayers'>
+      <div class='col-xs-12'>
+        <span class='pull-left'>{{ player.name }}</span>
+        <span class='pull-right'>{{ player.score }}</span>
       </div>
-    </modal-partial>
-  </div>
+    </div>
+  </modal-partial>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -9,6 +9,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ModalPartialComponent {
   @Input('title') title;
   @Input('size') size = 'md';
-  @Input('controller') controller;
-  @Output() onExit = new EventEmitter<number>();
+  @ViewChild('modalWindow') modalWindow;
+
+  show(): void {
+    this.modalWindow.show();
+  }
 }
