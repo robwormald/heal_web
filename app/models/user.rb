@@ -5,11 +5,14 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
+  validates :password, confirmation: true
+  validates :password_confirmation, presence: true, if: 'password.present?'
 
   has_one  :user_preference, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :chat_messages, dependent: :destroy
 
+  before_create :set_birthday
   after_create :add_preferences
 
   devise :database_authenticatable, :confirmable, :registerable, :recoverable, :trackable, :validatable
@@ -40,6 +43,10 @@ class User < ApplicationRecord
     else
       Constants::SAFE_PARAMS[params]
     end
+  end
+
+  def set_birthday
+    self.birthday = DateTime.now
   end
 
   def add_preferences

@@ -1,4 +1,4 @@
-<div class='form-horizontal'>
+<form #form class='form-horizontal'>
   <ng-container *ngFor='let field of fields'>
     <div class='form-group'>
       <label class='capital-letter col-sm-2 control-label' [htmlFor]='specificId + field.name'>{{ field.text || field.name }}</label>
@@ -6,8 +6,8 @@
       <div class='col-sm-10'>
         <bbcode-partial [target]='specificId + field.name' *ngIf='field.bbcode'></bbcode-partial>
 
-        <input class='form-control' [type]='field.type' [id]='specificId + field.name' [(ngModel)]='model[field.name]' *ngIf='field.input' />
-        <textarea class='form-control' [id]='specificId + field.name' [rows]='field.rows || 8' [(ngModel)]='model[field.name]' *ngIf='field.textarea'></textarea>
+        <input class='form-control' [type]='field.type' [id]='specificId + field.name' [name]='field.name' [(ngModel)]='model[field.name]' *ngIf='field.input' />
+        <textarea class='form-control' [id]='specificId + field.name' [name]='field.name' [rows]='field.rows || 8' [(ngModel)]='model[field.name]' *ngIf='field.textarea'></textarea>
 
         <ng-container class='form-control' *ngIf='field.date'>
           <button class='btn btn-generic' [id]='specificId + field.name' [popover]='datepickerPopover' [popoverDisabled]='datepickerHidden'>
@@ -15,7 +15,7 @@
           </button>
 
           <popover-content #datepickerPopover placement='bottom' [closeOnClickOutside]='true'>
-            <datepicker [(ngModel)]='model[field.name]' datepickerMode='year' startingDay='1' [showWeeks]='false' (selectionDone)='dateSelected()'></datepicker>
+            <datepicker [(ngModel)]='model[field.name]' [name]='field.name' datepickerMode='year' startingDay='1' [showWeeks]='false' (selectionDone)='dateSelected()'></datepicker>
           </popover-content>
         </ng-container>
       </div>
@@ -27,4 +27,4 @@
       <button class='btn btn-generic pull-right' (click)='submit()'>{{ buttonText }}</button>
     </div>
   </div>
-</div>
+</form>

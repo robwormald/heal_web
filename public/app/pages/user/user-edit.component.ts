@@ -19,8 +19,10 @@ export class UserEditComponent {
       { input: true, type: 'text', name: 'residence' },
       { textarea: true, name: 'signature', bbcode: true },
     ],
-    security: [
+    email: [
       { input: true, type: 'text', name: 'email' },
+    ],
+    security: [
       { input: true, type: 'password', name: 'password' },
       { input: true, type: 'password', name: 'password_confirmation', text: 'Password 2x' },
     ],
@@ -40,7 +42,14 @@ export class UserEditComponent {
   }
 
   onSubmit(event: any): void {
-    console.error(event);
+    let values = Object.values(event.data);
+    let valid = values.filter((n) => n != undefined);
+    if(!valid.length) return;
+    this.service.updateUser(this.currentTab, event.data);
+
+    if(this.currentTab == 'security') {
+      event.form.nativeElement.reset();
+    }
   }
 
   tabClassName(tab: string): string {

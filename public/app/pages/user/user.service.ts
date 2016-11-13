@@ -30,4 +30,8 @@ export class UserService {
       .map(res => res.json())
       .subscribe(res => this.store.setKeyValue('currentViewUser', res.user));
   }
+
+  updateUser(tab: string, data: any): void {
+    this.http.patch(`api/user/update`, { [tab]: data }).subscribe();
+  }
 }

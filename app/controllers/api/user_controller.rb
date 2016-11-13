@@ -22,4 +22,38 @@ class Api::UserController < ApiController
 
     render json: { user: User.parse(user, keys) }
   end
+
+  def update
+    if update_user
+      ChannelHelpers.notification(current_user.id, :success, 'Success', 'Successfully updated your settings')
+      head :ok
+    else
+      ChannelHelpers.error_notification(current_user.id, current_user.errors.full_messages.join(", "))
+      head :bad_request
+    end
+  end
+
+  private
+
+  def update_user
+    case true
+    when params[:general].present?
+      return current_user.update(valid_params)
+    when params[:security].present?
+      updated = current_user.update(valid_params)
+      sign_in(current_user, bypass: true) if updated
+      return updated
+    when params[:email].present?
+      return current_user.update(valid_params)
+    when params[:upload].present?
+
+    end
+  end
+
+  def valid_params
+    return params.require(:general).permit([:birthday, :residence, :signature]) if params[:general]
+    return params.require(:security).permit([:password, :password_confirmation]) if params[:security]
+    return params.require(:email).permit([:email]) if params[:email]
+    return params.require(:upload).permit([:avatar]) if params[:upload]
+  end
 end
