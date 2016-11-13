@@ -7,7 +7,7 @@
         <div class='server-options map-players-image-block'>
           <div class='player-block text-right'>
             <span class='player-count'>
-              <a class='cursor-pointer' (click)='openPlayerList(server.players, playerListModal)'>
+              <a class='cursor-pointer' (click)='openPlayerList(server.players, playerListModal.modal)'>
                 {{ server.current_count }}/{{ server.total_count }}
               </a>
             </span>
@@ -26,12 +26,12 @@
     </div>
   </div>
 
-  <modal-partial bsModal #playerListModal='bs-modal' class='modal fade' title='Players' size='sm'>
+  <div modal-partial #playerListModal title='Players' size='sm'>
     <div class='row' *ngFor='let player of serverPlayers'>
       <div class='col-xs-12'>
         <span class='pull-left'>{{ player.name }}</span>
         <span class='pull-right'>{{ player.score }}</span>
       </div>
     </div>
-  </modal-partial>
+  </div>
 </div>

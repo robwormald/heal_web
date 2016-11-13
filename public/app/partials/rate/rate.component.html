@@ -1,5 +1,5 @@
 <span class='rate-section'>
-  <a (click)='ratingModal.show()' class='cursor-pointer' *ngIf='ratings.length'>Ratings ({{ ratingSum }})</a>
+  <a (click)='ratingModal.modal.show()' class='cursor-pointer' *ngIf='ratings.length'>Ratings ({{ ratingSum }})</a>
 
   <span class='rate-button cursor-pointer'>
     <span class='rate-element {{ userIcon }}' (click)='showRateOptions = !showRateOptions' *ngIf='!showRateOptions'></span>
@@ -9,18 +9,16 @@
     </span>
   </span>
 
-  <div bsModal #ratingModal='bs-modal' class='modal fade' tabindex='-1' role='dialog'>
-    <modal-partial (onExit)='ratingModal.hide()' title='Ratings' size='sm' (click)='ratingModal.hide()'>
-      <div class='rating-view' *ngFor='let rating of currentRatings'>
-        <user-partial [user]='rating.voter'></user-partial>
-        <span class='pull-right badge {{ plusOrMinus(rating.vote) }}'></span>
-      </div>
+  <div modal-partial #ratingModal title='Ratings' size='sm'>
+    <div class='rating-view' *ngFor='let rating of currentRatings'>
+      <user-partial [user]='rating.voter'></user-partial>
+      <span class='pull-right badge {{ plusOrMinus(rating.vote) }}'></span>
+    </div>
 
-      <pagination [total]='ratings.length' [items]='ratings' (onPage)='changePage($event)'></pagination>
+    <pagination [total]='ratings.length' [items]='ratings' (onPage)='changePage($event)'></pagination>
 
-      <div class='text-center'>
-        (total {{ ratings.length }} ratings)
-      </div>
-    </modal-partial>
+    <div class='text-center'>
+      (total {{ ratings.length }} ratings)
+    </div>
   </div>
 </span>
