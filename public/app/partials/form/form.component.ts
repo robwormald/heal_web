@@ -7,6 +7,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 
 export class FormPartialComponent {
+  datepickerToday: Date = new Date();
+  datepickerHidden: boolean = false;
+
   @Input('fields') fields = [];
   @Input('model') model = {};
   @Input('specificId') specificId;
@@ -17,5 +20,10 @@ export class FormPartialComponent {
 
   submit(): void {
     this.onSubmit.emit(this.model);
+  }
+
+  dateSelected(): void {
+    this.datepickerHidden = true;
+    setTimeout(() => this.datepickerHidden = false);
   }
 }

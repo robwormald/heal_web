@@ -23,10 +23,24 @@ class User < ApplicationRecord
   end
 
   def self.parse(user, params = nil)
-    user.as_json(only: Constants::SAFE_PARAMS[params || :user])
+    if params
+      only = map_user_params(params)
+    else
+      only = Constants::SAFE_PARAMS[:user]
+    end
+
+    user.as_json(only: only)
   end
 
   private
+
+  def self.map_user_params(params)
+    if params.is_a?(Array)
+      params.map { |param| Constants::SAFE_PARAMS[param] }.flatten
+    else
+      Constants::SAFE_PARAMS[params]
+    end
+  end
 
   def add_preferences
     self.preference = UserPreference.create

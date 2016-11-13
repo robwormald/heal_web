@@ -10,12 +10,16 @@ class Api::UserController < ApiController
   end
 
   def view
-    if params[:id].blank? || params[:id].to_i == 0
+    id = params[:id].to_i
+    keys = [:user, :user_view]
+
+    if id.blank? || id == 0
       user = current_user
+      keys << :user_view_self
     else
       user = User.where(id: params[:id]).take
     end
 
-    render json: { user: User.parse(user, :current_user) }
+    render json: { user: User.parse(user, keys) }
   end
 end

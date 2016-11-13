@@ -4,7 +4,8 @@ module Constants
 
   SAFE_PARAMS = {
     user: [:id, :username, :online, :location, :permissions],
-    current_user: [:id, :username, :online, :location, :permissions, :residence, :birthday, :signature],
+    user_view: [:residence, :birthday, :signature],
+    user_view_self: [:email],
     rating: [:id, :vote, :created_at],
     comment: [:id, :body, :created_at]
   }

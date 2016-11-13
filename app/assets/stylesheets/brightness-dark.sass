@@ -26,10 +26,12 @@ a
   border-color: $color-main-shade-1
   box-shadow: none
 
-.popover.top
+.popover
   background-color: $color-main-dialogs
-  .arrow:after
+  &.top .arrow:after
     border-top-color: $color-main-dialogs
+  &.bottom .arrow:after
+    border-bottom-color: $color-main-dialogs
 
 .modal-backdrop.in
   opacity: 0.3

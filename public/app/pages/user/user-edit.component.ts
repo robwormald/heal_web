@@ -15,8 +15,8 @@ export class UserEditComponent {
   currentViewUser: any = {};
   tabsData: any = {
     general: [
-      { input: true, type: 'text', name: 'residence' },
       { date: true, name: 'birthday' },
+      { input: true, type: 'text', name: 'residence' },
       { textarea: true, name: 'signature', bbcode: true },
     ],
     security: [

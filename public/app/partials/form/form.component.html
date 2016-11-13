@@ -9,7 +9,15 @@
         <input class='form-control' [type]='field.type' [id]='specificId + field.name' [(ngModel)]='model[field.name]' *ngIf='field.input' />
         <textarea class='form-control' [id]='specificId + field.name' [rows]='field.rows || 8' [(ngModel)]='model[field.name]' *ngIf='field.textarea'></textarea>
 
-        <datepicker [(ngModel)]='model[field.name]' datepickerMode='year' startingDay='1' *ngIf='field.date' [showWeeks]='false'></datepicker>
+        <ng-container class='form-control' *ngIf='field.date'>
+          <button class='btn btn-generic' [id]='specificId + field.name' [popover]='datepickerPopover' [popoverDisabled]='datepickerHidden'>
+            {{ (model[field.name] || datepickerToday) | date:'fullDate' }}
+          </button>
+
+          <popover-content #datepickerPopover placement='bottom' [closeOnClickOutside]='true'>
+            <datepicker [(ngModel)]='model[field.name]' datepickerMode='year' startingDay='1' [showWeeks]='false' (selectionDone)='dateSelected()'></datepicker>
+          </popover-content>
+        </ng-container>
       </div>
     </div>
   </ng-container>
