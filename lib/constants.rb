@@ -1,9 +1,10 @@
 module Constants
   DEFAULT_SYSTEM_ROLES = ['member', 'moderator', 'administrator']
   ADMIN_SYSTEM_ROLES = ['moderator', 'administrator']
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
   SAFE_PARAMS = {
-    user: [:id, :username, :online, :location, :permissions],
+    user: [:id, :username, :online, :location, :permissions, :avatar],
     user_view: [:residence, :birthday, :signature],
     user_view_self: [:email],
     rating: [:id, :vote, :created_at],

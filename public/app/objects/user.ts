@@ -4,6 +4,7 @@ export class User {
   email: string;
   created_at: Date;
   permissions: string[];
+  avatar: any;
   residence?: string;
   birthday?: string;
   signature?: string;

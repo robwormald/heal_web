@@ -32,6 +32,10 @@ gem 'thumbs_up', '~> 0.6.9'
 gem 'paranoia', '~> 2.2.0'
 gem 'steam-condenser', '~> 1.3.11'
 
+gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
+gem 'file_validators', '~> 2.1.0'
+gem 'mini_magick', '~> 4.5.1'
+
 group :development, :test do
   gem 'pry'
   gem 'faker', '~> 1.6.6'
