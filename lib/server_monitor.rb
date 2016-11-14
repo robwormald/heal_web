@@ -16,7 +16,7 @@ module ServerMonitor
       begin
         server.init
         self.map_server_data(server, variable)
-      rescue Errno::ECONNREFUSED
+      rescue Errno::ECONNREFUSED, SteamCondenser::TimeoutError
         self.map_server_data_offline(variable)
       end
     end
