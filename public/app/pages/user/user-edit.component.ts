@@ -27,7 +27,7 @@ export class UserEditComponent {
       { input: true, type: 'password', name: 'password_confirmation', text: 'Password 2x' },
     ],
     uploads: [
-      'avatar',
+      { file: true, name: 'avatar', validations: { size: 2, type: 'image' } },
     ]
   };
   tabsKeys: any[] = Object.keys(this.tabsData);

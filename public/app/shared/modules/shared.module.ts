@@ -21,6 +21,7 @@ import {
   DatePartialComponent,
   MonitorPartialComponent,
   FormPartialComponent,
+  FilePartialComponent,
 } from './../../partials/index';
 
 @NgModule({
@@ -46,6 +47,7 @@ import {
     DatePartialComponent,
     MonitorPartialComponent,
     FormPartialComponent,
+    FilePartialComponent,
   ],
   exports: [
     ContainerBlockPartialComponent,
@@ -60,6 +62,7 @@ import {
     DatePartialComponent,
     MonitorPartialComponent,
     FormPartialComponent,
+    FilePartialComponent,
     FormsModule,
     CommonModule,
     Ng2BreadcrumbModule,

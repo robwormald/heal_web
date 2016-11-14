@@ -18,6 +18,8 @@
             <datepicker [(ngModel)]='model[field.name]' [name]='field.name' datepickerMode='year' startingDay='1' [showWeeks]='false' (selectionDone)='dateSelected()'></datepicker>
           </popover-content>
         </ng-container>
+
+        <file-partial [(selectedFile)]='model[field.name]' [validations]='field.validations' *ngIf='field.file'></file-partial>
       </div>
     </div>
   </ng-container>
