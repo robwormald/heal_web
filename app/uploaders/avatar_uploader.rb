@@ -1,6 +1,10 @@
 class AvatarUploader < ApplicationUploader
   include CarrierWave::MiniMagick
 
+  def filename
+    "#{mounted_as}.#{file.extension}"
+  end
+
   def store_dir
     "uploads/user/#{mounted_as}/#{model.id}"
   end

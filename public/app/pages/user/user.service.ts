@@ -32,6 +32,20 @@ export class UserService {
   }
 
   updateUser(tab: string, data: any): void {
-    this.http.patch(`api/user/update`, { [tab]: data }).subscribe();
+    this.http.patch(`api/user/update/${tab}`, this.prepareParams(tab, data))
+      .map(res => res.json())
+      .subscribe(res => this.store.setKeyValue('currentUser', res.user));
+  }
+
+  private prepareParams(tab: string, data: any): any {
+    if(tab == 'uploads') {
+      let formData = new FormData();
+      for(let key in data) {
+        formData.append(key, data[key]);
+      }
+      return formData;
+    }
+
+    return { data };
   }
 }

@@ -17,6 +17,7 @@
 /typings
 /public/app/**/*.js
 /public/app/**/*.map
+/public/uploads/**/*
 npm-debug.log
 .env
 Procfile

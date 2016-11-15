@@ -45,7 +45,6 @@ export class FilePartialComponent {
   onLoad(file: File): void {
     this.selectedFile = file;
     this.selectedFileChange.emit(file);
-    console.error(file);
   }
 
   private workWithFile(file: File): void {
