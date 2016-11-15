@@ -1,4 +1,4 @@
-class AvatarUploader < ApplicationUploader
+class Image::AvatarUploader < ImageUploader
   include CarrierWave::MiniMagick
 
   def filename
@@ -6,7 +6,7 @@ class AvatarUploader < ApplicationUploader
   end
 
   def store_dir
-    "uploads/user/#{mounted_as}/#{model.id}"
+    "uploads/user/#{get_file_type}/#{model.id}"
   end
 
   def default_url(*args)

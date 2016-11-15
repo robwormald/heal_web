@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   acts_as_voter
 
-  mount_uploader :avatar, AvatarUploader
+  mount_uploader :avatar, Image::AvatarUploader
 
   alias_attribute :preference, :user_preference
 
