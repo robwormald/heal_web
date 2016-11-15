@@ -2,7 +2,7 @@ class Image::AvatarUploader < ImageUploader
   include CarrierWave::MiniMagick
 
   def filename
-    "#{mounted_as}.#{file.extension}"
+    "#{mounted_as}.#{file.extension}" if file
   end
 
   def store_dir
