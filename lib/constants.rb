@@ -4,7 +4,7 @@ module Constants
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
   SAFE_PARAMS = {
-    user: [:id, :username, :online, :location, :permissions, :avatar],
+    user: [:id, :username, :online, :location, :permissions, :avatar, :updated_at, :created_at],
     user_view: [:residence, :birthday, :signature],
     user_view_self: [:email],
     rating: [:id, :vote, :created_at],

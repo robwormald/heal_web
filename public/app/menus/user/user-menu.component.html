@@ -1,4 +1,8 @@
 <div class='list-group'>
+  <div class='user-avatar' *ngIf='currentUser.avatar'>
+    <img [src]='currentUser.avatarUrl("small")' />
+  </div>
+
   <div class='list-item'>
     <a routerLink='/users/list' routerLinkActive='active'>
       <span class='fa fa-users'></span>

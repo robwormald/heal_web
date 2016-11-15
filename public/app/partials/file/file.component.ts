@@ -71,7 +71,7 @@ export class FilePartialComponent {
 
   private validateSize(file: File, validation: any): void {
     if(file.size < validation * this.megabyte) return;
-    this.errors[validation] = `Maximum allowed file size is ${validation * this.megabyte}MB`;
+    this.errors[validation] = `Maximum allowed file size is ${validation}MB`;
   }
 
   private validateType(file: File, validation: any): void {

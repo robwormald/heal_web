@@ -1,10 +1,17 @@
+class Avatar {
+  url: string;
+  thumb: { url: string };
+  small: { url: string };
+}
+
 export class User {
   id: number;
   username: string;
   email: string;
   created_at: Date;
+  updated_at: Date;
   permissions: string[];
-  avatar: any;
+  avatar: Avatar;
   residence?: string;
   birthday?: string;
   signature?: string;
@@ -23,5 +30,9 @@ export class User {
 
   canModerate(id: number): boolean {
     return id == this.id || this.isAdmin() || this.isMod();
+  }
+
+  avatarUrl(type: string): string {
+    return `${this.avatar[type].url}?${this.updated_at}`;
   }
 }

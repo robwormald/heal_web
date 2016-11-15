@@ -27,7 +27,7 @@ export class UserEditComponent {
       { input: true, type: 'password', name: 'password_confirmation', text: 'Password 2x' },
     ],
     uploads: [
-      { file: true, name: 'avatar', validations: { size: 2, type: 'image' } },
+      { file: true, name: 'avatar_file', validations: { size: 2, type: 'image' }, text: 'Avatar' },
     ]
   };
   tabsKeys: any[] = Object.keys(this.tabsData);
@@ -49,6 +49,9 @@ export class UserEditComponent {
 
     if(this.currentTab == 'security') {
       event.form.nativeElement.reset();
+    }
+    else if(this.currentTab == 'uploads') {
+      this.service.getUser(0);
     }
   }
 

@@ -46,7 +46,7 @@ class Api::UserController < ApiController
     when params[:type] == 'email'
       return current_user.update(valid_params)
     when params[:type] == 'uploads'
-      current_user.avatar = params[:avatar]
+      current_user.avatar = params[:avatar_file]
       return current_user.save
     end
   end
