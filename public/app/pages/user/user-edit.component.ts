@@ -54,13 +54,4 @@ export class UserEditComponent {
       this.service.getUser(0);
     }
   }
-
-  tabClassName(tab: string): string {
-    const className = 'capital-letter';
-    return className + (this.currentTab == tab ? ' active' : '');
-  }
-
-  switchTab(tab: string): void {
-    this.currentTab = tab;
-  }
 }

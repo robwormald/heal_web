@@ -15,3 +15,4 @@ export * from './date/date.component';
 export * from './monitor/monitor.component';
 export * from './form/form.component';
 export * from './file/file.component';
+export * from './tabs/tabs.component';

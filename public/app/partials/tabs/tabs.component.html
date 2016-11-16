@@ -1,0 +1,5 @@
+<ul class='nav nav-tabs'>
+  <li *ngFor='let tab of tabs' class='cursor-pointer' (click)='switchTab(index, tab)'>
+    <a [ngClass]='tabClassName(tab)'>{{ tab }}</a>
+  </li>
+</ul>
