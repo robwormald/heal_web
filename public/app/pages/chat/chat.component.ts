@@ -14,11 +14,9 @@ import { BBCodeService, WebsocketService } from './../../global/index';
 export class ChatPageComponent implements OnInit, OnDestroy {
   chats: ChatRoom[] = [];
   chatMessages: ChatMessage[];
-  message: string;
   currentTab: string;
   tabsObject: any;
   tabsArray: string[];
-  inputDisabled: boolean;
   channel: string = 'chat';
 
   constructor(
@@ -53,24 +51,12 @@ export class ChatPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  onKeyPress(e): void {
-    if(e && !e.ctrlKey && !e.shiftKey && e.keyCode == 13) {
-      this.onSend();
-    }
-  }
-
   parseBBcode(message: ChatMessage): string {
     return message.parsed || (message.parsed = this.bbcode.parse(message.body))
   }
 
-  onSend(): void {
-    if(!this.inputDisabled && this.message && this.message.length) {
-      this.inputDisabled = true;
-      this.chatService.sendMessage(this.tabsObject[this.currentTab], this.message).subscribe(() => {
-        this.message = '';
-        this.inputDisabled = false;
-      });
-    }
+  onSend(event: any): void {
+    this.chatService.sendMessage(this.tabsObject[this.currentTab], event.value).subscribe(() => event.callback());
   }
 
   private mapChatsToTabs(): void {

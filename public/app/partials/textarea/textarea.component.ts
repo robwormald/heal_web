@@ -15,6 +15,7 @@ export class TextareaPartialComponent {
   @Input('rows') rows: number = 2;
   @Input('bbcode') bbcode: boolean = true;
   @Input('canCancel') canCancel: boolean = false;
+  @Input('keyPress') keyPress: boolean = false;
   @Output() onSubmit = new EventEmitter();
   @Output() onCancel = new EventEmitter();
 
@@ -27,6 +28,12 @@ export class TextareaPartialComponent {
 
   cancel(): void {
     this.onCancel.emit();
+  }
+
+  press(e): void {
+    if(this.keyPress && e && !e.ctrlKey && !e.shiftKey && e.keyCode == 13) {
+      this.submit();
+    }
   }
 
   callback(): void {

@@ -4,13 +4,7 @@
 
     <div class='row'>
       <div class='col-xs-12 chat-header'>
-        <bbcode-partial target='chatroom-textarea'></bbcode-partial>
-        <div class='input-group'>
-          <textarea [(ngModel)]='message' (keydown)='onKeyPress($event)' id='chatroom-textarea' class='form-control dynamic-no-emoji' placeholder='Message' rows='2'></textarea>
-          <span class='input-group-addon cursor-pointer' (click)='onSend()'>
-            <span class='glyphicon glyphicon-comment'></span>
-          </span>
-        </div>
+        <textarea-partial uniqId='chatroom-textarea' placeholder='Message' (onSubmit)='onSend($event)' [keyPress]='true'></textarea-partial>
       </div>
     </div>
 

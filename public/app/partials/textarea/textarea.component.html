@@ -1,7 +1,7 @@
 <bbcode-partial [target]='uniqId' *ngIf='bbcode'></bbcode-partial>
 
 <div class='input-group'>
-  <textarea [id]='uniqId' class='form-control dynamic-no-emoji' [placeholder]='placeholder' [rows]='rows' [(ngModel)]='value'></textarea>
+  <textarea [id]='uniqId' class='form-control dynamic-no-emoji' [placeholder]='placeholder' [rows]='rows' [(ngModel)]='value' (keydown)='press($event)'></textarea>
   <span class='input-group-addon' *ngIf='canCancel'>
     <div class='split-input-addon'>
       <div class='fa fa-comment cursor-pointer' (click)='submit()'></div>
