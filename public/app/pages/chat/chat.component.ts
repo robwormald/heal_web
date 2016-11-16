@@ -13,9 +13,11 @@ import { BBCodeService, WebsocketService } from './../../global/index';
 
 export class ChatPageComponent implements OnInit, OnDestroy {
   chats: ChatRoom[] = [];
-  currentChatId: number;
   chatMessages: ChatMessage[];
   message: string;
+  currentTab: string;
+  tabsObject: any;
+  tabsArray: string[];
   inputDisabled: boolean;
   channel: string = 'chat';
 
@@ -29,8 +31,8 @@ export class ChatPageComponent implements OnInit, OnDestroy {
     this.chatService.getChats().subscribe((result) => {
       this.chats = result.chats as ChatRoom[];
       this.chatMessages = result.messages as ChatMessage[];
-      this.currentChatId = this.chats[0].id;
-      this.subscribe(this.currentChatId);
+      this.mapChatsToTabs();
+      this.subscribe(this.chats[0].id);
     });
   }
 
@@ -38,13 +40,11 @@ export class ChatPageComponent implements OnInit, OnDestroy {
     this.unsubscribe();
   }
 
-  tabClassName(id: number): string {
-    return this.currentChatId == id ? 'active' : '';
-  }
+  switchChatRooms(tab: string): void {
+    if(this.currentTab != tab) {
+      let id:number = this.tabsObject[tab];
+      this.currentTab = tab;
 
-  switchChatRooms(id: number): void {
-    if(this.currentChatId != id) {
-      this.currentChatId = id;
       this.chatService.getMessages(id).subscribe((chatMessages) => {
         this.chatMessages = chatMessages;
         this.unsubscribe();
@@ -66,11 +66,20 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   onSend(): void {
     if(!this.inputDisabled && this.message && this.message.length) {
       this.inputDisabled = true;
-      this.chatService.sendMessage(this.currentChatId, this.message).subscribe(() => {
+      this.chatService.sendMessage(this.tabsObject[this.currentTab], this.message).subscribe(() => {
         this.message = '';
         this.inputDisabled = false;
       });
     }
+  }
+
+  private mapChatsToTabs(): void {
+    this.tabsObject = {};
+    this.tabsArray = this.chats.map((chat) => {
+      this.tabsObject[chat.title] = chat.id
+      return chat.title;
+    });
+    this.currentTab = this.tabsArray[0];
   }
 
   private subscribe(id: number): void {
