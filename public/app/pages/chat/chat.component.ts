@@ -56,7 +56,9 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   }
 
   onSend(event: any): void {
-    this.chatService.sendMessage(this.tabsObject[this.currentTab], event.value).subscribe(() => event.callback());
+    this.chatService.sendMessage(this.tabsObject[this.currentTab], event.value)
+      .finally(() => event.callback())
+      .subscribe();
   }
 
   private mapChatsToTabs(): void {
