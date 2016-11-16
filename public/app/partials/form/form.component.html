@@ -19,7 +19,7 @@
           </popover-content>
         </ng-container>
 
-        <file-partial [(selectedFile)]='model[field.name]' [validations]='field.validations' *ngIf='field.file'></file-partial>
+        <file-partial [uniqId]='specificId + field.name' [(selectedFile)]='model[field.name]' [validations]='field.validations' *ngIf='field.file'></file-partial>
       </div>
     </div>
   </ng-container>

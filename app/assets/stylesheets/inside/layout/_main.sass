@@ -44,9 +44,14 @@ main#main-block
           margin-bottom: $size-default-container-space
         user-menu .user-avatar
           margin: 0 auto
-          img
+          img.user-image
             border: 2px solid
             border-radius: 50%
+            transition: all .25s ease-in-out
+            &:hover
+              opacity: 0.6
+          .modal-body
+            text-align: center
     .center-column
       .container-block
         $size-top-border: 8px

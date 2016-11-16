@@ -9,7 +9,7 @@
     </span>
   </span>
 
-  <div modal-partial #ratingModal title='Ratings' size='sm'>
+  <div modal-partial #ratingModal header='Ratings' size='sm'>
     <div class='rating-view' *ngFor='let rating of currentRatings'>
       <user-partial [user]='rating.voter'></user-partial>
       <span class='pull-right badge {{ plusOrMinus(rating.vote) }}'></span>

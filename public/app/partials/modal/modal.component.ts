@@ -7,7 +7,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 })
 
 export class ModalPartialComponent {
-  @Input('title') title;
+  @Input('header') title;
   @Input('size') size = 'md';
   @ViewChild('modal') modal;
 }

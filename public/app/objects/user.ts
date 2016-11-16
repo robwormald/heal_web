@@ -32,7 +32,8 @@ export class User {
     return id == this.id || this.isAdmin() || this.isMod();
   }
 
-  avatarUrl(type: string): string {
-    return `${this.avatar[type].url}?${this.updated_at}`;
+  avatarUrl(type: any): string {
+    let url = (type ? this.avatar[type] : this.avatar).url;
+    return `${url}?${this.updated_at}`;
   }
 }

@@ -16,6 +16,7 @@ export class FilePartialComponent {
 
   @Input('validations') validations;
   @Input('selectedFile') selectedFile;
+  @Input('uniqId') uniqId;
   @Output('selectedFileChange') selectedFileChange = new EventEmitter<File>();
   @ViewChild('hiddenInput') hiddenInput;
 
@@ -48,6 +49,7 @@ export class FilePartialComponent {
   }
 
   private workWithFile(file: File): void {
+    if(!file) return;
     this.selectedFile = {};
 
     if(this.validateFile(file)) {

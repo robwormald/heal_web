@@ -1,5 +1,5 @@
-<input #hiddenInput type='file' [accept]='acceptTypeString()' (change)='onChange($event)'>
+<input [id]='uniqId' #hiddenInput type='file' [accept]='acceptTypeString()' (change)='onChange($event)'>
 
 <div class='file-container cursor-pointer' (dragover)='onDragOver()' (dragend)='onDragEnd()' (drop)='onDrop($event)' (click)='onClick()'>
-  <div class='file-text text-center'>{{ selectedFile && selectedFile.name || "Click or Drag" }}</div>
+  <div class='file-text text-center'>{{ selectedFile?.name || "Click or Drag" }}</div>
 </div>

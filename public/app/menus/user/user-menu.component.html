@@ -1,6 +1,10 @@
 <div class='list-group'>
   <div class='user-avatar' *ngIf='currentUser.avatar'>
-    <img [src]='currentUser.avatarUrl("small")' />
+    <img class='user-image cursor-pointer' [src]='currentUser.avatarUrl("small")' (click)='playerListModal.modal.show()' />
+
+    <div modal-partial #playerListModal header='Avatar' size='sm'>
+      <img class='user-image-modal' [src]='currentUser.avatarUrl()' />
+    </div>
   </div>
 
   <div class='list-item'>

@@ -14,8 +14,10 @@ main#main-block > #home-layout
     background-color: $color-main-dialogs
   .left-column, .right-column
     .container-block
-      user-menu .user-avatar img
+      user-menu .user-avatar img.user-image
         border-color: $color-main-background
+        &:hover
+          background-color: $color-main-background
 
   // Pages
   #chat-room
@@ -86,6 +88,9 @@ main#main-block
   file-partial .file-container
     background-color: $color-main-background
     &:hover
+      background-color: rgba($color-main-background, 0.5)
+  label:hover + div
+    file-partial .file-container
       background-color: rgba($color-main-background, 0.5)
 
 footer
