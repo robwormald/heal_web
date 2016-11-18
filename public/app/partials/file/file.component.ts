@@ -1,24 +1,34 @@
-import { Component, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ViewChild, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   moduleId: module.id,
   selector: 'file-partial',
-  templateUrl: './file.component.html'
+  templateUrl: './file.component.html',
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => FilePartialComponent),
+    multi: true
+  }]
 })
 
-export class FilePartialComponent {
-  errors: any = {};
-  megabyte: number = 1024 * 1024;
-  validValidations: any = {
-    size: this.validateSize.bind(this),
-    type: this.validateType.bind(this),
-  };
+export class FilePartialComponent implements ControlValueAccessor {
+  file: any;
+  propagateChange = (_: any) => {};
 
-  @Input('validations') validations;
-  @Input('selectedFile') selectedFile;
+  @Input('type') type = '';
   @Input('uniqId') uniqId;
-  @Output('selectedFileChange') selectedFileChange = new EventEmitter<File>();
   @ViewChild('hiddenInput') hiddenInput;
+
+  registerOnChange(fn) {
+    this.propagateChange = fn;
+  }
+
+  registerOnTouched() {}
+
+  writeValue(value: any) {
+    if(value !== undefined) this.file = value;
+  }
 
   onDragOver(): boolean {
     return false;
@@ -44,44 +54,20 @@ export class FilePartialComponent {
   }
 
   onLoad(file: File): void {
-    this.selectedFile = file;
-    this.selectedFileChange.emit(file);
+    this.file = file;
+    this.propagateChange(file);
   }
 
   private workWithFile(file: File): void {
     if(!file) return;
-    this.selectedFile = {};
+    this.file = {};
 
-    if(this.validateFile(file)) {
-      let reader = new FileReader();
-      reader.onload = this.onLoad.bind(this, file);
-      reader.readAsDataURL(file);
-    }
-    else {
-      console.error(this.errors);
-    }
-  }
-
-  private validateFile(file: File): boolean {
-    for(var validation in this.validations) {
-      let func = this.validValidations[validation];
-      if(func) func(file, this.validations[validation]);
-    }
-
-    return !(!!Object.keys(this.errors).length);
-  }
-
-  private validateSize(file: File, validation: any): void {
-    if(file.size < validation * this.megabyte) return;
-    this.errors[validation] = `Maximum allowed file size is ${validation}MB`;
-  }
-
-  private validateType(file: File, validation: any): void {
-    if(file.type.includes(validation)) return;
-    this.errors[validation] = `Invalid file type, allowed: ${validation}`;
+    let reader = new FileReader();
+    reader.onload = this.onLoad.bind(this, file);
+    reader.readAsDataURL(file);
   }
 
   private acceptTypeString(): string {
-    return `${this.validations.type}/*`;
+    return `${this.type}/*`;
   }
 }

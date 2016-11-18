@@ -1,7 +1,6 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
-import { FormsModule }   from '@angular/forms';
 
 import { CollapseModule } from 'ng2-bootstrap/components/collapse';
 
