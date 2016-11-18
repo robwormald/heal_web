@@ -1,3 +1,6 @@
-<div *ngFor='let user of userList.users'>
-  <a routerLink='/users/view/{{ user.id }}'>{{ user.username }}</a>
+<div class='user-list'>
+  <a routerLink='/users/view/{{ user.id }}' class='user-item' *ngFor='let user of userList.users'>
+    <img class='user-image' [src]='user.avatarUrl("thumb")' />
+    <user-partial [user]='user'></user-partial>
+  </a>
 </div>

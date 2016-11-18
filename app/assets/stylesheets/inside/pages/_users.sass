@@ -1,0 +1,27 @@
+user-menu .user-avatar
+  margin: 0 auto
+  img.user-image
+    border: 2px solid
+    border-radius: 50%
+    transition: all .25s ease-in-out
+    &:hover
+      opacity: 0.6
+  .modal-body
+    text-align: center
+
+#user-page
+  .user-list
+    @include display-flex
+    .user-item
+      width: 20%
+      padding: 5px
+      margin-right: 0.5%
+      border: 1px solid
+      transition: all 0.25s
+      &:hover
+        background-color: #303030
+      img.user-image
+        border: 2px solid
+        border-radius: 50%
+        width: 30px
+        height: 30px

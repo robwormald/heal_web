@@ -1,11 +1,12 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { User, PollView, PollList, ServerMonitor } from './objects/index';
+import { User, UserList, PollView, PollList, ServerMonitor } from './objects/index';
 
 interface State {
   onlineUsers: User[];
   currentUser: User;
   currentViewUser: User;
+  userList: UserList;
   currentPoll: PollView;
   latestPoll: PollView;
   pollList: PollList;
@@ -16,6 +17,7 @@ const state: State = {
   onlineUsers: [] as User[],
   currentUser: {} as User,
   currentViewUser: {} as User,
+  userList: {} as UserList,
   currentPoll: {} as PollView,
   latestPoll: {} as PollView,
   pollList: {} as PollList,
@@ -52,6 +54,11 @@ export class AppStore {
       case 'currentUser':
       case 'currentViewUser':
         return new User(value);
+      case 'userList':
+        if(value.users) {
+          value.users = value.users.map((user) => new User(user));
+        }
+        return value;
       default:
         return value;
     }
