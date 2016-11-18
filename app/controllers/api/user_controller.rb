@@ -3,7 +3,7 @@ class Api::UserController < ApiController
 
   def list
     page = params[:page].to_i
-    users = User.order(id: :desc).page(page).per(PER_PAGE)
+    users = User.order(updated_at: :desc).page(page).per(PER_PAGE)
     users = users.as_json(only: Constants::SAFE_PARAMS[:user])
 
     render json: { users: users, count: User.count, page: page, per: PER_PAGE }
