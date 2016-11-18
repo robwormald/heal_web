@@ -15,6 +15,7 @@ export class User {
   residence?: string;
   birthday?: Date;
   signature?: string;
+  parsedSignature?: string;
 
   constructor(user) {
     Object.assign(this, user);
@@ -37,6 +38,20 @@ export class User {
 
   avatarUrl(type: any): string {
     let url = (type ? this.avatar[type] : this.avatar).url;
-    return `${url}?${this.updated_at}`;
+    return `${url}?${this.updated_at.getTime()}`;
+  }
+
+  roles(): string {
+    return this.permissions.join(', ');
+  }
+
+  age(): number {
+    let today = new Date();
+    let age = today.getFullYear() - this.birthday.getFullYear();
+    let m = today.getMonth() - this.birthday.getMonth();
+    if(m < 0 || (m === 0 && today.getDate() < this.birthday.getDate())) {
+      age--;
+    }
+    return age;
   }
 }

@@ -1,0 +1,61 @@
+<div class='user-view' *ngIf='currentViewUser.id'>
+  <div class='row user-info'>
+    <div class='col-xs-12 col-sm-4 user-avatar text-center cursor-pointer' (click)='userListModal.modal.show()'>
+      <img class='user-image' [src]='currentViewUser.avatarUrl("thumb")' />
+    </div>
+
+    <div modal-partial #userListModal header='Avatar' size='sm'>
+      <img class='user-image-modal' [src]='currentViewUser.avatarUrl()' />
+    </div>
+
+    <div class='col-xs-12 col-sm-8'>
+      <div class='row user-field'>
+        <div class='col-xs-4 text-right'>ID:</div>
+        <div class='col-xs-8'>{{ currentViewUser.id }}</div>
+      </div>
+
+      <div class='row user-field'>
+        <div class='col-xs-4 text-right'>Username:</div>
+        <div class='col-xs-8'>{{ currentViewUser.username }}</div>
+      </div>
+
+      <div class='row user-field'>
+        <div class='col-xs-4 text-right'>Registered:</div>
+        <div class='col-xs-8'>
+          <date-partial [date]='currentViewUser.created_at'></date-partial>
+        </div>
+      </div>
+
+      <div class='row user-field'>
+        <div class='col-xs-4 text-right'>Permissions:</div>
+        <div class='col-xs-8'>{{ currentViewUser.roles() }}</div>
+      </div>
+
+      <div class='row user-field'>
+        <div class='col-xs-4 text-right'>Residence:</div>
+        <div class='col-xs-8'>{{ currentViewUser.residence }}</div>
+      </div>
+
+      <div class='row user-field'>
+        <div class='col-xs-4 text-right'>Birthday:</div>
+        <div class='col-xs-8'>
+          <date-partial [date]='currentViewUser.birthday'></date-partial>
+          (age {{ currentViewUser.age() }})
+        </div>
+      </div>
+
+      <div class='row user-field'>
+        <div class='col-xs-4 text-right'>Rating:</div>
+        <div class='col-xs-8'>
+          <rate-partial type='user' [id]='currentViewUser.id'></rate-partial>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='user-signature' *ngIf='currentViewUser.signature'>
+    <span [innerHTML]='parseBBcode(currentViewUser)'></span>
+  </div>
+
+  <comments-partial type='user' [id]='currentViewUser.id'></comments-partial>
+</div>

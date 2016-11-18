@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   acts_as_voter
+  acts_as_voteable
 
   mount_uploader :avatar, Image::AvatarUploader
 
@@ -14,6 +15,7 @@ class User < ApplicationRecord
   has_one  :user_preference, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :chat_messages, dependent: :destroy
+  has_many :comments, as: :commentable
 
   before_create :set_birthday
   after_create :add_preferences

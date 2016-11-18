@@ -26,3 +26,18 @@ user-menu .user-avatar
         border-radius: 50%
         width: 30px
         height: 30px
+  .user-view
+    .user-info
+      margin: 0
+      padding-bottom: $size-default-container-space
+      border-bottom: 2px solid
+      @media (min-width: $screen-sm-min)
+        @include display-flex
+        align-items: center
+        justify-content: center
+        .user-avatar
+          border-right: 2px solid
+      .user-avatar > img.user-image
+        max-width: 100%
+    .user-signature
+      padding: $size-default-container-space

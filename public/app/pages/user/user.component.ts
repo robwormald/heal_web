@@ -18,11 +18,11 @@ export class UserComponent {
     this.breadcrumb.hideRouteRegex('^/users/list/[0-9]');
     this.breadcrumb.addFriendlyNameForRoute('/users', 'Users');
     this.breadcrumb.addFriendlyNameForRoute('/users/edit', 'Profile');
-    // this.breadcrumb.addCallbackForRouteRegex('^/users/view/[0-9]$', this.setUserTitle.bind(this));
+    this.breadcrumb.addCallbackForRouteRegex('^/users/view/[0-9]$', this.setUserTitle.bind(this));
   }
 
   private setUserTitle(): string {
-    let user = this.store.getKeyValue('currentUser');
-    return user.title || ' ';
+    let user = this.store.getKeyValue('currentViewUser');
+    return user.username || ' ';
   }
 }

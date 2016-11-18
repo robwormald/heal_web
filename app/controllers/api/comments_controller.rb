@@ -47,6 +47,7 @@ class Api::CommentsController < ApiController
     hash = {
       'poll' => Poll,
       'article' => Article,
+      'user' => User,
     }
 
     commentable_id = id || strong_params[:id]
