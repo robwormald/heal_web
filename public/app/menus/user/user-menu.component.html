@@ -1,12 +1,12 @@
-<div class='list-group'>
-  <div class='user-avatar' *ngIf='currentUser.avatar'>
-    <img class='user-image cursor-pointer' [src]='currentUser.avatarUrl("small")' (click)='userMenuModal.modal.show()' />
+<div class='user-avatar text-center' *ngIf='currentUser.avatar'>
+  <img class='user-image cursor-pointer' [src]='currentUser.avatarUrl("small")' (click)='userMenuModal.modal.show()' />
 
-    <div modal-partial #userMenuModal header='Avatar' size='sm'>
-      <img class='user-image-modal' [src]='currentUser.avatarUrl()' />
-    </div>
+  <div modal-partial #userMenuModal header='Avatar' size='sm'>
+    <img class='user-image-modal' [src]='currentUser.avatarUrl()' />
   </div>
+</div>
 
+<div class='list-group'>
   <div class='list-item'>
     <a routerLink='/users/list' routerLinkActive='active'>
       <span class='fa fa-users'></span>
