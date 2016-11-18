@@ -5,4 +5,6 @@
   </a>
 </div>
 
+<pagination [total]='userList.totalCount' [page]='userList.currentPage' url='/users/list/' [per]='userList.perPage'></pagination>
+
 <div class='text-center'>(total {{ userList.totalCount }} users)</div>
