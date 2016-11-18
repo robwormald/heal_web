@@ -25,6 +25,7 @@ export class UserViewComponent {
     this.store.changes.pluck('currentViewUser').subscribe((currentViewUser: User) => this.currentViewUser = currentViewUser);
 
     this.route.params.subscribe((params: Params) => {
+      this.store.setKeyValue('currentViewUser', {});
       this.service.getUser(params['id']);
     });
   }
