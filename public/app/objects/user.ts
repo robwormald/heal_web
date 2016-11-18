@@ -13,11 +13,14 @@ export class User {
   permissions: string[];
   avatar: Avatar;
   residence?: string;
-  birthday?: string;
+  birthday?: Date;
   signature?: string;
 
   constructor(user) {
     Object.assign(this, user);
+    this.created_at = new Date(this.created_at);
+    this.updated_at = new Date(this.updated_at);
+    this.birthday = new Date(this.birthday);
   }
 
   isAdmin(): boolean {

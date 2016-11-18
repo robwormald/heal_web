@@ -50,6 +50,7 @@ export class AppStore {
   private addMethods(key: string, value: any): any {
     switch(key) {
       case 'currentUser':
+      case 'currentViewUser':
         return new User(value);
       default:
         return value;

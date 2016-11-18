@@ -9,6 +9,9 @@ import { CustomValidators } from './../../validators/custom-validators';
 })
 
 export class FormPartialComponent implements OnInit, OnChanges {
+  datepickerToday: Date = new Date();
+  datepickerHidden: boolean = false;
+
   formErrors: any = {};
   reactiveForm: FormGroup;
   submitted: boolean = false;
@@ -46,6 +49,11 @@ export class FormPartialComponent implements OnInit, OnChanges {
     else {
       this.reBuildForm(this.reactiveForm.value);
     }
+  }
+
+  dateSelected(): void {
+    this.datepickerHidden = true;
+    setTimeout(() => this.datepickerHidden = false);
   }
 
   private reBuildForm(object: any): void {
