@@ -13,7 +13,7 @@ import { UserService } from './user.service';
 
 export class UserEditComponent {
   currentViewUser: any = {};
-  tabsData: any = {
+  formData: any = {
     general: [
       { date: true, name: 'birthday' },
       { input: true, type: 'text', name: 'residence' },
@@ -30,8 +30,8 @@ export class UserEditComponent {
       { file: true, name: 'avatar_file', validations: { fileSize: 2, fileType: 'image' }, text: 'Avatar' },
     ]
   };
-  tabsKeys: any[] = Object.keys(this.tabsData);
-  currentTab: string = this.tabsKeys[0];
+  tabs: any[] = Object.keys(this.formData);
+  currentTab: string = this.tabs[0];
 
   constructor(
     private store: AppStore,

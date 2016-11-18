@@ -1,2 +1,2 @@
-<tabs-partial [tabs]='tabsKeys' [(currentTab)]='currentTab'></tabs-partial>
-<form-partial [fields]='tabsData[currentTab]' [model]='currentViewUser' (onSubmit)='onSubmit($event)' [specificId]='currentTab'></form-partial>
+<tabs-partial [tabs]='tabs' [(currentTab)]='currentTab'></tabs-partial>
+<form-partial [fields]='formData[currentTab]' [model]='currentViewUser' (onSubmit)='onSubmit($event)' [specificId]='currentTab'></form-partial>

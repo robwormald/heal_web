@@ -37,23 +37,27 @@ class Api::UserController < ApiController
 
   def update_user
     case true
-    when params[:type] == 'general'
+    when current_type?('general')
       return current_user.update(valid_params)
-    when params[:type] == 'security'
+    when current_type?('security')
       updated = current_user.update(valid_params)
       sign_in(current_user, bypass: true) if updated
       return updated
-    when params[:type] == 'email'
+    when current_type?('email')
       return current_user.update(valid_params)
-    when params[:type] == 'uploads'
+    when current_type?('uploads')
       current_user.avatar = params[:avatar_file]
       return current_user.save
     end
   end
 
   def valid_params
-    return params[:data].require(:general).permit([:birthday, :residence, :signature]) if params[:general]
-    return params[:data].require(:security).permit([:password, :password_confirmation]) if params[:security]
-    return params[:data].require(:email).permit([:email]) if params[:email]
+    return params[:data].permit([:birthday, :residence, :signature]) if current_type?('general')
+    return params[:data].permit([:password, :password_confirmation]) if current_type?('security')
+    return params[:data].permit([:email]) if current_type?('email')
+  end
+
+  def current_type?(type)
+    params[:type] == type
   end
 end
