@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 import { User } from './../../objects/index';
-import { AppStore } from './../../app.store';
 
 @Component({
   moduleId: module.id,
@@ -12,7 +12,7 @@ import { AppStore } from './../../app.store';
 export class UserMenuComponent {
   currentUser: User;
 
-  constructor(private store: AppStore) {
-    this.store.changes.pluck('currentUser').subscribe((currentUser: User) => this.currentUser = currentUser);
+  constructor(private store: Store<User>) {
+    this.store.select('currentUser').subscribe((currentUser: User) => this.currentUser = currentUser);
   }
 }

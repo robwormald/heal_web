@@ -7,8 +7,7 @@ import {
 export const currentUserReducer: ActionReducer<User> = (state: User, action: Action) => {
   switch(action.type) {
     case SET_CURRENT_USER:
-      let currentUser = new User(action.payload);
-      return Object.assign({}, state, currentUser);
+      return new User(action.payload);
     default:
       return state;
   }
