@@ -22,7 +22,7 @@
       <div class='row user-field'>
         <div class='col-xs-4 text-right'>Registered:</div>
         <div class='col-xs-8'>
-          <date-partial [date]='currentViewUser.created_at'></date-partial>
+          <date-partial [date]='currentViewUser.created_at' type='dateOnly'></date-partial>
         </div>
       </div>
 
@@ -39,7 +39,7 @@
       <div class='row user-field'>
         <div class='col-xs-4 text-right'>Birthday:</div>
         <div class='col-xs-8'>
-          <date-partial [date]='currentViewUser.birthday'></date-partial>
+          <date-partial [date]='currentViewUser.birthday' type='dateOnly'></date-partial>
           (age {{ currentViewUser.age() }})
         </div>
       </div>
