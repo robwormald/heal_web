@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, NavigationEnd, Event as NavigationEvent } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -10,11 +10,9 @@ import { Router, NavigationEnd, Event as NavigationEvent } from '@angular/router
 export class HeaderComponent {
   isCollapsed: boolean = true;
 
-  constructor(router: Router) {
-    router.events.subscribe((event: NavigationEvent) => {
-      if(event instanceof NavigationEnd) {
-        this.isCollapsed = true;
-      }
-    });
+  constructor(private router: Router) {
+    router.events
+      .filter((event) => event instanceof NavigationEnd)
+      .subscribe((event) => this.isCollapsed = true);
   }
 }

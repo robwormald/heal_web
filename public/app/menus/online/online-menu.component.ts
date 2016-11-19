@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd, Event as NavigationEvent } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { User } from './../../objects/index';
 import { AppStore } from './../../app.store';
@@ -24,11 +24,9 @@ export class OnlineMenuComponent implements OnDestroy {
     this.store.changes.pluck('onlineUsers').subscribe((onlineUsers: User[]) => this.onlineUsers = onlineUsers);
     this.service.subscribe();
 
-    router.events.subscribe((event: NavigationEvent) => {
-      if(event instanceof NavigationEnd) {
-        this.service.perform(event.url);
-      }
-    });
+    router.events
+      .filter((event) => event instanceof NavigationEnd)
+      .subscribe((event) => this.service.perform(event.url));
   }
 
   ngOnDestroy(): void {
