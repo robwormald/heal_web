@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { AppStore } from './../../app.store';
 import { PollMenuService } from './poll-menu.service';
 import { PollAnswerService } from './../../shared/services/poll-answer.service';
 import { PollView } from './../../objects/index';
@@ -14,14 +14,14 @@ import { WebsocketService } from './../../global/index';
 })
 
 export class PollMenuComponent {
-  latestPoll: any = {};
+  latestPoll: PollView;
 
   constructor(
     private pollService: PollMenuService,
     private answerService: PollAnswerService,
-    private store: AppStore,
+    private store: Store<PollView>,
   ) {
-    this.store.changes.pluck('latestPoll').subscribe((latestPoll: PollView) => this.latestPoll = latestPoll);
+    this.store.select('latestPoll').subscribe((latestPoll: PollView) => this.latestPoll = latestPoll);
     this.pollService.subscribe();
   }
 

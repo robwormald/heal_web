@@ -1,21 +1,26 @@
 import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Store } from '@ngrx/store';
 
-import { AppStore } from './../../app.store';
 import { WebsocketService } from './../../global/index';
 
-import { Poll, PollQuestion, PollAnswer, PollView } from './../../objects/index';
+import { AppState, PollView, User, SET_LATEST_POLL } from './../../store/constants';
 
 @Injectable()
 export class PollMenuService {
+  latestPoll: PollView;
+  currentUser: User;
   connected: boolean = false;
   channel: string = 'home';
 
   constructor(
     private websocket: WebsocketService,
     private sanitizer: DomSanitizer,
-    private store: AppStore,
-  ) {}
+    private store: Store<PollView>,
+  ) {
+    this.store.select('latestPoll').subscribe((latestPoll: PollView) => this.latestPoll = latestPoll);
+    this.store.select('currentUser').subscribe((currentUser: User) => this.currentUser = currentUser);
+  }
 
   subscribe(): void {
     this.websocket.init(this.channel).subscribe(this.receive.bind(this));
@@ -30,33 +35,23 @@ export class PollMenuService {
         }
         break;
       case 'answered_poll':
-        if(res.data.poll.id == this.store.getKeyValue('latestPoll').poll.id) {
-          this.updatePollInformation(res.data);
+        if(res.data.poll.id == this.latestPoll.poll.id) {
+          this.store.dispatch({ type: SET_LATEST_POLL, payload: this.getData(res.data) });
         }
         break;
       case 'latest_poll':
-        this.updatePollInformation(res.data);
+        this.store.dispatch({ type: SET_LATEST_POLL, payload: this.getData(res.data) });
         break;
     }
   }
 
-  private updatePollInformation(data): void {
-    if(data.poll) {
-      let pollData = {
-        poll: data.poll as Poll,
-        questions: data.questions as PollQuestion[],
-        answered: this.getAnswered(data.answered)
-      } as PollView;
-
-      this.calculateWidth(pollData);
-      this.store.setKeyValue('latestPoll', pollData);
-    }
-    else {
-      this.store.setKeyValue('latestPoll', { message: 'No polls found :(' });
-    }
+  private getData(data: any): any {
+    const { poll, questions, answered } = data;
+    if(!poll) return { message: 'No polls found :(' };
+    return this.calculateWidth({ poll, questions, answered: this.getAnswered(answered) });
   }
 
-  private calculateWidth(data: PollView): void {
+  private calculateWidth(data): any {
     data.totalAnswers = 0;
     data.questions.map((question) => data.totalAnswers += question.answer_count);
     data.questions.map((question) => {
@@ -66,10 +61,10 @@ export class PollMenuService {
       }
       question.widthStyle = this.sanitizer.bypassSecurityTrustStyle(`width: ${question.percent}%`);
     });
+    return data;
   }
 
-  private getAnswered(answered: PollAnswer): any {
-    let user_id = this.store.getKeyValue('currentUser').id;
-    return answered && answered.user_id == user_id ? answered : this.store.getKeyValue('latestPoll').answered;
+  private getAnswered(answered): any {
+    return answered && answered.user_id == this.currentUser.id ? answered : this.latestPoll.answered;
   }
 }
