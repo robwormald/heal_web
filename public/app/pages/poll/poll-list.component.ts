@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
 
-import { AppStore } from './../../app.store';
-import { PollList } from './../../objects/index';
+import { AppState, PollList, SET_CURRENT_POLL } from './../../store/constants';
 import { PollService } from './poll.service';
 
 @Component({
@@ -13,18 +14,18 @@ import { PollService } from './poll.service';
 })
 
 export class PollListComponent {
-  pollList: any = {};
+  pollList: Observable<PollList>;
 
   constructor(
-    private store: AppStore,
+    private store: Store<AppState>,
     private route: ActivatedRoute,
-    private pollService: PollService,
+    private service: PollService,
   ) {
-    this.store.changes.pluck('pollList').subscribe((pollList: PollList) => this.pollList = pollList);
+    this.pollList = this.store.select('pollList');
 
     this.route.params.subscribe((params: Params) => {
-      this.store.setKeyValue('pollList', {});
-      this.pollService.perform('list', { page: params['page'] });
+      this.store.dispatch({ type: SET_CURRENT_POLL, payload: {} });
+      this.service.getPolls(params['page']);
     });
   }
 }

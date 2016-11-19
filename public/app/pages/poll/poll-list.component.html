@@ -1,7 +1,7 @@
-<a routerLink='/polls/view/{{ poll.id }}' *ngFor='let poll of pollList.polls'>
+<a routerLink='/polls/view/{{ poll.id }}' *ngFor='let poll of (pollList | async)?.polls'>
   <div class='poll-list-item'>
     {{ poll.title }}
   </div>
 </a>
 
-<pagination [total]='pollList.totalCount' [page]='pollList.currentPage' url='/polls/list/'></pagination>
+<pagination [total]='(pollList | async)?.totalCount' [page]='(pollList | async)?.currentPage' url='/polls/list/'></pagination>

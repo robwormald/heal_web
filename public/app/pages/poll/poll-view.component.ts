@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Store } from '@ngrx/store';
 
-import { AppStore } from './../../app.store';
 import { PollService } from './poll.service';
 import { PollAnswerService } from './../../shared/services/poll-answer.service';
-import { PollView } from './../../objects/index';
+import { AppState, PollView } from './../../store/constants';
 
 @Component({
   moduleId: module.id,
@@ -14,19 +14,18 @@ import { PollView } from './../../objects/index';
 })
 
 export class PollViewComponent {
-  currentPoll: any = {};
+  currentPoll: PollView;
 
   constructor(
-    private store: AppStore,
+    private store: Store<AppState>,
     private route: ActivatedRoute,
-    private pollService: PollService,
+    private service: PollService,
     private answerService: PollAnswerService,
   ) {
-    this.store.changes.pluck('currentPoll').subscribe((currentPoll: PollView) => this.currentPoll = currentPoll);
+    this.store.select('currentPoll').subscribe((currentPoll: PollView) => this.currentPoll = currentPoll);
 
     this.route.params.subscribe((params: Params) => {
-      this.store.setKeyValue('currentPoll', {});
-      this.pollService.perform('view', { poll_id: params['id'] });
+      this.service.getPoll(params['id']);
     });
   }
 

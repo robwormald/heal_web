@@ -25,7 +25,12 @@ Rails.application.routes.draw do
     resources :chat, only: [:index, :show] do
       post :create, on: :member
     end
-    resources :poll, only: [:create]
+
+    resources :poll, only: [:create] do
+      get 'list/:page' => :list, on: :collection
+      get 'view/:id' => :view, on: :collection
+    end
+
     resources :article, only: [] do
       get 'list/:page' => :list, on: :collection
       get 'view/:id' => :view, on: :collection

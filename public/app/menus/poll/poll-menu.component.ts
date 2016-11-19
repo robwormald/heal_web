@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 
 import { PollMenuService } from './poll-menu.service';
 import { PollAnswerService } from './../../shared/services/poll-answer.service';
+import { PollRenderService } from './../../shared/services/poll-render.service';
 import { AppState, PollView } from './../../store/constants';
 import { WebsocketService } from './../../global/index';
 
@@ -10,7 +11,7 @@ import { WebsocketService } from './../../global/index';
   moduleId: module.id,
   selector: 'poll-menu',
   templateUrl: 'poll-menu.component.html',
-  providers: [PollMenuService, PollAnswerService, WebsocketService]
+  providers: [PollMenuService, PollAnswerService, WebsocketService, PollRenderService],
 })
 
 export class PollMenuComponent {
