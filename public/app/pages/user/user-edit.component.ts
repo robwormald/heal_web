@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { AppStore } from './../../app.store';
-import { User } from './../../objects/index';
+import { AppState, User } from './../../store/constants';
 import { UserService } from './user.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { UserService } from './user.service';
 })
 
 export class UserEditComponent {
-  currentViewUser: any = {};
+  currentViewUser: User;
   formData: any = {
     general: [
       // { date: true, name: 'birthday' },
@@ -34,11 +34,11 @@ export class UserEditComponent {
   currentTab: string = this.tabs[0];
 
   constructor(
-    private store: AppStore,
+    private store: Store<AppState>,
     private service: UserService,
   ) {
     this.service.getUser(0);
-    this.store.changes.pluck('currentViewUser').subscribe((currentViewUser: User) => this.currentViewUser = currentViewUser);
+    this.store.select('currentViewUser').subscribe((currentViewUser: User) => this.currentViewUser = currentViewUser);
   }
 
   onSubmit(event: any): void {

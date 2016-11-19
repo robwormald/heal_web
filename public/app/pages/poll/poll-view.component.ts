@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { PollService } from './poll.service';
 import { PollAnswerService } from './../../shared/services/poll-answer.service';
-import { AppState, PollView } from './../../store/constants';
+import { AppState, PollView, SET_CURRENT_POLL } from './../../store/constants';
 
 @Component({
   moduleId: module.id,
@@ -25,6 +25,7 @@ export class PollViewComponent {
     this.store.select('currentPoll').subscribe((currentPoll: PollView) => this.currentPoll = currentPoll);
 
     this.route.params.subscribe((params: Params) => {
+      this.store.dispatch({ type: SET_CURRENT_POLL, payload: {} });
       this.service.getPoll(params['id']);
     });
   }

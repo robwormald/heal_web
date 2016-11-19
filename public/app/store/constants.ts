@@ -14,13 +14,15 @@ export interface AppState {
   articleList: ArticleList;
 };
 
-export const SET_CURRENT_USER    = 'SET_CURRENT_USER';
-export const SET_ONLINE_USERS    = 'SET_ONLINE_USERS';
-export const ADD_ONLINE_USER     = 'ADD_ONLINE_USER';
-export const REMOVE_ONLINE_USER  = 'REMOVE_ONLINE_USER';
-export const UPDATE_ONLINE_USER  = 'UPDATE_ONLINE_USER';
-export const SET_LATEST_POLL     = 'SET_LATEST_POLL';
-export const SET_ARTICLE_LIST    = 'SET_ARTICLE_LIST';
-export const SET_CURRENT_ARTICLE = 'SET_CURRENT_ARTICLE';
-export const SET_POLL_LIST       = 'SET_POLL_LIST';
-export const SET_CURRENT_POLL    = 'SET_CURRENT_POLL';
+export const SET_CURRENT_USER           = 'SET_CURRENT_USER';
+export const SET_ONLINE_USERS           = 'SET_ONLINE_USERS';
+export const ADD_ONLINE_USER            = 'ADD_ONLINE_USER';
+export const REMOVE_ONLINE_USER         = 'REMOVE_ONLINE_USER';
+export const UPDATE_ONLINE_USER         = 'UPDATE_ONLINE_USER';
+export const SET_LATEST_POLL            = 'SET_LATEST_POLL';
+export const SET_ARTICLE_LIST           = 'SET_ARTICLE_LIST';
+export const SET_CURRENT_ARTICLE        = 'SET_CURRENT_ARTICLE';
+export const SET_POLL_LIST              = 'SET_POLL_LIST';
+export const SET_CURRENT_POLL           = 'SET_CURRENT_POLL';
+export const SET_CURRENT_VIEWUSER       = 'SET_CURRENT_VIEWUSER';
+export const SET_USER_LIST              = 'SET_USER_LIST';

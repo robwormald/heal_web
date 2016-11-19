@@ -1,42 +1,38 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Store } from '@ngrx/store';
 
-import { AppStore } from './../../app.store';
+import { AppState, SET_CURRENT_USER, SET_CURRENT_VIEWUSER, SET_USER_LIST } from './../../store/constants';
 
 @Injectable()
 export class UserService {
   constructor(
-    private store: AppStore,
+    private store: Store<AppState>,
     private http: Http
   ) {}
 
   getUsers(page: number): void {
     this.http.get(`api/user/list/${page}`)
-      .map(res => res.json())
-      .subscribe(res => {
-        let userList = {
-          users: res.users,
-          totalCount: res.count,
-          currentPage: res.page,
-          perPage: res.per,
-        };
-
-        this.store.setKeyValue('userList', userList);
-      });
+      .map((res) => res.json())
+      .subscribe((res) =>
+        this.store.dispatch({ type: SET_USER_LIST, payload: res })
+      );
   }
 
   getUser(id: number): void {
     this.http.get(`api/user/view/${id}`)
-      .map(res => res.json())
-      .subscribe(res => this.store.setKeyValue('currentViewUser', res.user));
+      .map((res) => res.json())
+      .subscribe((res) =>
+        this.store.dispatch({ type: SET_CURRENT_VIEWUSER, payload: res.user })
+      );
   }
 
   updateUser(tab: string, data: any): void {
     this.http.patch(`api/user/update/${tab}`, this.prepareParams(tab, data))
       .map(res => res.json())
       .subscribe(res => {
-        this.store.setKeyValue('currentViewUser', res.user);
-        this.store.setKeyValue('currentUser', res.user);
+        this.store.dispatch({ type: SET_CURRENT_VIEWUSER, payload: res.user });
+        this.store.dispatch({ type: SET_CURRENT_USER, payload: res.user });
       });
   }
 

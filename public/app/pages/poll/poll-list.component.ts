@@ -3,7 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
-import { AppState, PollList, SET_CURRENT_POLL } from './../../store/constants';
+import { AppState, PollList } from './../../store/constants';
 import { PollService } from './poll.service';
 
 @Component({
@@ -24,7 +24,6 @@ export class PollListComponent {
     this.pollList = this.store.select('pollList');
 
     this.route.params.subscribe((params: Params) => {
-      this.store.dispatch({ type: SET_CURRENT_POLL, payload: {} });
       this.service.getPolls(params['page']);
     });
   }

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
 
-import { AppStore } from './../../app.store';
-import { UserList } from './../../objects/index';
+import { AppState, UserList } from './../../store/constants';
 import { UserService } from './user.service';
 
 @Component({
@@ -13,17 +14,16 @@ import { UserService } from './user.service';
 })
 
 export class UserListComponent {
-  userList: any = {};
+  userList: Observable<UserList>;
 
   constructor(
-    private store: AppStore,
+    private store: Store<AppState>,
     private route: ActivatedRoute,
     private service: UserService,
   ) {
-    this.store.changes.pluck('userList').subscribe((userList: UserList) => this.userList = userList);
+    this.userList = this.store.select('userList');
 
     this.route.params.subscribe((params: Params) => {
-      this.store.setKeyValue('userList', {});
       this.service.getUsers(params['page']);
     });
   }

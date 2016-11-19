@@ -1,10 +1,10 @@
 <div class='user-list'>
-  <a routerLink='/users/view/{{ user.id }}' class='user-item' *ngFor='let user of userList.users'>
+  <a routerLink='/users/view/{{ user.id }}' class='user-item' *ngFor='let user of (userList | async)?.users'>
     <img class='user-image' [src]='user.avatarUrl("small")' />
     <user-partial [user]='user'></user-partial>
   </a>
 </div>
 
-<pagination [total]='userList.totalCount' [page]='userList.currentPage' url='/users/list/' [per]='userList.perPage'></pagination>
+<pagination [total]='(userList | async)?.totalCount' [page]='(userList | async)?.currentPage' url='/users/list/' [per]='(userList | async)?.perPage'></pagination>
 
-<div class='text-center'>(total {{ userList.totalCount }} users)</div>
+<div class='text-center'>(total {{ (userList | async)?.totalCount }} users)</div>
