@@ -4,9 +4,12 @@
   display: -webkit-flex
   display: flex
 
-@mixin align-self($property)
-  -webkit-align-self: $property
-  align-self: $property
+@mixin prefix-elem($declarations, $prefixes: ())
+  @each $property, $value in $declarations
+    @each $prefix in $prefixes
+      #{'-' + $prefix + '-' + $property}: $value
+
+    #{$property}: $value
 
 @mixin ribbon-colors($color, $darker-1, $darker-2)
   .ribbon-container

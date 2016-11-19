@@ -20,7 +20,7 @@ main#main-block
 
   @import "../../dependencies/xbbcode"
 
-  flex: 1
+  @include prefix-elem((flex: 1), webkit moz ms)
   padding-top: $size-header-height
 
   bbcode-partial + .input-group > .form-control
@@ -66,7 +66,7 @@ main#main-block
               border-style: solid
               border-width: $size-space-heigth 0 0 $size-space-heigth
               margin-top: -$size-top-border
-              @include align-self(flex-end)
+              @include prefix-elem((flex-end: 1), webkit moz ms)
         .container-body
           padding: $size-default-container-space
     .container-block

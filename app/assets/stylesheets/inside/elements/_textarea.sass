@@ -4,12 +4,12 @@ textarea-partial
     height: 100%
     .split-input-addon
       @include display-flex
+      @include prefix-elem((flex-direction: column), webkit moz ms)
       min-height: 100%
-      flex-direction: column
       div.fa
+        @include prefix-elem((flex: 1), webkit moz ms)
         $size-spacing: 6px
 
-        flex: 1
         margin: 0px (-$size-spacing*2)
         padding: ($size-spacing - 2) $size-spacing*2
         &:first-of-type

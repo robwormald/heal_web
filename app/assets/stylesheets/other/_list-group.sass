@@ -1,9 +1,9 @@
 .list-group
   @include display-flex
-  flex-flow: wrap
+  @include prefix-elem((flex-flow: wrap), webkit moz ms)
+
   .list-item
-    flex: 1
-    flex-basis: 100%
+    @include prefix-elem((flex: 1, flex-basis: 100%), webkit moz ms)
     width: 100%
     margin: 5px 0
     a

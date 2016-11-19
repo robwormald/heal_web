@@ -1,6 +1,6 @@
 my-app
   @include display-flex
-  flex-direction: column
+  @include prefix-elem((flex-direction: column), webkit moz ms)
   min-height: 100vh
 
 body

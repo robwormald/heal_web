@@ -1,7 +1,7 @@
 <div class='user-avatar text-center' *ngIf='currentUser.avatar'>
   <img class='user-image cursor-pointer' [src]='currentUser.avatarUrl("small")' (click)='userMenuModal.modal.show()' />
 
-  <div modal-partial #userMenuModal header='Avatar' size='sm'>
+  <div modal-partial #userMenuModal header='Avatar'>
     <img class='user-image-modal' [src]='currentUser.avatarUrl()' />
   </div>
 </div>
