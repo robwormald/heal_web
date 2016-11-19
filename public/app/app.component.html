@@ -15,19 +15,19 @@
       <router-outlet></router-outlet>
     </div>
 
-    <div class='col-xs-12 col-sm-6 col-md-3 col-md-push-2 right-column'>
+    <div class='col-xs-12 col-sm-6 col-md-2 col-md-pull-7 left-column'>
+      <container-block [title]='"User"'>
+        <user-menu></user-menu>
+      </container-block>
+    </div>
+
+    <div class='col-xs-12 col-sm-6 col-md-3 col-md-push-0 right-column'>
       <container-block [title]='"Online"'>
         <online-menu></online-menu>
       </container-block>
 
       <container-block [title]='"Poll"'>
         <poll-menu></poll-menu>
-      </container-block>
-    </div>
-
-    <div class='col-xs-12 col-sm-6 col-md-2 col-md-pull-10 left-column'>
-      <container-block [title]='"User"'>
-        <user-menu></user-menu>
       </container-block>
     </div>
   </div>

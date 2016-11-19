@@ -33,9 +33,10 @@ main#main-block
   #home-layout
     margin-top: $size-header-height/2
     .left-column, .center-column, .right-column
-      margin-bottom: $size-default-container-space
       padding-left: $size-default-container-space/2
       padding-right: $size-default-container-space/2
+      @media (min-width: $screen-sm-min)
+        margin-bottom: $size-default-container-space
     .left-column, .right-column
       .container-block
         padding: $size-default-container-space
