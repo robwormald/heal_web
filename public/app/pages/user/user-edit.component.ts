@@ -15,7 +15,7 @@ export class UserEditComponent {
   currentViewUser: any = {};
   formData: any = {
     general: [
-      { date: true, name: 'birthday' },
+      // { date: true, name: 'birthday' },
       { input: true, type: 'text', name: 'residence' },
       { textarea: true, name: 'signature', bbcode: true },
     ],
