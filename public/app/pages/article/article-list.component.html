@@ -1,4 +1,4 @@
-<div class='article-item' *ngFor='let article of articleList.articles'>
+<div class='article-item' *ngFor='let article of (articleList | async)?.articles'>
   <div class='article-header'>
     <span class='article-tile'>{{ article.title }}</span>
     <date-partial [date]='article.created_at'></date-partial>
@@ -18,4 +18,4 @@
   </div>
 </div>
 
-<pagination [total]='articleList.totalCount' [page]='articleList.currentPage' url='/articles/list/' [per]='articleList.perPage'></pagination>
+<pagination [total]='(articleList | async)?.totalCount' [page]='(articleList | async)?.currentPage' url='/articles/list/' [per]='(articleList | async)?.perPage'></pagination>

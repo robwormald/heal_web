@@ -1,11 +1,15 @@
 import {
+  articleListReducer,
+  currentArticleReducer,
   currentUserReducer,
-  onlineUsersReducer,
   latestPollReducer,
+  onlineUsersReducer,
 } from './reducers/index';
 
 export const StoreReducers = {
+  articleList: articleListReducer,
+  currentArticle: currentArticleReducer,
   currentUser: currentUserReducer,
-  onlineUsers: onlineUsersReducer,
   latestPoll: latestPollReducer,
+  onlineUsers: onlineUsersReducer,
 }

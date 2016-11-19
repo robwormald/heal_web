@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Store } from '@ngrx/store';
 
-import { AppStore } from './../../app.store';
 import { ArticleService } from './article.service';
 import { BBCodeService } from './../../global/index';
-import { Article } from './../../objects/index';
+import { AppState, Article } from './../../store/constants';
 
 @Component({
   moduleId: module.id,
@@ -14,18 +14,17 @@ import { Article } from './../../objects/index';
 })
 
 export class ArticleViewComponent {
-  currentArticle: any = {};
+  currentArticle: Article;
 
   constructor(
-    private store: AppStore,
+    private store: Store<AppState>,
     private route: ActivatedRoute,
     private service: ArticleService,
     private bbcode: BBCodeService,
   ) {
-    this.store.changes.pluck('currentArticle').subscribe((currentArticle: Article) => this.currentArticle = currentArticle);
+    this.store.select('currentArticle').subscribe((currentArticle: Article) => this.currentArticle = currentArticle);
 
     this.route.params.subscribe((params: Params) => {
-      this.store.setKeyValue('currentArticle', {});
       this.service.getArticle(params['id']);
     });
   }

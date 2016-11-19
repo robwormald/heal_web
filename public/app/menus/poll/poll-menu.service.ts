@@ -16,7 +16,7 @@ export class PollMenuService {
   constructor(
     private websocket: WebsocketService,
     private sanitizer: DomSanitizer,
-    private store: Store<PollView>,
+    private store: Store<AppState>,
   ) {
     this.store.select('latestPoll').subscribe((latestPoll: PollView) => this.latestPoll = latestPoll);
     this.store.select('currentUser').subscribe((currentUser: User) => this.currentUser = currentUser);

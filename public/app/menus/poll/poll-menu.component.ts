@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 
 import { PollMenuService } from './poll-menu.service';
 import { PollAnswerService } from './../../shared/services/poll-answer.service';
-import { PollView } from './../../objects/index';
+import { AppState, PollView } from './../../store/constants';
 import { WebsocketService } from './../../global/index';
 
 @Component({
@@ -19,7 +19,7 @@ export class PollMenuComponent {
   constructor(
     private pollService: PollMenuService,
     private answerService: PollAnswerService,
-    private store: Store<PollView>,
+    private store: Store<AppState>,
   ) {
     this.store.select('latestPoll').subscribe((latestPoll: PollView) => this.latestPoll = latestPoll);
     this.pollService.subscribe();

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
 
-import { AppStore } from './../../app.store';
-import { ArticleList } from './../../objects/index';
+import { AppState, ArticleList } from './../../store/constants';
 import { ArticleService } from './article.service';
 
 @Component({
@@ -13,17 +14,16 @@ import { ArticleService } from './article.service';
 })
 
 export class ArticleListComponent {
-  articleList: any = {};
+  articleList: Observable<ArticleList>;
 
   constructor(
-    private store: AppStore,
+    private store: Store<AppState>,
     private route: ActivatedRoute,
     private service: ArticleService,
   ) {
-    this.store.changes.pluck('articleList').subscribe((articleList: ArticleList) => this.articleList = articleList);
+    this.articleList = this.store.select('articleList');
 
     this.route.params.subscribe((params: Params) => {
-      this.store.setKeyValue('articleList', {});
       this.service.getArticles(params['page']);
     });
   }
