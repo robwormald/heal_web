@@ -12,6 +12,7 @@ export class User {
   updated_at: Date;
   permissions: string[];
   avatar: Avatar;
+  location: string;
   residence?: string;
   birthday?: Date;
   signature?: string;

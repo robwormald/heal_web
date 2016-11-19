@@ -1,11 +1,13 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
+import { StoreModule } from '@ngrx/store';
 
 import { CollapseModule } from 'ng2-bootstrap/components/collapse';
 
 import { ArticleModule, PollModule, UserModule } from './pages/index';
 import { SharedModule } from './shared/modules/shared.module';
+import { StoreReducers } from './store/reducers.module';
 
 import './rxjs-extensions';
 import { AppStore } from './app.store';
@@ -31,7 +33,8 @@ import {
     PollModule,
     UserModule,
     CollapseModule,
-    routing
+    routing,
+    StoreModule.provideStore(StoreReducers)
   ],
   declarations: [
     AppComponent,

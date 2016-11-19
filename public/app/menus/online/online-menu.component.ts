@@ -1,8 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
 
 import { User } from './../../objects/index';
-import { AppStore } from './../../app.store';
 import { OnlineMenuService } from './online-menu.service';
 import { WebsocketService } from './../../global/index';
 
@@ -14,14 +15,14 @@ import { WebsocketService } from './../../global/index';
 })
 
 export class OnlineMenuComponent implements OnDestroy {
-  onlineUsers: User[] = [];
+  onlineUsers: Observable<User[]>;
 
   constructor(
-    private store: AppStore,
+    private store: Store<User[]>,
     private router: Router,
     private service: OnlineMenuService,
   ) {
-    this.store.changes.pluck('onlineUsers').subscribe((onlineUsers: User[]) => this.onlineUsers = onlineUsers);
+    this.onlineUsers = this.store.select('onlineUsers');
     this.service.subscribe();
 
     router.events

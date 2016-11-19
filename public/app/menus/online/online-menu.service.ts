@@ -1,17 +1,23 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { User } from './../../objects/index';
 import { AppStore } from './../../app.store';
 import { WebsocketService } from './../../global/index';
 
+import { AppState, User, SET_CURRENT_USER, SET_ONLINE_USERS, ADD_ONLINE_USER, REMOVE_ONLINE_USER, UPDATE_ONLINE_USER } from './../../store/constants';
+
 @Injectable()
 export class OnlineMenuService {
+  currentUser: User;
   channel: string = 'appearance';
 
   constructor(
     private websocket: WebsocketService,
     private store: AppStore,
-  ) {}
+    private newStore: Store<AppState>
+  ) {
+    this.newStore.select('currentUser').subscribe((user: User) => this.currentUser = user);
+  }
 
   subscribe(): void {
     this.websocket.init(this.channel).subscribe(this.receive.bind(this));
@@ -22,8 +28,7 @@ export class OnlineMenuService {
   }
 
   perform(url: string): void {
-    let currentUser = this.store.getKeyValue('currentUser');
-    if(currentUser && currentUser.location != url) {
+    if(this.currentUser && this.currentUser.location != url) {
       this.websocket.perform(this.channel, 'location', { location: url });
     }
   }
@@ -31,49 +36,18 @@ export class OnlineMenuService {
   private receive(res: any): any {
     switch(res.event) {
       case 'leave':
-        this.removeUser(res.data.user);
+        this.newStore.dispatch({ type: REMOVE_ONLINE_USER, payload: res.data.user });
         break;
       case 'list':
+        this.newStore.dispatch({ type: SET_CURRENT_USER, payload: res.data.user });
+        this.newStore.dispatch({ type: SET_ONLINE_USERS, payload: res.data.users_list });
         this.store.setKeyValue('currentUser', res.data.user);
-        this.store.setKeyValue('onlineUsers', res.data.users_list);
         break;
       case 'join':
+        this.newStore.dispatch({ type: ADD_ONLINE_USER, payload: res.data.user });
       case 'update':
-        this.updateUser(res.data.user);
+        this.newStore.dispatch({ type: UPDATE_ONLINE_USER, payload: res.data.user });
         break;
     }
-  }
-
-  private removeUser(user: User): void {
-    let users = this.store.getKeyValue('onlineUsers');
-    let index = this.findUserIndex(user.id, users);
-    users.splice(index, 1);
-
-    this.store.setKeyValue('onlineUsers', users);
-  }
-
-  private updateUser(user: User): void {
-    let users = this.store.getKeyValue('onlineUsers');
-    let index = this.findUserIndex(user.id, users);
-
-    if(index > -1) {
-      users[index] = user;
-      this.updateCurrentUser(user);
-    }
-    else {
-      users.push(user);
-    }
-
-    this.store.setKeyValue('onlineUsers', users);
-  }
-
-  private updateCurrentUser(user: User): any {
-    if(user.id == this.store.getKeyValue('currentUser').id) {
-      this.store.setKeyValue('currentUser', user);
-    }
-  }
-
-  private findUserIndex(id: number, users: User[]): any {
-    return users.findIndex((user) => { return user.id == id; });
   }
 }

@@ -30,6 +30,8 @@
       'ng2-bootstrap/components/datepicker': 'npm:ng2-bootstrap/components/datepicker',
       'ng2-popover': 'npm:ng2-popover/index.js',
       'ng2-breadcrumb/ng2-breadcrumb': 'npm:ng2-breadcrumb/ng2-breadcrumb',
+      '@ngrx/core': 'npm:@ngrx/core',
+      '@ngrx/store': 'npm:@ngrx/store',
       'moment': 'npm:moment',
     },
     // packages tells the System loader how to load when no filename and/or no extension
@@ -43,6 +45,8 @@
       'ng2-popover': { defaultExtension: 'js' },
       'actioncable-js': { defaultExtension: 'js' },
       'ng2-breadcrumb': { defaultExtension: 'js' },
+      '@ngrx/core': { main: '/bundles/core.umd.js', defaultExtension: 'js' },
+      '@ngrx/store': { main: '/bundles/store.umd.js', defaultExtension: 'js' },
       'moment': {
         main: './moment.js',
         defaultExtension: 'js'
