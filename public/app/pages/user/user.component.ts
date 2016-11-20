@@ -1,7 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
 import { BreadcrumbService } from 'ng2-breadcrumb/ng2-breadcrumb';
+import { Store } from '@ngrx/store';
 
-import { AppStore } from './../../app.store';
+import { AppState, User } from './../../store/constants';
 
 @Component({
   moduleId: module.id,
@@ -9,9 +10,11 @@ import { AppStore } from './../../app.store';
 })
 
 export class UserComponent {
+  currentViewUser: User;
+
   constructor(
     private breadcrumb: BreadcrumbService,
-    private store: AppStore,
+    private store: Store<AppState>,
   ) {
     this.breadcrumb.hideRoute('/users/view');
     this.breadcrumb.hideRoute('/users/list');
@@ -19,10 +22,11 @@ export class UserComponent {
     this.breadcrumb.addFriendlyNameForRoute('/users', 'Users');
     this.breadcrumb.addFriendlyNameForRoute('/users/edit', 'Profile');
     this.breadcrumb.addCallbackForRouteRegex('^/users/view/[0-9]$', this.setUserTitle.bind(this));
+    this.store.select('currentViewUser').subscribe((currentViewUser: User) => this.currentViewUser = currentViewUser);
   }
 
   private setUserTitle(): string {
-    let user = this.store.getKeyValue('currentViewUser');
-    return user.username || ' ';
+    let user = this.currentViewUser;
+    return user && user.username || ' ';
   }
 }
