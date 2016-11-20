@@ -7,7 +7,7 @@ import {
 export const latestPollReducer: ActionReducer<PollView> = (state: PollView = {} as PollView, action: Action) => {
   switch(action.type) {
     case SET_LATEST_POLL:
-      return Object.assign({}, state, action.payload);
+      return action.payload;
     default:
       return state;
   }

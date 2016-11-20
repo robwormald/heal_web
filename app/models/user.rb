@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :chat_messages, dependent: :destroy
   has_many :comments, as: :commentable
+  has_many :poll_answers, dependent: :destroy
 
   before_create :set_birthday
   after_create :add_preferences
