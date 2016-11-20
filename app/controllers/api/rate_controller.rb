@@ -47,7 +47,7 @@ class Api::RateController < ApiController
     return unless model.present?
 
     if strong_params[:ids]
-      model.where(id: strong_params[:ids]).includes(votes: [:voter])
+      model.where(id: strong_params[:ids]).includes(votes_on: [:voter])
     else
       model.find_by(id: strong_params[:id])
     end
@@ -67,7 +67,7 @@ class Api::RateController < ApiController
   end
 
   def success_json(object)
-    ratings = ratings_as_json(object.votes.includes(:voter))
+    ratings = ratings_as_json(object.votes_on.includes(:voter))
     user = current_user.votes.where(voteable: object).first
     user = user_ratings_as_json(user)
 
@@ -75,7 +75,7 @@ class Api::RateController < ApiController
   end
 
   def success_json_list(object)
-    ratings = object.map { |rateable| { rateable.id => ratings_as_json(rateable.votes) } }
+    ratings = object.map { |rateable| { rateable.id => ratings_as_json(rateable.votes_on) } }
     user = current_user.votes.where(voteable_id: strong_params[:ids], voteable_type: string_to_model)
     user = user.map { |rateable| { rateable.voteable_id => user_ratings_as_json(rateable) } }
 

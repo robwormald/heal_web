@@ -34,7 +34,7 @@ export class User {
   }
 
   canModerate(id: number): boolean {
-    return id == this.id || this.isAdmin() || this.isMod();
+    return this.id && (id == this.id || this.isAdmin() || this.isMod());
   }
 
   avatarUrl(type: any): string {
