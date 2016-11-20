@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
 
-import { AppStore } from './../../app.store';
-import { Comment, User } from './../../objects/index';
+import { AppState, Comment, User } from './../../store/constants';
 import { BBCodeService } from './../../global/index';
 import { CommentsPartialService } from './comments.service';
 import { RatePartialService } from './../rate/rate.service';
@@ -17,22 +18,23 @@ export class CommentsPartialComponent implements OnInit {
   @Input('id') id;
   @Input('type') type;
 
-  comments: Comment[] = [];
-  currentComments: Comment[] = [];
+  commentList: Observable<Comment[]>;
+  currentComment: Observable<Comment[]>;
   currentUser: User;
 
   constructor(
-    private store: AppStore,
+    private store: Store<AppState>,
     private service: CommentsPartialService,
     private rateService: RatePartialService,
     private bbcode: BBCodeService,
   ) {}
 
   ngOnInit(): void {
-    this.store.changes.pluck('currentUser').subscribe((currentUser: User) => this.currentUser = currentUser);
-    this.service.getComments(this.id, this.type).subscribe((res) => {
-      this.comments = res.comments;
-    });
+    this.store.select('currentUser').subscribe((currentUser: User) => this.currentUser = currentUser);
+    this.commentList = this.store.select('commentList');
+    this.currentComment = this.store.select('currentComment');
+
+    this.service.getComments(this.id, this.type);
   }
 
   parseBBcode(comment: Comment): string {
@@ -40,40 +42,29 @@ export class CommentsPartialComponent implements OnInit {
   }
 
   changePage(items: Comment[]): void {
-    this.currentComments = items;
-    let ids = this.currentComments.map((comment) => comment.id);
-
-    this.rateService.getMultipleRatings(ids, 'comment').subscribe((res) => {
-      this.currentComments = this.currentComments.map((comment) => {
-        comment.rateData = { ratings: res.ratings[comment.id], user: res.user[comment.id] }
-        return comment;
-      });
-    });
+    let ids = items.map((comment) => comment.id);
+    this.rateService.getMultipleRatings(ids, 'comment')
+      .subscribe((res) => this.service.current(items, res));
   }
 
   create(event: any): void {
-    this.service.create(this.id, this.type, event.value).subscribe((res) => {
-      this.comments = res.comments;
-      event.callback();
-    });
+    this.service.create(this.id, this.type, event);
   }
 
   destroy(comment: Comment): void {
-    this.service.destroy(comment.id).subscribe((res) => this.comments = res.comments);
+    this.service.destroy(comment.id);
   }
 
   edit(comment: Comment): void {
-    let editing = comment.editing;
-    this.comments.map((c) => c.editing = false);
-    comment.editing = !editing;
+    this.service.edit(comment, !comment.editing);
   }
 
   update(comment: Comment, event: any): void {
-    if(comment.body == event.value) {
-      comment.editing = false;
+    if(comment.body === event.value) {
+      this.service.edit(comment, false);
     }
     else {
-      this.service.update(comment.id, event.value).subscribe((res) => this.comments = res.comments);
+      this.service.update(comment.id, event.value);
     }
   }
 }

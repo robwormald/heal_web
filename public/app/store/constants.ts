@@ -1,17 +1,21 @@
-import { User, UserList, PollView, PollList, ServerMonitor, Article, ArticleList } from './../objects/index';
-export { User, UserList, PollView, PollList, ServerMonitor, Article, ArticleList }
+import { User, UserList, PollView, PollList, ServerMonitor, Article, ArticleList, Comment } from './../objects/index';
+export { User, UserList, PollView, PollList, ServerMonitor, Article, ArticleList, Comment }
 
 export interface AppState {
   onlineUsers: User[];
+  latestPoll: PollView;
+  serverMonitors: ServerMonitor[];
+
   currentUser: User;
   currentViewUser: User;
-  userList: UserList;
-  currentPoll: PollView;
-  latestPoll: PollView;
-  pollList: PollList;
-  serverMonitors: ServerMonitor[];
+  currentComment: Comment[];
   currentArticle: Article;
+  currentPoll: PollView;
+
+  pollList: PollList;
+  userList: UserList;
   articleList: ArticleList;
+  commentList: Comment[];
 };
 
 export const SET_CURRENT_USER           = 'SET_CURRENT_USER';
@@ -26,3 +30,9 @@ export const SET_POLL_LIST              = 'SET_POLL_LIST';
 export const SET_CURRENT_POLL           = 'SET_CURRENT_POLL';
 export const SET_CURRENT_VIEWUSER       = 'SET_CURRENT_VIEWUSER';
 export const SET_USER_LIST              = 'SET_USER_LIST';
+export const COMMENT_LIST               = 'COMMENT_LIST';
+export const COMMENT_CREATE             = 'COMMENT_CREATE';
+export const COMMENT_DELETE             = 'COMMENT_DELETE';
+export const COMMENT_EDIT               = 'COMMENT_EDIT';
+export const COMMENT_UPDATE             = 'COMMENT_UPDATE';
+export const COMMENT_CURRENT            = 'COMMENT_CURRENT';

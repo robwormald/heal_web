@@ -7,7 +7,6 @@ import {
 export const currentViewUserReducer: ActionReducer<User> = (state: User, action: Action) => {
   switch(action.type) {
     case SET_CURRENT_VIEWUSER:
-    console.error(action);
       return new User(action.payload);
     default:
       return state;

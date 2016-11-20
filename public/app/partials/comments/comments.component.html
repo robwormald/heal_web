@@ -1,7 +1,7 @@
 <div class='comments-section'>
-  <pagination [total]='comments.length' [items]='comments' (onPage)='changePage($event)' *ngIf='comments.length'>
+  <pagination [total]='(commentList | async).length' [items]='commentList | async' (onPage)='changePage($event)' *ngIf='(commentList | async).length'>
     <div class='comments-list'>
-      <div class='comments-item' *ngFor='let comment of currentComments'>
+      <div class='comments-item' *ngFor='let comment of currentComment | async'>
         <span *ngIf='!comment.editing'>
           <div class='comments-header'>
             <user-partial [user]='comment.user'></user-partial>
