@@ -1,6 +1,6 @@
 <div class='monitor-section'>
   <div class='container-fluid'>
-    <div class='monitor' *ngFor='let server of serverMonitors'>
+    <div class='monitor' *ngFor='let server of (monitorList | async)'>
       <span class='server-info' *ngIf='server.online'>
         <div class='server-options'>{{ server.name }}</div>
         <div class='server-options'>{{ server.ip }}:{{ server.port }}</div>

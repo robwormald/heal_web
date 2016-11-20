@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
 
-import { AppStore } from './../../app.store';
+import { AppState, MONITOR_LIST } from './../../store/constants';
 import { WebsocketService } from './../../global/index';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class MonitorPartialService {
 
   constructor(
     private websocket: WebsocketService,
-    private store: AppStore,
+    private store: Store<AppState>,
   ) {}
 
   subscribe(): void {
@@ -34,7 +34,7 @@ export class MonitorPartialService {
         break;
       case 'server_monitor':
         if(res.data) {
-          this.store.setKeyValue('serverMonitors', JSON.parse(res.data));
+          this.store.dispatch({ type: MONITOR_LIST, payload: JSON.parse(res.data) });
         }
         break;
     }

@@ -4,7 +4,6 @@ export { User, UserList, PollView, PollList, ServerMonitor, Article, ArticleList
 export interface AppState {
   onlineUsers: User[];
   latestPoll: PollView;
-  serverMonitors: ServerMonitor[];
 
   currentUser: User;
   currentViewUser: User;
@@ -16,6 +15,7 @@ export interface AppState {
   userList: UserList;
   articleList: ArticleList;
   commentList: Comment[];
+  monitorList: ServerMonitor[];
 };
 
 export const SET_CURRENT_USER           = 'SET_CURRENT_USER';
@@ -36,3 +36,4 @@ export const COMMENT_DELETE             = 'COMMENT_DELETE';
 export const COMMENT_EDIT               = 'COMMENT_EDIT';
 export const COMMENT_UPDATE             = 'COMMENT_UPDATE';
 export const COMMENT_CURRENT            = 'COMMENT_CURRENT';
+export const MONITOR_LIST               = 'MONITOR_LIST';

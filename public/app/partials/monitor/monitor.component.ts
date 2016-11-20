@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
 
-import { AppStore } from './../../app.store';
 import { MonitorPartialService } from './monitor.service';
-import { ServerMonitor } from './../../objects/index';
+import { AppState, ServerMonitor } from './../../store/constants';
 import { WebsocketService } from './../../global/index';
 
 @Component({
@@ -15,18 +16,17 @@ import { WebsocketService } from './../../global/index';
 export class MonitorPartialComponent implements OnInit {
   // imagePath: string = '/assets/';
   imagePath: string = 'http://heal.lv/style/icons/maps/';
-  serverMonitors: ServerMonitor[];
+  monitorList: Observable<ServerMonitor[]>;
   serverPlayers: any[];
 
   constructor(
-    private store: AppStore,
+    private store: Store<AppState>,
     private service: MonitorPartialService
   ) {}
 
   ngOnInit(): void {
+    this.monitorList = this.store.select('monitorList');
     this.service.subscribe();
-    this.store.changes.pluck('serverMonitors')
-      .subscribe((serverMonitors: ServerMonitor[]) => this.serverMonitors = serverMonitors);
   }
 
   openPlayerList(players, modal): void {
