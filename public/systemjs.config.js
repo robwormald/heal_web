@@ -33,6 +33,7 @@
       'ng2-breadcrumb/ng2-breadcrumb': 'npm:ng2-breadcrumb/ng2-breadcrumb',
       '@ngrx/core': 'npm:@ngrx/core',
       '@ngrx/store': 'npm:@ngrx/store',
+      'ng2-translate': 'npm:ng2-translate',
       'moment': 'npm:moment',
     },
     // packages tells the System loader how to load when no filename and/or no extension
@@ -46,6 +47,7 @@
       'ng2-popover': { defaultExtension: 'js' },
       'actioncable-js': { defaultExtension: 'js' },
       'ng2-breadcrumb': { defaultExtension: 'js' },
+      'ng2-translate': { main: '/bundles/ng2-translate.umd.js', defaultExtension: 'js' },
       '@ngrx/core': { main: '/bundles/core.umd.js', defaultExtension: 'js' },
       '@ngrx/store': { main: '/bundles/store.umd.js', defaultExtension: 'js' },
       'moment': {

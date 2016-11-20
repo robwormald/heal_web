@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { PopoverModule    } from 'ng2-popover';
+import { TranslateModule  } from 'ng2-translate';
 import { ModalModule      } from 'ng2-bootstrap/components/modal';
 import { DatepickerModule } from 'ng2-bootstrap/components/datepicker';
 import { Ng2BreadcrumbModule, BreadcrumbService } from 'ng2-breadcrumb/ng2-breadcrumb';
@@ -70,6 +71,7 @@ import {
     FormsModule,
     CommonModule,
     Ng2BreadcrumbModule,
+    TranslateModule,
   ],
   providers: [
     BreadcrumbService,

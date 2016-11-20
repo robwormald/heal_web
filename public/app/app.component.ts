@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
-import { ComponentsHelper } from 'ng2-bootstrap/ng2-bootstrap'
+import { ComponentsHelper    } from 'ng2-bootstrap/ng2-bootstrap'
+import { TranslateService    } from 'ng2-translate';
 import { EmojiSupportService } from './global/index';
 
 @Component({
@@ -18,7 +19,11 @@ export class AppComponent implements OnInit {
     private componentsHelper: ComponentsHelper,
     private vcr: ViewContainerRef,
     private router: Router,
+    private translate: TranslateService,
   ) {
+    this.translate.setDefaultLang('en');
+    this.translate.use('en');
+
     this.componentsHelper.setRootViewContainerRef(this.vcr);
     router.events
       .filter((event) => event instanceof NavigationEnd)
