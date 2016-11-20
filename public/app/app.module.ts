@@ -10,7 +10,6 @@ import { SharedModule } from './shared/modules/shared.module';
 import { StoreReducers } from './store/reducers.module';
 
 import './rxjs-extensions';
-import { AppStore } from './app.store';
 import { AppComponent } from './app.component';
 import { routing, appRoutingProviders } from './app.routing';
 
@@ -53,7 +52,6 @@ import {
   providers: [
     { provide: LOCALE_ID, useValue: 'lv' },
     appRoutingProviders,
-    AppStore
   ],
   bootstrap: [AppComponent]
 })
