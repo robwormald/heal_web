@@ -1,2 +1,48 @@
 {
+  "total_of": {
+    "users": "(total {{ count }} users)"
+  },
+
+  "not_found": {
+    "polls": "No polls found"
+  },
+
+  "menus": {
+    "user": {
+      "title": "User",
+      "user_list": "User List",
+      "profile": "Profile"
+    },
+    "online": {
+      "title": "Online"
+    },
+    "poll": {
+      "title": "Poll"
+    }
+  },
+
+  "pages": {
+    "article": {
+      "title": "Articles",
+      "read_more": "Read more"
+    },
+    "chat": {
+      "title": "Chat"
+    },
+    "poll": {
+      "title": "Polls"
+    },
+    "user": {
+      "title": "Users",
+      "view": {
+        "id": "ID:",
+        "username":   "Username:",
+        "registered": "Registered:",
+        "roles":      "Roles:",
+        "residence":  "Residence:",
+        "birthday":   "Birthday:",
+        "rating":     "Rating:"
+      }
+    }
+  }
 }

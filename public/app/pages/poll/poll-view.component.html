@@ -7,9 +7,7 @@
   [view]='true'
   (onVote)='vote($event)'
 >
-  <div class='row' *ngIf='currentPoll.poll'>
-    <div class='col-xs-12'>
-      <comments-partial type='poll' [id]='currentPoll.poll.id'></comments-partial>
-    </div>
+  <div *ngIf='currentPoll.poll'>
+    <comments-partial type='poll' [id]='currentPoll.poll.id'></comments-partial>
   </div>
 </poll-partial>

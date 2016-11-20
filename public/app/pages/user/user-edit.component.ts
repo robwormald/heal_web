@@ -15,19 +15,19 @@ export class UserEditComponent {
   currentViewUser: User;
   formData: any = {
     general: [
-      // { date: true, name: 'birthday' },
-      { input: true, type: 'text', name: 'residence' },
-      { textarea: true, name: 'signature', bbcode: true },
+      // { date:     true, name: 'birthday',  text: 'forms.user.birthday' },
+      { input:    true, name: 'residence', text: 'forms.user.residence', type: 'text' },
+      { textarea: true, name: 'signature', text: 'forms.user.signature', bbcode: true },
     ],
     email: [
-      { input: true, type: 'text', name: 'email' },
+      { input: true, type: 'text', name: 'email', text: 'forms.user.email' },
     ],
     security: [
-      { input: true, type: 'password', name: 'password' },
-      { input: true, type: 'password', name: 'password_confirmation', text: 'Password 2x' },
+      { input: true, type: 'password', name: 'password', text: 'forms.user.password' },
+      { input: true, type: 'password', name: 'password_confirmation', text: 'forms.user.password2x' },
     ],
     uploads: [
-      { file: true, name: 'avatar_file', validations: { fileSize: 2, fileType: 'image' }, text: 'Avatar' },
+      { file: true, name: 'avatar_file', text: 'forms.user.avatar', validations: { fileSize: 2, fileType: 'image' } },
     ]
   };
   tabs: any[] = Object.keys(this.formData);

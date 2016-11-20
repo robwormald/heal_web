@@ -1,4 +1,4 @@
-<container-block [title]='"Chat"' [center]='true'>
+<container-block [title]='"pages.chat.title" | translate' [center]='true'>
   <div id='chat-room' *ngIf='chats.length'>
     <tabs-partial [tabs]='tabsArray' [currentTab]='currentTab' (currentTabChange)='switchChatRooms($event)'></tabs-partial>
 

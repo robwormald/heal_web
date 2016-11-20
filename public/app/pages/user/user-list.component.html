@@ -7,4 +7,4 @@
 
 <pagination [total]='(userList | async)?.totalCount' [page]='(userList | async)?.currentPage' url='/users/list/' [per]='(userList | async)?.perPage'></pagination>
 
-<div class='text-center'>(total {{ (userList | async)?.totalCount }} users)</div>
+<div class='text-center'>{{ 'total_of.users' | translate:{ count: (userList | async)?.totalCount } }}</div>

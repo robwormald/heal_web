@@ -4,40 +4,40 @@
       <img class='user-image' [src]='currentViewUser.avatarUrl("thumb")' />
     </div>
 
-    <div modal-partial #userListModal header='Avatar'>
+    <div modal-partial #userListModal [header]='"modal.titles.avatar" | translate'>
       <img class='user-image-modal' [src]='currentViewUser.avatarUrl()' />
     </div>
 
     <div class='col-xs-12 col-sm-8'>
       <div class='row user-field'>
-        <div class='col-xs-4 text-right'>ID:</div>
+        <div class='col-xs-4 text-right'>{{ 'pages.user.view.id' | translate }}</div>
         <div class='col-xs-8'>{{ currentViewUser.id }}</div>
       </div>
 
       <div class='row user-field'>
-        <div class='col-xs-4 text-right'>Username:</div>
+        <div class='col-xs-4 text-right'>{{ 'pages.user.view.username' | translate }}</div>
         <div class='col-xs-8'>{{ currentViewUser.username }}</div>
       </div>
 
       <div class='row user-field'>
-        <div class='col-xs-4 text-right'>Registered:</div>
+        <div class='col-xs-4 text-right'>{{ 'pages.user.view.registered' | translate }}</div>
         <div class='col-xs-8'>
           <date-partial [date]='currentViewUser.created_at' type='dateOnly'></date-partial>
         </div>
       </div>
 
       <div class='row user-field'>
-        <div class='col-xs-4 text-right'>Permissions:</div>
+        <div class='col-xs-4 text-right'>{{ 'pages.user.view.roles' | translate }}</div>
         <div class='col-xs-8'>{{ currentViewUser.roles() }}</div>
       </div>
 
       <div class='row user-field'>
-        <div class='col-xs-4 text-right'>Residence:</div>
+        <div class='col-xs-4 text-right'>{{ 'pages.user.view.residence' | translate }}</div>
         <div class='col-xs-8'>{{ currentViewUser.residence }}</div>
       </div>
 
       <div class='row user-field'>
-        <div class='col-xs-4 text-right'>Birthday:</div>
+        <div class='col-xs-4 text-right'>{{ 'pages.user.view.birthday' | translate }}</div>
         <div class='col-xs-8'>
           <date-partial [date]='currentViewUser.birthday' type='dateOnly'></date-partial>
           (age {{ currentViewUser.age() }})
@@ -45,7 +45,7 @@
       </div>
 
       <div class='row user-field'>
-        <div class='col-xs-4 text-right'>Rating:</div>
+        <div class='col-xs-4 text-right'>{{ 'pages.user.view.rating' | translate }}</div>
         <div class='col-xs-8'>
           <rate-partial type='user' [id]='currentViewUser.id'></rate-partial>
         </div>

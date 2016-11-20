@@ -21,7 +21,7 @@ export class PollRenderService {
 
   getData(data: any, type: string): any {
     const { poll, questions, answered } = data;
-    if(!poll) return { message: 'No polls found :(' };
+    if(!poll) return { message: 'not_found.polls' };
     return this.calculateWidth({ poll, questions, answered: this.getAnswered(answered, type) });
   }
 
