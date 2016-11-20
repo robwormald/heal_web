@@ -25,6 +25,7 @@
       'rxjs':                       'npm:rxjs',
       'actioncable-js': 'npm:actioncable-js/dist/action_cable.js',
       'XBBCODE': 'npm:xbbcode.js',
+      'ng2-bootstrap': 'npm:ng2-bootstrap',
       'ng2-bootstrap/components/modal': 'npm:ng2-bootstrap/components/modal',
       'ng2-bootstrap/components/collapse': 'npm:ng2-bootstrap/components/collapse',
       'ng2-bootstrap/components/datepicker': 'npm:ng2-bootstrap/components/datepicker',

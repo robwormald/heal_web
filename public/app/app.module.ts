@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 import { StoreModule } from '@ngrx/store';
 
+import { ComponentsHelper } from 'ng2-bootstrap/ng2-bootstrap'
 import { CollapseModule } from 'ng2-bootstrap/components/collapse';
 
 import { ArticleModule, PollModule, UserModule } from './pages/index';
@@ -51,6 +52,7 @@ import {
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'lv' },
+    { provide: ComponentsHelper, useClass: ComponentsHelper },
     appRoutingProviders,
   ],
   bootstrap: [AppComponent]
