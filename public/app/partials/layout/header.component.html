@@ -13,13 +13,13 @@
     <div class='collapse navbar-collapse' id='header-navbar' [collapse]='isCollapsed'>
       <ul class='nav navbar-nav navbar-right'>
         <li>
-          <a routerLink='/'>Home</a>
+          <a routerLink='/'>{{ 'header.links.home' | translate }}</a>
         </li>
         <li>
-          <a routerLink='/chat' routerLinkActive='active'>Chat</a>
+          <a routerLink='/chat' routerLinkActive='active'>{{ 'header.links.chat' | translate }}</a>
         </li>
         <li>
-          <a href='/logout'>Logout</a>
+          <a href='/logout'>{{ 'header.links.logout' | translate }}</a>
         </li>
       </ul>
     </div>

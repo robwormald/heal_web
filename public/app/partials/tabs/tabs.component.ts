@@ -11,14 +11,6 @@ export class TabsPartialComponent {
   @Input('currentTab') currentTab;
   @Output('currentTabChange') currentTabChange = new EventEmitter<string>();
 
-  tabClassName(tab: string): string {
-    const object = {
-      true: ' active',
-      false: ''
-    };
-    return 'capital-letter' + object[(this.currentTab == tab) as any];
-  }
-
   switchTab(index: number, tab: string): void {
     this.currentTab = tab;
     this.currentTabChange.emit(tab);

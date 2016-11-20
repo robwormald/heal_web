@@ -1,12 +1,12 @@
 <div class='notification-block'>
   <div class='notification-container animated bounceInDown' *ngFor='let notification of notifications' (click)='mobileClick(notification)'>
     <div class='notification-header'>
-      <span class='pull-left'>{{ notification.title }}</span>
+      <span class='pull-left'>{{ notification.title | translate }}</span>
       <span class='pull-right fa fa-times cursor-pointer' (click)='closeNotification(notification)'></span>
     </div>
 
-    <div class='ribbon-block ribbon-{{ notification.type }}'>
-      <div class='ribbon-container {{ notification.position }} text-center'>
+    <div class='ribbon-block' [ngClass]='"ribbon-" + notification.type'>
+      <div class='ribbon-container text-center' [ngClass]='notification.position'>
         <strong class='ribbon-content'><i [ngClass]='notification.mark' aria-hidden='true'></i></strong>
       </div>
       <div class='ribbon-triangle-right'></div>

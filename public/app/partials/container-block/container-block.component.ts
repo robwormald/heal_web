@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 
 export class ContainerBlockPartialComponent {
-  @Input('title') containerTitle = '';
-  @Input('center') containerCenter = false;
+  @Input('header') header = '';
+  @Input('center') center = false;
 }

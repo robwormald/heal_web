@@ -1,10 +1,78 @@
 {
   "total_of": {
-    "users": "(total {{ count }} users)"
+    "users": "(total {{ count }} users)",
+    "votes": {
+      "singular": "(total {{ count }} vote)",
+      "plural": "(total {{ count }} votes)"
+    },
+    "ratings": {
+      "singular": "(total {{ count }} rating)",
+      "plural": "(total {{ count }} ratings)"
+    }
   },
 
   "not_found": {
     "polls": "No polls found"
+  },
+
+  "placeholders": {
+    "comment": "Comment",
+    "message": "Message"
+  },
+
+  "modal": {
+    "title": {
+      "avatar": "Avatar",
+      "ratings": "Ratings",
+      "players": "Players"
+    }
+  },
+
+  "partials": {
+    "file": {
+      "click_or_drag": "Click or Drag"
+    },
+    "monitor": {
+      "offline": "server offline"
+    },
+    "vote": {
+      "button": "Vote"
+    },
+    "rate": {
+      "rating": "Rating ({{ sum }})"
+    },
+    "tab": {
+      "general": "General",
+      "email": "Email",
+      "security": "Security",
+      "uploads": "Uploads",
+
+      "#general": "#general",
+      "#gaming": "#gaming",
+      "#admin": "#admin"
+    }
+  },
+
+  "forms": {
+    "global": {
+      "submit": "Submit"
+    },
+    "user": {
+      "residence":  "Residence",
+      "signature":  "Signature",
+      "email":      "Email",
+      "password":   "Password",
+      "password2x": "Password 2x",
+      "avatar":     "Avatar"
+    }
+  },
+
+  "header": {
+    "links": {
+      "home": "Home",
+      "chat": "Chat",
+      "logout": "Logout"
+    }
   },
 
   "menus": {

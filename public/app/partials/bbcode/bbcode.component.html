@@ -1,12 +1,14 @@
 <div class='bbcode-toolbar hidden-xs'>
   <button class='bbcode-button no-border-radius' *ngFor='let object of bbcodeList' (click)='onClick(object.code)'>
-    <i class='fa {{ object.className }}' aria-hidden='true'></i>
+    <i class='fa' [ngClass]='object.className' aria-hidden='true'></i>
   </button>
   <button class='bbcode-button no-border-radius dynamic-no-emoji' [popover]='emojiPopover'>
     <span>😊</span>
   </button>
 
   <popover-content #emojiPopover placement='top' [closeOnClickOutside]='true'>
-    <span class='bbcode-emoji cursor-pointer dynamic-no-emoji' *ngFor='let emoji of emojiList' (click)='onClick("emoji", emoji)'>{{ emoji }}</span>
+    <span class='bbcode-emoji cursor-pointer dynamic-no-emoji' *ngFor='let emoji of emojiList' (click)='onClick("emoji", emoji)'>
+      {{ emoji }}
+    </span>
   </popover-content>
 </div>

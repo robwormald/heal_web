@@ -4,7 +4,7 @@
       <img class='user-image' [src]='currentViewUser.avatarUrl("thumb")' />
     </div>
 
-    <div modal-partial #userListModal [header]='"modal.titles.avatar" | translate'>
+    <div modal-partial #userListModal header='modal.title.avatar'>
       <img class='user-image-modal' [src]='currentViewUser.avatarUrl()' />
     </div>
 

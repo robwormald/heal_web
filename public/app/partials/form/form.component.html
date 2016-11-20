@@ -2,10 +2,10 @@
   <ng-container *ngFor='let field of fields'>
     <div class='form-group'>
       <div class='col-sm-offset-2 col-sm-10 form-control-error' *ngFor='let error of formErrors[field.name]'>
-        {{ error }}
+        {{ error | translate }}
       </div>
 
-      <label class='capital-letter col-sm-2 control-label' [htmlFor]='specificId + field.name'>{{ field.text || field.name }}</label>
+      <label class='capital-letter col-sm-2 control-label' [htmlFor]='specificId + field.name'>{{ field.text | translate }}</label>
 
       <div class='col-sm-10'>
         <bbcode-partial [target]='specificId + field.name' *ngIf='field.bbcode'></bbcode-partial>
@@ -15,7 +15,7 @@
 
         <ng-container class='form-control' *ngIf='field.date'>
           <button class='btn btn-generic' [id]='specificId + field.name' [popover]='datepickerPopover' [popoverDisabled]='datepickerHidden'>
-            {{ (model[field.name] || datepickerToday) | date:'fullDate' }}
+            {{ (model[field.name] || datepickerToday) | date: 'fullDate' }}
           </button>
 
           <popover-content #datepickerPopover placement='bottom' [closeOnClickOutside]='true'>
@@ -30,7 +30,7 @@
 
   <div class='form-group'>
     <div class='col-sm-offset-2 col-sm-10'>
-      <button class='btn btn-generic pull-right' (click)='submit()'>{{ buttonText }}</button>
+      <button class='btn btn-generic pull-right' (click)='submit()'>{{ buttonText | translate }}</button>
     </div>
   </div>
 </form>

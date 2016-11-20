@@ -29,11 +29,11 @@ export class PollRenderService {
     data.totalAnswers = 0;
     data.questions.map((question) => data.totalAnswers += question.answer_count);
     data.questions.map((question) => {
-      question.percent = data.totalAnswers ? (question.answer_count/data.totalAnswers)*100 : 0;
+      question.percent = data.totalAnswers ? (question.answer_count/data.totalAnswers) : 0;
       if(question.percent) {
         question.percent = parseFloat(question.percent.toFixed(2))
       }
-      question.widthStyle = this.sanitizer.bypassSecurityTrustStyle(`width: ${question.percent}%`);
+      question.widthStyle = this.sanitizer.bypassSecurityTrustStyle(`width: ${question.percent * 100}%`);
     });
     return data;
   }

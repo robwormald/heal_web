@@ -36,6 +36,7 @@ import {
     ModalModule,
     DatepickerModule,
     Ng2BreadcrumbModule,
+    TranslateModule,
   ],
   declarations: [
     ContainerBlockPartialComponent,

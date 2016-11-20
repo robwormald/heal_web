@@ -1,24 +1,26 @@
 <span class='rate-section'>
-  <a (click)='ratingModal.modal.show()' class='cursor-pointer' *ngIf='ratings.length'>Ratings ({{ ratingSum }})</a>
+  <a (click)='ratingModal.modal.show()' class='cursor-pointer' *ngIf='ratings.length'>
+    {{ 'partials.rate.rating' | translate: { sum: ratingSum } }}
+  </a>
 
   <span class='rate-button cursor-pointer'>
-    <span class='rate-element {{ userIcon }}' (click)='showRateOptions = !showRateOptions' *ngIf='!showRateOptions'></span>
+    <span class='rate-element' [ngClass]='userIcon' (click)='showRateOptions = !showRateOptions' *ngIf='!showRateOptions'></span>
 
     <span *ngIf='showRateOptions'>
-      <span class='rate-element {{ rateIcon }}' (click)='rate(rateIcon)' *ngFor='let rateIcon of rateOptions'></span>
+      <span class='rate-element' [ngClass]='rateIcon' (click)='rate(rateIcon)' *ngFor='let rateIcon of rateOptions'></span>
     </span>
   </span>
 
-  <div modal-partial #ratingModal header='Ratings' size='sm'>
+  <div modal-partial #ratingModal header='modal.title.ratings' size='sm'>
     <div class='rating-view' *ngFor='let rating of currentRatings'>
       <user-partial [user]='rating.voter'></user-partial>
-      <span class='pull-right badge {{ plusOrMinus(rating.vote) }}'></span>
+      <span class='pull-right badge' [ngClass]='plusOrMinus(rating.vote)'></span>
     </div>
 
     <pagination [total]='ratings.length' [items]='ratings' (onPage)='changePage($event)'></pagination>
 
     <div class='text-center'>
-      (total {{ ratings.length }} ratings)
+      {{ (ratings.length === 1 ? 'total_of.ratings.singular' : 'total_of.ratings.plural') | translate:{ count: ratings.length } }}
     </div>
   </div>
 </span>

@@ -17,7 +17,7 @@
         </span>
 
         <span *ngIf='comment.editing'>
-          <textarea-partial uniqId='comments-{{ comment.id }}' placeholder='Comment' [value]='comment.body'
+          <textarea-partial [uniqId]='"comments-" + comment.id' placeholder='placeholders.comment' [value]='comment.body'
             (onSubmit)='update(comment, $event)' (onCancel)='edit(comment)' [canCancel]='true'
             >
           </textarea-partial>
@@ -26,5 +26,5 @@
     </div>
   </pagination>
 
-  <textarea-partial uniqId='comments-textarea' placeholder='Comment' (onSubmit)='create($event)'></textarea-partial>
+  <textarea-partial uniqId='comments-textarea' placeholder='placeholders.comment' (onSubmit)='create($event)'></textarea-partial>
 </div>

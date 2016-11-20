@@ -15,7 +15,7 @@
 
       <div class='poll-progress'>
         <div class='poll-progress-full' [style]='question.widthStyle'>
-          {{ question.percent }}%
+          {{ question.percent | percent }}
         </div>
       </div>
     </div>
@@ -27,8 +27,10 @@
   </div>
 
   <div class='poll-button text-center'>
-    <button class='btn btn-generic pull-left' (click)='vote()' *ngIf='!answered'>Vote</button>
-    <span class='poll-vote-count'>(total {{ totalAnswers }} {{ totalAnswers == 1 ? 'vote' : 'votes' }})</span>
+    <button class='btn btn-generic pull-left' (click)='vote()' *ngIf='!answered'>{{ 'partials.vote.button' | translate }}</button>
+    <span class='poll-vote-count'>
+      {{ (totalAnswers === 1 ? 'total_of.votes.singular' : 'total_of.votes.plural') | translate:{ count: totalAnswers } }}
+    </span>
   </div>
 
   <ng-content></ng-content>

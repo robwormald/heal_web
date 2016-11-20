@@ -13,7 +13,7 @@
             </span>
           </div>
 
-          <img src='{{ imagePath }}{{ server.map }}.jpg' (load)='onImageLoad($event)' (error)='onImageError($event)' alt='' />
+          <img [src]='imagePath + server.map + ".jpg"' (load)='onImageLoad($event)' (error)='onImageError($event)' alt='' />
 
           <span class='map-name'>{{ server.map }}</span>
         </div>
@@ -21,12 +21,12 @@
 
       <span class='server-info' *ngIf='!server.online'>
         <div class='server-options'>{{ server.ip }}:{{ server.port }}</div>
-        <div class='server-options'>server offline</div>
+        <div class='server-options'>{{ 'partials.monitor.offline' | translate }}</div>
       </span>
     </div>
   </div>
 
-  <div modal-partial #playerListModal header='Players' size='sm'>
+  <div modal-partial #playerListModal header='modal.title.players' size='sm'>
     <div class='row' *ngFor='let player of serverPlayers'>
       <div class='col-xs-12'>
         <span class='pull-left'>{{ player.name }}</span>

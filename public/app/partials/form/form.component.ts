@@ -25,7 +25,7 @@ export class FormPartialComponent implements OnInit, OnChanges {
   @Input('fields') fields = [];
   @Input('model') model = {};
   @Input('specificId') specificId;
-  @Input('buttonText') buttonText = 'Submit';
+  @Input('buttonText') buttonText = 'forms.global.submit';
 
   @Output() onSubmit = new EventEmitter<any>();
 
