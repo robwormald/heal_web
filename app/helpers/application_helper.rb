@@ -16,4 +16,15 @@ module ApplicationHelper
   def devise_error_messages?
     !resource.errors.empty?
   end
+
+  def user_data_for_angular
+    {
+      current_user: User.parse(current_user, [:user, :user_view, :user_view_self]),
+      preferences: {
+        color:      session[:color],
+        language:   session[:language],
+        brightness: session[:brightness],
+      }
+    }.to_json
+  end
 end

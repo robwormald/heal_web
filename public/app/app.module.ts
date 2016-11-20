@@ -19,7 +19,7 @@ import { PollMenuComponent, OnlineMenuComponent, UserMenuComponent } from './men
 import { ChatPageComponent } from './pages/index';
 import {
   NotificationPartialComponent,
-  ThemesPickerComponent,
+  PreferenceChangerComponent,
 
   HeaderComponent,
   FooterComponent,
@@ -47,7 +47,7 @@ import {
     UserMenuComponent,
 
     NotificationPartialComponent,
-    ThemesPickerComponent,
+    PreferenceChangerComponent,
 
     HeaderComponent,
     FooterComponent,

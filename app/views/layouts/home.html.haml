@@ -6,15 +6,16 @@
     %meta{ content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no', name: 'viewport' }/
     %title HealWeb
     = csrf_meta_tags
-    = stylesheet_link_tag    'inside', media: 'all'
-    = stylesheet_link_tag    session[:brightness], media: 'all'
-    = stylesheet_link_tag    session[:color], media: 'all'
+    = stylesheet_link_tag 'inside', media: 'all'
+    = stylesheet_link_tag "brightness-#{session[:brightness]}", media: 'all'
+    = stylesheet_link_tag "color-#{session[:color]}", media: 'all'
     %link{ href: 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic', rel: 'stylesheet' }/
     = javascript_include_tag 'application'
 
     %script{ src: 'https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en,Intl.~locale.lv' }
     %script{ src: 'systemjs.config.js' }
     :javascript
+      window.userData = #{user_data_for_angular}
       System.import('app').catch(function(err){ console.error(err); });
   %body
     = yield

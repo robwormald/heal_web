@@ -4,6 +4,7 @@ class CreateUserPreferences < ActiveRecord::Migration[5.0]
       t.references :user, index: true
       t.integer :color, default: 0
       t.integer :brightness, default: 0
+      t.integer :language, default: 0
       t.timestamps
     end
   end

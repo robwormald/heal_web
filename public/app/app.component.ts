@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { Store                 } from '@ngrx/store';
 
 import { ComponentsHelper    } from 'ng2-bootstrap/ng2-bootstrap'
 import { TranslateService    } from 'ng2-translate';
 import { EmojiSupportService } from './global/index';
+
+import { AppState, UserPreference, SET_CURRENT_USER, CURRENT_PREFERENCE_SET } from './store/constants';
 
 @Component({
   moduleId: module.id,
@@ -20,10 +23,8 @@ export class AppComponent implements OnInit {
     private vcr: ViewContainerRef,
     private router: Router,
     private translate: TranslateService,
+    private store: Store<AppState>,
   ) {
-    this.translate.setDefaultLang('en');
-    this.translate.use('en');
-
     this.componentsHelper.setRootViewContainerRef(this.vcr);
     router.events
       .filter((event) => event instanceof NavigationEnd)
@@ -31,6 +32,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let userData = window['userData'];
+    this.store.dispatch({ type: SET_CURRENT_USER, payload: userData.current_user });
+    this.store.dispatch({ type: CURRENT_PREFERENCE_SET, payload: userData.preferences });
+
+    this.store.select('currentPreference')
+      .subscribe((currentPreference: UserPreference) => this.translate.use(currentPreference.language || 'en'));
+
     this.emojiSupport.init();
   }
 }

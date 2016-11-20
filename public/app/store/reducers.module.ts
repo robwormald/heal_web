@@ -10,9 +10,11 @@ import {
   currentViewUserReducer,
   currentPollReducer,
   currentCommentReducer,
+  currentPreferenceReducer,
 
   latestPollReducer,
   onlineUsersReducer,
+  preferencesReducer,
 } from './reducers/index';
 
 export const StoreReducers = {
@@ -27,7 +29,9 @@ export const StoreReducers = {
   currentViewUser: currentViewUserReducer,
   currentPoll: currentPollReducer,
   currentComment: currentCommentReducer,
+  currentPreference: currentPreferenceReducer,
 
   latestPoll: latestPollReducer,
   onlineUsers: onlineUsersReducer,
+  preferences: preferencesReducer,
 }

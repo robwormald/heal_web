@@ -26,7 +26,6 @@ class User::SessionsController < Devise::SessionsController
 
   def set_user_theme
     preference = current_user.preference
-    ThemesSetter.color(session, preference)
-    ThemesSetter.brightness(session, preference)
+    PreferenceSetter.set(session, preference)
   end
 end

@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20161105203239) do
     t.integer  "user_id"
     t.integer  "color",      default: 0
     t.integer  "brightness", default: 0
+    t.integer  "language",   default: 0
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.index ["user_id"], name: "index_user_preferences_on_user_id", using: :btree

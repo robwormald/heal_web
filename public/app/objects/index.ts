@@ -1,5 +1,6 @@
 export * from './user';
 export * from './user-list';
+export * from './user-preference';
 export * from './poll';
 export * from './poll-question';
 export * from './poll-answer';
@@ -12,3 +13,4 @@ export * from './comment';
 export * from './server-monitor';
 export * from './article';
 export * from './article-list';
+export * from './preferences';

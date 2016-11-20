@@ -7,6 +7,7 @@ module Constants
     user: [:id, :username, :online, :location, :permissions, :avatar, :updated_at, :created_at],
     user_view: [:residence, :birthday, :signature],
     user_view_self: [:email],
+    user_preference: [:color, :language, :brightness],
     rating: [:id, :vote, :created_at],
     comment: [:id, :body, :created_at]
   }
