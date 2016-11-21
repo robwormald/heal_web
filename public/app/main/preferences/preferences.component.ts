@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable        } from 'rxjs/Observable';
 import { Store             } from '@ngrx/store';
+import { Observable        } from 'rxjs/Observable';
 
+import { PreferencesService } from './preferences.service';
 import { AppState, Preferences, UserPreference } from './../../store/constants';
-import { PreferenceChangerService } from './preference-changer.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'preference-changer',
-  templateUrl: './preference-changer.component.html',
-  providers: [PreferenceChangerService]
+  selector: 'preferences',
+  templateUrl: './preferences.component.html',
+  providers: [PreferencesService]
 })
 
-export class PreferenceChangerComponent implements OnInit {
+export class PreferencesComponent implements OnInit {
   preferences: Observable<Preferences>;
   currentPreference: Observable<UserPreference>;
 
   constructor(
-    private service: PreferenceChangerService,
+    private service: PreferencesService,
     private store: Store<AppState>,
   ) {
     this.preferences = this.store.select('preferences');

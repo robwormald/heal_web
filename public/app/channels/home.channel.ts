@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store      } from '@ngrx/store';
 
-import { WebsocketService   } from './../global/index';
-import { PollRenderService  } from './../shared/services/poll-render.service';
+import { WebsocketService, PollRenderService } from './../shared/services/index';
 import {
   AppState, PollView,
   MONITOR_LIST, SET_CURRENT_POLL, SET_LATEST_POLL, REMOVE_ONLINE_USER, SET_CURRENT_USER, SET_ONLINE_USERS, ADD_ONLINE_USER, UPDATE_ONLINE_USER, NOTIFICATIONS_ADD

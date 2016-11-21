@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
+import { Store     } from '@ngrx/store';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Store } from '@ngrx/store';
 
-import { ArticleService } from './article.service';
-import { BBCodeService } from './../../global/index';
+import { ArticleService    } from './article.service';
+import { BBCodeService     } from './../../shared/services/index';
 import { AppState, Article } from './../../store/constants';
 
 @Component({
   moduleId: module.id,
   selector: 'article-view-component',
   templateUrl: './article-view.component.html',
-  providers: [ArticleService, BBCodeService]
+  providers: [ArticleService]
 })
 
 export class ArticleViewComponent {

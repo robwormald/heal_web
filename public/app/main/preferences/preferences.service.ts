@@ -5,7 +5,7 @@ import { Http       } from '@angular/http';
 import { AppState, PREFERENCES_SET, PREFERENCES_UPDATE, CURRENT_PREFERENCE_UPDATE } from './../../store/constants';
 
 @Injectable()
-export class PreferenceChangerService {
+export class PreferencesService {
   constructor(
     private http: Http,
     private store: Store<AppState>,

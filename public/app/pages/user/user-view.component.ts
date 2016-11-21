@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
+import { Store     } from '@ngrx/store';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Store } from '@ngrx/store';
 
+import { UserService   } from './user.service';
+import { BBCodeService } from './../../shared/services/index';
 import { AppState, User, SET_CURRENT_VIEWUSER } from './../../store/constants';
-import { UserService } from './user.service';
-import { BBCodeService } from './../../global/index';
 
 @Component({
   moduleId: module.id,
   selector: 'user-view-component',
   templateUrl: './user-view.component.html',
-  providers: [UserService, BBCodeService]
+  providers: [UserService]
 })
 
 export class UserViewComponent {

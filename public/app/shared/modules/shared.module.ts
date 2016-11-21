@@ -9,24 +9,8 @@ import { ModalModule      } from 'ng2-bootstrap/components/modal';
 import { DatepickerModule } from 'ng2-bootstrap/components/datepicker';
 import { Ng2BreadcrumbModule, BreadcrumbService } from 'ng2-breadcrumb/ng2-breadcrumb';
 
-import { PollRenderService } from './../../shared/services/poll-render.service';
-
-import {
-  ContainerBlockPartialComponent,
-  PollPartialComponent,
-  PaginationPartialComponent,
-  RatePartialComponent,
-  ModalPartialComponent,
-  UserPartialComponent,
-  BBCodePartialComponent,
-  CommentsPartialComponent,
-  TextareaPartialComponent,
-  DatePartialComponent,
-  MonitorPartialComponent,
-  FormPartialComponent,
-  FilePartialComponent,
-  TabsPartialComponent,
-} from './../../partials/index';
+import * as SharedServices from './../services/index';
+import * as PartialComponents from './../../partials/index';
 
 @NgModule({
   imports: [
@@ -41,36 +25,10 @@ import {
     TranslateModule,
   ],
   declarations: [
-    ContainerBlockPartialComponent,
-    PollPartialComponent,
-    PaginationPartialComponent,
-    RatePartialComponent,
-    ModalPartialComponent,
-    UserPartialComponent,
-    BBCodePartialComponent,
-    CommentsPartialComponent,
-    TextareaPartialComponent,
-    DatePartialComponent,
-    MonitorPartialComponent,
-    FormPartialComponent,
-    FilePartialComponent,
-    TabsPartialComponent,
+    Object.values(PartialComponents),
   ],
   exports: [
-    ContainerBlockPartialComponent,
-    PollPartialComponent,
-    PaginationPartialComponent,
-    RatePartialComponent,
-    ModalPartialComponent,
-    UserPartialComponent,
-    BBCodePartialComponent,
-    CommentsPartialComponent,
-    TextareaPartialComponent,
-    DatePartialComponent,
-    MonitorPartialComponent,
-    FormPartialComponent,
-    FilePartialComponent,
-    TabsPartialComponent,
+    Object.values(PartialComponents),
     FormsModule,
     CommonModule,
     Ng2BreadcrumbModule,
@@ -78,7 +36,7 @@ import {
   ],
   providers: [
     BreadcrumbService,
-    PollRenderService,
+    Object.values(SharedServices),
   ]
 })
 

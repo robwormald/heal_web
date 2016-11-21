@@ -1,7 +1,7 @@
-import { ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders  } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ChatPageComponent } from './pages/index';
+import { ChatPageComponent } from './pages/chat/chat.component';
 
 const appRoutes: Routes = [
   {

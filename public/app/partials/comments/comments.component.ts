@@ -1,17 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store      } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { Store } from '@ngrx/store';
 
+import { CommentsPartialService  } from './comments.service';
+import { RatePartialService      } from './../rate/rate.service';
 import { AppState, Comment, User } from './../../store/constants';
-import { BBCodeService } from './../../global/index';
-import { CommentsPartialService } from './comments.service';
-import { RatePartialService } from './../rate/rate.service';
+import { BBCodeService           } from './../../shared/services/index';
 
 @Component({
   moduleId: module.id,
   selector: 'comments-partial',
   templateUrl: './comments.component.html',
-  providers: [BBCodeService, CommentsPartialService, RatePartialService]
+  providers: [CommentsPartialService, RatePartialService]
 })
 
 export class CommentsPartialComponent implements OnInit {
