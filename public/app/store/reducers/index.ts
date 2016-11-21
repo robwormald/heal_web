@@ -14,3 +14,4 @@ export * from './current-preference.reducer';
 export * from './latest-poll.reducer';
 export * from './online-users.reducer';
 export * from './preferences.reducer';
+export * from './notifications.reducer';

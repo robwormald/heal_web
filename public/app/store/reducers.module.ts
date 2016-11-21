@@ -15,6 +15,7 @@ import {
   latestPollReducer,
   onlineUsersReducer,
   preferencesReducer,
+  notificationsReducer,
 } from './reducers/index';
 
 export const StoreReducers = {
@@ -34,4 +35,5 @@ export const StoreReducers = {
   latestPoll: latestPollReducer,
   onlineUsers: onlineUsersReducer,
   preferences: preferencesReducer,
+  notifications: notificationsReducer,
 }

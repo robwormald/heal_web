@@ -1,6 +1,6 @@
 import { Component  } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { Store      } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 import { Router, NavigationEnd } from '@angular/router';
 
 import { AppState, User } from './../../store/constants';

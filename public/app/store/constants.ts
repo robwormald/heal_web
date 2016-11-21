@@ -1,11 +1,11 @@
 import {
   User, UserList, PollView, PollList, ServerMonitor, Article,
-  ArticleList, Comment, Preferences, UserPreference
+  ArticleList, Comment, Preferences, UserPreference, Notification
 } from './../objects/index';
 
 export {
   User, UserList, PollView, PollList, ServerMonitor, Article,
-  ArticleList, Comment, Preferences, UserPreference
+  ArticleList, Comment, Preferences, UserPreference, Notification
 }
 
 export interface AppState {
@@ -50,3 +50,5 @@ export const PREFERENCES_SET            = 'PREFERENCES_SET';
 export const PREFERENCES_UPDATE         = 'PREFERENCES_UPDATE';
 export const CURRENT_PREFERENCE_SET     = 'CURRENT_PREFERENCE_SET';
 export const CURRENT_PREFERENCE_UPDATE  = 'CURRENT_PREFERENCE_UPDATE';
+export const NOTIFICATIONS_ADD          = 'NOTIFICATIONS_ADD';
+export const NOTIFICATIONS_REMOVE       = 'NOTIFICATIONS_REMOVE';

@@ -5,7 +5,7 @@ import { WebsocketService   } from './../global/index';
 import { PollRenderService  } from './../shared/services/poll-render.service';
 import {
   AppState, PollView,
-  MONITOR_LIST, SET_CURRENT_POLL, SET_LATEST_POLL, REMOVE_ONLINE_USER, SET_CURRENT_USER, SET_ONLINE_USERS, ADD_ONLINE_USER, UPDATE_ONLINE_USER
+  MONITOR_LIST, SET_CURRENT_POLL, SET_LATEST_POLL, REMOVE_ONLINE_USER, SET_CURRENT_USER, SET_ONLINE_USERS, ADD_ONLINE_USER, UPDATE_ONLINE_USER, NOTIFICATIONS_ADD
 } from './../store/constants';
 
 @Injectable()
@@ -58,6 +58,8 @@ export class HomeChannel {
         return this.action_list_online_users(res.data);
       case 'update_online_users':
         return this.action_update_online_users(res.data);
+      case 'notification':
+        return this.action_notification(res.data);
     }
   }
 
@@ -108,4 +110,7 @@ export class HomeChannel {
     this.store.dispatch({ type: UPDATE_ONLINE_USER, payload: data.user });
   }
 
+  private action_notification(data: any): void {
+    this.store.dispatch({ type: NOTIFICATIONS_ADD, payload: data });
+  }
 }

@@ -1,5 +1,5 @@
 <div class='notification-block'>
-  <div class='notification-container animated bounceInDown' *ngFor='let notification of notifications' (click)='mobileClick(notification)'>
+  <div class='notification-container animated bounceInDown' *ngFor='let notification of (notifications | async)' (click)='mobileClick(notification)'>
     <div class='notification-header'>
       <span class='pull-left'>{{ notification.title | translate }}</span>
       <span class='pull-right fa fa-times cursor-pointer' (click)='closeNotification(notification)'></span>
