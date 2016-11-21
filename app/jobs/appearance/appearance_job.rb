@@ -3,6 +3,8 @@ class Appearance::AppearanceJob < ApplicationJob
 
   def perform(user, event)
     user.update(online: event == 'join')
-    ActionCable.server.broadcast('appearance', ChannelHelpers.params(event, { user: User.parse(user) }))
+    ActionCable.server.broadcast('home_all', ChannelHelpers.params(event, { user: User.parse(user, [:user]) }))
+
+    Appearance::UserListJob.perform_later(user) if event == 'join'
   end
 end

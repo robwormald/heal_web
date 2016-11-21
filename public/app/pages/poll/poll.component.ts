@@ -3,13 +3,11 @@ import { Store     } from '@ngrx/store';
 
 import { TranslateService   } from 'ng2-translate';
 import { BreadcrumbService  } from 'ng2-breadcrumb/ng2-breadcrumb';
-import { PollRenderService  } from './../../shared/services/poll-render.service';
 import { AppState, PollView } from './../../store/constants';
 
 @Component({
   moduleId: module.id,
   templateUrl: './poll.component.html',
-  providers: [PollRenderService],
 })
 
 export class PollComponent {

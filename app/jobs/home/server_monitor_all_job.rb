@@ -14,6 +14,6 @@ class Home::ServerMonitorAllJob < ApplicationJob
 
   def self.query_and_send
     data = ServerMonitor.query
-    ActionCable.server.broadcast('home_all', ChannelHelpers.params(:server_monitor, data))
+    ActionCable.server.broadcast('home_all', ChannelHelpers.params(:server_monitor, JSON.parse(data)))
   end
 end

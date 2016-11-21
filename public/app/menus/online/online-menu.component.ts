@@ -1,36 +1,33 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component  } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Store } from '@ngrx/store';
+import { Store      } from '@ngrx/store';
+import { Router, NavigationEnd } from '@angular/router';
 
 import { AppState, User } from './../../store/constants';
-import { OnlineMenuService } from './online-menu.service';
-import { WebsocketService } from './../../global/index';
+import { HomeChannel    } from './../../channels/home.channel';
 
 @Component({
   moduleId: module.id,
   selector: 'online-menu',
   templateUrl: 'online-menu.component.html',
-  providers: [OnlineMenuService, WebsocketService]
+  providers: [HomeChannel]
 })
 
-export class OnlineMenuComponent implements OnDestroy {
+export class OnlineMenuComponent {
   onlineUsers: Observable<User[]>;
+  currentUser: User;
 
   constructor(
     private store: Store<AppState>,
     private router: Router,
-    private service: OnlineMenuService,
+    private channel: HomeChannel,
   ) {
     this.onlineUsers = this.store.select('onlineUsers');
-    this.service.subscribe();
+    this.store.select('currentUser').subscribe((currentUser: User) => this.currentUser = currentUser);
 
     router.events
       .filter((event) => event instanceof NavigationEnd)
-      .subscribe((event) => this.service.perform(event.url));
-  }
-
-  ngOnDestroy(): void {
-    this.service.unsubscribe();
+      .filter((event) => this.currentUser.location != event.url)
+      .subscribe((event) => this.channel.perform('location', { location: event.url }));
   }
 }

@@ -3,6 +3,7 @@ class Home::ServerMonitorJob < ApplicationJob
 
   def perform(user_id)
     redis = Redis.new
-    ActionCable.server.broadcast("home_#{user_id}", ChannelHelpers.params(:server_monitor, redis.get('server_monitor')))
+    data = JSON.parse(redis.get('server_monitor'))
+    ActionCable.server.broadcast("home_#{user_id}", ChannelHelpers.params(:server_monitor, data))
   end
 end

@@ -9,6 +9,8 @@ import { ModalModule      } from 'ng2-bootstrap/components/modal';
 import { DatepickerModule } from 'ng2-bootstrap/components/datepicker';
 import { Ng2BreadcrumbModule, BreadcrumbService } from 'ng2-breadcrumb/ng2-breadcrumb';
 
+import { PollRenderService } from './../../shared/services/poll-render.service';
+
 import {
   ContainerBlockPartialComponent,
   PollPartialComponent,
@@ -76,6 +78,7 @@ import {
   ],
   providers: [
     BreadcrumbService,
+    PollRenderService,
   ]
 })
 

@@ -1,3 +1,4 @@
 <span *ngFor='let user of onlineUsers | async'>
   <user-partial [user]='user'></user-partial>
+  {{ user.location }}
 </span>
