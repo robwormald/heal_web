@@ -1,8 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Store      } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
 import { ChatService } from './chat.service';
-import { ChatRoom, ChatMessage } from './../../objects/index';
-import { BBCodeService, WebsocketService } from './../../shared/services/index';
+import { AppState, ChatRoom, ChatMessage } from './../../store/constants';
+import { BBCodeService } from './../../shared/services/index';
 
 @Component({
   moduleId: module.id,
@@ -11,43 +13,36 @@ import { BBCodeService, WebsocketService } from './../../shared/services/index';
   providers: [ChatService]
 })
 
-export class ChatPageComponent implements OnInit, OnDestroy {
-  chats: ChatRoom[] = [];
-  chatMessages: ChatMessage[];
+export class ChatPageComponent implements OnDestroy {
+  chatRoomList: any;
+  chatMessageList: Observable<ChatMessage[]>;
   currentTab: string;
-  tabsObject: any;
-  tabsArray: string[];
-  channel: string = 'chat';
+  tabs: string[];
 
   constructor(
-    private chatService: ChatService,
+    private store: Store<AppState>,
+    private service: ChatService,
     private bbcode: BBCodeService,
-    private websocket: WebsocketService
-  ) {}
+  ) {
+    this.store.select('chatRoomList')
+      .subscribe(this.subscribeChatRoomList.bind(this));
 
-  ngOnInit(): void {
-    this.chatService.getChats().subscribe((result) => {
-      this.chats = result.chats as ChatRoom[];
-      this.chatMessages = result.messages as ChatMessage[];
-      this.mapChatsToTabs();
-      this.subscribe(this.chats[0].id);
-    });
+    this.chatMessageList = this.store.select('chatMessageList');
+    this.chatMessageList
+      .filter((chatMessageList: ChatMessage[]) => !!chatMessageList.length)
+      .subscribe(() => this.subscribeChatMessageList.bind(this));
+
+    this.service.getChats();
   }
 
   ngOnDestroy(): void {
-    this.unsubscribe();
+    this.service.unsubscribe();
   }
 
   switchChatRooms(tab: string): void {
     if(this.currentTab != tab) {
-      let id:number = this.tabsObject[tab];
       this.currentTab = tab;
-
-      this.chatService.getMessages(id).subscribe((chatMessages) => {
-        this.chatMessages = chatMessages;
-        this.unsubscribe();
-        this.subscribe(id);
-      });
+      this.service.getMessages(this.currentId());
     }
   }
 
@@ -56,32 +51,22 @@ export class ChatPageComponent implements OnInit, OnDestroy {
   }
 
   onSend(event: any): void {
-    this.chatService.sendMessage(this.tabsObject[this.currentTab], event.value)
-      .finally(() => event.callback())
-      .subscribe();
+    this.service.sendMessage(this.currentId(), event);
   }
 
-  private mapChatsToTabs(): void {
-    this.tabsObject = {};
-    this.tabsArray = this.chats.map((chat) => {
-      this.tabsObject[chat.title] = chat.id
-      return chat.title;
-    });
-    this.currentTab = this.tabsArray[0];
+  private currentId(): number {
+    return this.chatRoomList[this.currentTab];
   }
 
-  private subscribe(id: number): void {
-    let subscription = this.websocket.init(this.channel, { room: id }).subscribe(this.received.bind(this));
-    this.websocket.setSubscription(this.channel, subscription);
+  private subscribeChatRoomList(chatRoomList: any): void {
+    this.chatRoomList = chatRoomList;
+    this.tabs = Object.keys(this.chatRoomList);
+    this.currentTab = this.tabs[0];
+    this.service.subscribe(this.currentId());
   }
 
-  private unsubscribe(): void {
-    this.websocket.destroy(this.channel);
-  }
-
-  private received(res: any): void {
-    if(res.event == 'new_message') {
-      this.chatMessages.unshift(res.data.message as ChatMessage);
-    }
+  private subscribeChatMessageList(): void {
+    this.service.unsubscribe();
+    this.service.subscribe(this.currentId());
   }
 }

@@ -1,11 +1,13 @@
 import {
   User, UserList, PollView, PollList, ServerMonitor, Article,
-  ArticleList, Comment, Preferences, UserPreference, Notification
+  ArticleList, Comment, Preferences, UserPreference, Notification,
+  ChatRoom, ChatMessage,
 } from './../objects/index';
 
 export {
   User, UserList, PollView, PollList, ServerMonitor, Article,
-  ArticleList, Comment, Preferences, UserPreference, Notification
+  ArticleList, Comment, Preferences, UserPreference, Notification,
+  ChatRoom, ChatMessage,
 }
 
 export interface AppState {
@@ -25,6 +27,8 @@ export interface AppState {
   articleList: ArticleList;
   commentList: Comment[];
   monitorList: ServerMonitor[];
+  chatRoomList: ChatRoom[];
+  chatMessagesList: ChatMessage[];
 };
 
 export const SET_CURRENT_USER           = 'SET_CURRENT_USER';
@@ -52,3 +56,6 @@ export const CURRENT_PREFERENCE_SET     = 'CURRENT_PREFERENCE_SET';
 export const CURRENT_PREFERENCE_UPDATE  = 'CURRENT_PREFERENCE_UPDATE';
 export const NOTIFICATIONS_ADD          = 'NOTIFICATIONS_ADD';
 export const NOTIFICATIONS_REMOVE       = 'NOTIFICATIONS_REMOVE';
+export const CHAT_ROOMS                 = 'CHAT_ROOMS';
+export const CHAT_MESSAGES_LIST         = 'CHAT_MESSAGES_LIST';
+export const CHAT_MESSAGES_NEW          = 'CHAT_MESSAGES_NEW';

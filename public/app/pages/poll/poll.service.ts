@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Store } from '@ngrx/store';
+import { Http       } from '@angular/http';
+import { Store      } from '@ngrx/store';
 
 import { PollRenderService } from './../../shared/services/poll-render.service';
 import { AppState, SET_POLL_LIST, SET_CURRENT_POLL } from './../../store/constants';

@@ -1,6 +1,6 @@
 <container-block header='pages.chat.title' [center]='true'>
-  <div id='chat-room' *ngIf='chats.length'>
-    <tabs-partial [tabs]='tabsArray' [currentTab]='currentTab' (currentTabChange)='switchChatRooms($event)'></tabs-partial>
+  <div id='chat-room' *ngIf='tabs.length'>
+    <tabs-partial [tabs]='tabs' [currentTab]='currentTab' (currentTabChange)='switchChatRooms($event)'></tabs-partial>
 
     <div class='row'>
       <div class='col-xs-12 chat-header'>
@@ -9,7 +9,7 @@
     </div>
 
     <div class='chat-message-container'>
-      <div *ngFor='let message of chatMessages trackBy: message?.id' class='chat-messages'>
+      <div class='chat-messages' *ngFor='let message of (chatMessageList | async) trackBy: message?.id'>
         <div class='row'>
           <div class='col-xs-12 chat-message-header'>
             <span class='pull-left'>{{ message.user.username }}</span>
