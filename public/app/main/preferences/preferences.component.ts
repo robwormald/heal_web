@@ -15,6 +15,7 @@ import { AppState, Preferences, UserPreference } from './../../store/constants';
 export class PreferencesComponent implements OnInit {
   preferences: Observable<Preferences>;
   currentPreference: Observable<UserPreference>;
+  currentTime: Observable<Date>;
 
   constructor(
     private service: PreferencesService,
@@ -22,6 +23,7 @@ export class PreferencesComponent implements OnInit {
   ) {
     this.preferences = this.store.select('preferences');
     this.currentPreference = this.store.select('currentPreference');
+    this.currentTime = Observable.timer(0, 1000).map(() => new Date());
   }
 
   ngOnInit(): void {

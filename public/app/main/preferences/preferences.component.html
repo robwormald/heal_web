@@ -1,4 +1,6 @@
 <span>
+  <span>{{ (currentTime | async) | date: 'jms' }}</span>
+
   <span class='cursor-pointer' *ngFor='let language of (preferences | async)?.languages' (click)='changeLanguage(language)'>
     {{ language | uppercase }}
   </span>
