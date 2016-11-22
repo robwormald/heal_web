@@ -4,7 +4,7 @@ import {
   Notification, NOTIFICATIONS_ADD, NOTIFICATIONS_REMOVE
 } from './../constants';
 
-export function notificationsReducer(state: Notification[] = [], action: Action): Notification {
+export function notificationsReducer(state: Notification[] = [], action: Action): Notification[] {
   switch(action.type) {
     case NOTIFICATIONS_ADD:
       return [...state, extendNotification(action.payload)];
