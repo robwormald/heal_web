@@ -4,7 +4,7 @@ import {
   User, SET_CURRENT_VIEWUSER
 } from './../constants';
 
-export const currentViewUserReducer: ActionReducer<User> = (state: User, action: Action) => {
+export function currentViewUserReducer(state: User, action: Action): User {
   switch(action.type) {
     case SET_CURRENT_VIEWUSER:
       return new User(action.payload);

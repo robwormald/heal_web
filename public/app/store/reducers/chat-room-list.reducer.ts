@@ -4,7 +4,7 @@ import {
   CHAT_ROOMS
 } from './../constants';
 
-export const chatRoomListReducer: ActionReducer<Object> = (state: Object = {}, action: Action) => {
+export function chatRoomListReducer(state: Object = {}, action: Action): Object {
   switch(action.type) {
     case CHAT_ROOMS:
       return action.payload;

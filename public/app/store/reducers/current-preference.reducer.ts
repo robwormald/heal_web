@@ -4,7 +4,7 @@ import {
   UserPreference, CURRENT_PREFERENCE_SET, CURRENT_PREFERENCE_UPDATE
 } from './../constants';
 
-export const currentPreferenceReducer: ActionReducer<UserPreference> = (state: UserPreference = {} as UserPreference, action: Action) => {
+export function currentPreferenceReducer(state: UserPreference = {} as UserPreference, action: Action): UserPreference {
   switch(action.type) {
     case CURRENT_PREFERENCE_SET:
     case CURRENT_PREFERENCE_UPDATE:

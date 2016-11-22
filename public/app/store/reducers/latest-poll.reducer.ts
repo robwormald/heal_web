@@ -4,7 +4,7 @@ import {
   PollView, SET_LATEST_POLL
 } from './../constants';
 
-export const latestPollReducer: ActionReducer<PollView> = (state: PollView = {} as PollView, action: Action) => {
+export function latestPollReducer(state: PollView = {} as PollView, action: Action): PollView {
   switch(action.type) {
     case SET_LATEST_POLL:
       return action.payload;

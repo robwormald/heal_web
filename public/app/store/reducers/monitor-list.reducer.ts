@@ -4,7 +4,7 @@ import {
   ServerMonitor, MONITOR_LIST
 } from './../constants';
 
-export const monitorListReducer: ActionReducer<ServerMonitor[]> = (state: ServerMonitor[] = [], action: Action) => {
+export function monitorListReducer(state: ServerMonitor[] = [], action: Action): ServerMonitor[] {
   switch(action.type) {
     case MONITOR_LIST:
       return action.payload;

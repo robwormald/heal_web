@@ -4,7 +4,7 @@ import {
   User, SET_ONLINE_USERS, ADD_ONLINE_USER, REMOVE_ONLINE_USER, UPDATE_ONLINE_USER
 } from './../constants';
 
-export const onlineUsersReducer: ActionReducer<User[]> = (state: User[] = [], action: Action) => {
+export function onlineUsersReducer(state: User[] = [], action: Action): User[] {
   switch(action.type) {
     case SET_ONLINE_USERS:
       let onlineUsers = action.payload.map((user) => new User(user));

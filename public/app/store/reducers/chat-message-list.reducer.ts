@@ -4,7 +4,7 @@ import {
   ChatMessage, CHAT_MESSAGES_NEW, CHAT_MESSAGES_LIST
 } from './../constants';
 
-export const chatMessageListReducer: ActionReducer<ChatMessage[]> = (state: ChatMessage[] = [], action: Action) => {
+export function chatMessageListReducer(state: ChatMessage[] = [], action: Action): ChatMessage[] {
   switch(action.type) {
     case CHAT_MESSAGES_NEW:
       return [action.payload, ...state];

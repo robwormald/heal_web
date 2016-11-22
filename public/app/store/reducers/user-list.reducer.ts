@@ -4,7 +4,7 @@ import {
   User, UserList, SET_USER_LIST
 } from './../constants';
 
-export const userListReducer: ActionReducer<UserList> = (state: UserList = {} as UserList, action: Action) => {
+export function userListReducer(state: UserList = {} as UserList, action: Action): UserList {
   switch(action.type) {
     case SET_USER_LIST:
       return Object.assign({}, state, prepareData(action.payload));

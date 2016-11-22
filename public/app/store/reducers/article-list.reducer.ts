@@ -4,7 +4,7 @@ import {
   ArticleList, SET_ARTICLE_LIST
 } from './../constants';
 
-export const articleListReducer: ActionReducer<ArticleList> = (state: ArticleList = {} as ArticleList, action: Action) => {
+export function articleListReducer(state: ArticleList = {} as ArticleList, action: Action): ArticleList {
   switch(action.type) {
     case SET_ARTICLE_LIST:
       let articleList = {

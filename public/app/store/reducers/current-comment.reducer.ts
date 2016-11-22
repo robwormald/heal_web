@@ -4,7 +4,7 @@ import {
   Comment, COMMENT_CURRENT, COMMENT_EDIT
 } from './../constants';
 
-export const currentCommentReducer: ActionReducer<Comment[]> = (state: Comment[] = [], action: Action) => {
+export function currentCommentReducer(state: Comment[] = [], action: Action): Comment[] {
   switch(action.type) {
     case COMMENT_CURRENT:
       const { comments, rateData } = action.payload;

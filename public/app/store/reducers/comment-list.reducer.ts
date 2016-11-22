@@ -4,7 +4,7 @@ import {
   Comment, COMMENT_LIST, COMMENT_CREATE, COMMENT_DELETE, COMMENT_UPDATE
 } from './../constants';
 
-export const commentListReducer: ActionReducer<Comment[]> = (state: Comment[] = [], action: Action) => {
+export function commentListReducer(state: Comment[] = [], action: Action): Comment[] {
   switch(action.type) {
     case COMMENT_LIST:
     case COMMENT_CREATE:

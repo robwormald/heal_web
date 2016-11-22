@@ -4,7 +4,7 @@ import {
   Preferences, PREFERENCES_SET, PREFERENCES_UPDATE
 } from './../constants';
 
-export const preferencesReducer: ActionReducer<Preferences> = (state: Preferences = {} as Preferences, action: Action) => {
+export function preferencesReducer(state: Preferences = {} as Preferences, action: Action): Preferences {
   switch(action.type) {
     case PREFERENCES_SET:
     case PREFERENCES_UPDATE:

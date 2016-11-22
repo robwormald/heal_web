@@ -4,7 +4,7 @@ import {
   PollList, SET_POLL_LIST
 } from './../constants';
 
-export const pollListReducer: ActionReducer<PollList> = (state: PollList = {} as PollList, action: Action) => {
+export function pollListReducer(state: PollList = {} as PollList, action: Action): PollList {
   switch(action.type) {
     case SET_POLL_LIST:
       return Object.assign({}, state, action.payload);
