@@ -3,10 +3,10 @@ import { Component, Input } from '@angular/core';
 @Component({
   moduleId: module.id,
   selector: 'container-block',
-  templateUrl: 'container-block.component.html'
+  templateUrl: 'container.component.html'
 })
 
-export class ContainerBlockPartialComponent {
+export class ContainerPartialComponent {
   @Input('header') header = '';
   @Input('center') center = false;
 }
