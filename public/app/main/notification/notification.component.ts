@@ -12,7 +12,7 @@ import {
   templateUrl: 'notification.component.html',
 })
 
-export class NotificationPartialComponent  {
+export class NotificationComponent  {
   notifications: Observable<Notification[]>;
 
   constructor(

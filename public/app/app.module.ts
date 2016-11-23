@@ -14,9 +14,9 @@ import { SharedModule  } from './shared/modules/shared.module';
 import { routing, appRoutingProviders } from './app.routing';
 
 import { ChatPageComponent }  from './pages/chat/chat.component';
-import { PageModule } from './pages/page.module';
-import { MenuModule } from './menus/menu.module';
-import { MainModule } from './main/main.module';
+import { ALL_PAGES    } from './pages/index';
+import { ALL_MENUS    } from './menus/index';
+import { ALL_PARTIALS } from './main/index';
 
 import './rxjs-extensions';
 
@@ -29,13 +29,14 @@ import './rxjs-extensions';
     routing,
     StoreModule.provideStore(StoreReducers),
     TranslateModule.forRoot(),
-    MainModule,
-    MenuModule,
-    PageModule,
+    ALL_PAGES
   ],
   declarations: [
     AppComponent,
     ChatPageComponent,
+
+    ALL_MENUS,
+    ALL_PARTIALS,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'lv' },

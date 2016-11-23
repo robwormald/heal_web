@@ -9,8 +9,8 @@ import { ModalModule      } from 'ng2-bootstrap/components/modal';
 import { DatepickerModule } from 'ng2-bootstrap/components/datepicker';
 import { Ng2BreadcrumbModule, BreadcrumbService } from 'ng2-breadcrumb/ng2-breadcrumb';
 
-import { PartialModule } from './../../partials/partial.module';
-import { SharedServicesModule } from './../shared-services.module';
+import { ALL_SERVICES } from './../services/index';
+import { ALL_PARTIALS } from './../../partials/index';
 
 @NgModule({
   imports: [
@@ -23,17 +23,20 @@ import { SharedServicesModule } from './../shared-services.module';
     DatepickerModule,
     Ng2BreadcrumbModule,
     TranslateModule,
-    SharedServicesModule,
-    PartialModule,
+  ],
+  declarations: [
+    ALL_PARTIALS,
   ],
   exports: [
     FormsModule,
     CommonModule,
     Ng2BreadcrumbModule,
     TranslateModule,
+    ALL_PARTIALS,
   ],
   providers: [
     BreadcrumbService,
+    ALL_SERVICES,
   ]
 })
 
