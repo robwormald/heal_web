@@ -18,10 +18,10 @@ import { ALL_PARTIALS } from './../../partials/index';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    PopoverModule,
+    // PopoverModule,
     ModalModule,
     DatepickerModule,
-    Ng2BreadcrumbModule,
+    // Ng2BreadcrumbModule,
     TranslateModule,
   ],
   declarations: [
@@ -30,7 +30,7 @@ import { ALL_PARTIALS } from './../../partials/index';
   exports: [
     FormsModule,
     CommonModule,
-    Ng2BreadcrumbModule,
+    // Ng2BreadcrumbModule,
     TranslateModule,
     ALL_PARTIALS,
   ],

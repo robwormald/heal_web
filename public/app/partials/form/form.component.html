@@ -13,15 +13,15 @@
         <input class='form-control' [type]='field.type' [id]='specificId + field.name' [name]='field.name' [formControlName]='field.name' *ngIf='field.input' />
         <textarea class='form-control' [id]='specificId + field.name' [name]='field.name' [rows]='field.rows || 8' [formControlName]='field.name' *ngIf='field.textarea'></textarea>
 
-        <ng-container class='form-control' *ngIf='field.date'>
+        <!-- <ng-container class='form-control' *ngIf='field.date'>
           <button class='btn btn-generic' [id]='specificId + field.name' [popover]='datepickerPopover' [popoverDisabled]='datepickerHidden'>
             {{ (model[field.name] || datepickerToday) | date: 'fullDate' }}
           </button>
 
           <popover-content #datepickerPopover placement='bottom' [closeOnClickOutside]='true'>
-            <!-- <datepicker [formControlName]='field.name' [name]='field.name' datepickerMode='year' startingDay='1' [showWeeks]='false' (selectionDone)='dateSelected()'></datepicker> -->
+            <datepicker [formControlName]='field.name' [name]='field.name' datepickerMode='year' startingDay='1' [showWeeks]='false' (selectionDone)='dateSelected()'></datepicker>
           </popover-content>
-        </ng-container>
+        </ng-container> -->
 
         <file-partial [formControlName]='field.name' [uniqId]='specificId + field.name' [type]='field.validations?.fileType' *ngIf='field.file'></file-partial>
       </div>
