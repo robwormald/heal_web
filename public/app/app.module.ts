@@ -21,7 +21,7 @@ import { ALL_PARTIALS } from './main/index';
 import './rxjs-extensions';
 
 export function translateLoaderFactory(http: Http) {
-  return new TranslateStaticLoader(http, './assets/i18n', '.json');
+  return new TranslateStaticLoader(http, './i18n', '.json');
 }
 
 @NgModule({
