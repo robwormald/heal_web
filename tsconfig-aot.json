@@ -7,7 +7,6 @@
     "pretty": false,
     "sourceMap": true,
     "lib": ["es5", "dom"],
-    "noEmit": true,
     "strictNullChecks": false,
     "skipDefaultLibCheck": true,
     "typeRoots": [
@@ -16,13 +15,11 @@
     "types": [
       "core-js",
       "node"
-    ]
+    ],
+    "outDir": "dist"
   },
-  "exclude": [
-    "node_modules"
-  ],
   "include": [
-    "public/app/main.ts"
+    "public/app/**/*.ts"
   ],
 
   "angularCompilerOptions": {
