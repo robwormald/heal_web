@@ -4,5 +4,6 @@ window['App'] = {};
 window['App'].cable = ActionCable.createConsumer();
 
 import { platformBrowser }    from '@angular/platform-browser';
-import { AppModuleNgFactory } from '../aot/public/app/app.module.ngfactory';
+import { AppModule } from './app.module';
+import { AppModuleNgFactory } from './aot/public/app/app.module.ngfactory';
 platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);
