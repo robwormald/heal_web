@@ -35,7 +35,7 @@ export class FormPartialComponent implements OnInit, OnChanges {
     this.reBuildForm(this.model);
   }
 
-  ngOnChanges(): void {
+  ngOnChanges(changes): void {
     this.submitted = false;
     this.reBuildForm(this.model);
   }

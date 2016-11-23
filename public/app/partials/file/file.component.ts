@@ -58,6 +58,10 @@ export class FilePartialComponent implements ControlValueAccessor {
     this.propagateChange(file);
   }
 
+  acceptTypeString(): string {
+    return `${this.type}/*`;
+  }
+
   private workWithFile(file: File): void {
     if(!file) return;
     this.file = {};
@@ -65,9 +69,5 @@ export class FilePartialComponent implements ControlValueAccessor {
     let reader = new FileReader();
     reader.onload = this.onLoad.bind(this, file);
     reader.readAsDataURL(file);
-  }
-
-  private acceptTypeString(): string {
-    return `${this.type}/*`;
   }
 }

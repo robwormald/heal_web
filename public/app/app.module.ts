@@ -1,9 +1,9 @@
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule       } from '@angular/platform-browser';
-import { HttpModule          } from '@angular/http';
+import { HttpModule, Http    } from '@angular/http';
 import { StoreModule         } from '@ngrx/store';
 
-import { TranslateModule  } from 'ng2-translate';
+import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate';
 import { ComponentsHelper } from 'ng2-bootstrap/ng2-bootstrap'
 import { CollapseModule   } from 'ng2-bootstrap/components/collapse';
 
@@ -20,6 +20,10 @@ import { ALL_PARTIALS } from './main/index';
 
 import './rxjs-extensions';
 
+export function translateLoaderFactory(http: Http) {
+  return new TranslateStaticLoader(http, './assets/i18n', '.json');
+}
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -28,7 +32,11 @@ import './rxjs-extensions';
     CollapseModule,
     routing,
     StoreModule.provideStore(StoreReducers),
-    TranslateModule.forRoot(),
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: translateLoaderFactory,
+      deps: [Http]
+    }),
     ALL_PAGES
   ],
   declarations: [

@@ -23,7 +23,7 @@ export class RatePartialComponent implements OnInit, OnChanges {
 
   constructor(private service: RatePartialService) {}
 
-  ngOnChanges(): void {
+  ngOnChanges(changes): void {
     if(!this.data) return;
 
     this.recieveResponse(this.data);

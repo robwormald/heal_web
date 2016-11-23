@@ -20,7 +20,7 @@ export class PaginationPartialComponent implements OnChanges {
   currentItems: any[];
   shouldShow: boolean = false;
 
-  ngOnChanges(): void {
+  ngOnChanges(changes): void {
     this.lastPage = Math.ceil((this.totalCount/this.perPage) || 1);
     let page = this.currentPage || 1;
 
