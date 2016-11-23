@@ -19,16 +19,14 @@
     ]
   },
   "exclude": [
-    "node_modules",
-    "public/aot"
+    "node_modules"
   ],
-  "files": [
-    "public/app/app.module.ts",
+  "include": [
     "public/app/main.ts"
   ],
 
   "angularCompilerOptions": {
-    "genDir": "public/aot",
+    "genDir": "./public/app/aot",
     "skipMetadataEmit" : true
   }
 }
