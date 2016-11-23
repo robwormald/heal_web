@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 
 import { RatePartialService } from './rate.service';
 
@@ -9,7 +9,7 @@ import { RatePartialService } from './rate.service';
   providers: [RatePartialService]
 })
 
-export class RatePartialComponent implements OnInit {
+export class RatePartialComponent implements OnInit, OnChanges {
   rateOptions: string[] = ['against', 'none', 'for'];
   showRateOptions: boolean;
   userIcon: string = 'none';

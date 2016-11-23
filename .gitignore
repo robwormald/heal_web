@@ -18,6 +18,7 @@
 /public/app/**/*.js
 /public/app/**/*.map
 /public/uploads/**/*
+/public/aot/**/*
 npm-debug.log
 .env
 Procfile

@@ -8,13 +8,13 @@ export class User {
   id: number;
   username: string;
   email: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at: any;
+  updated_at: any;
   permissions: string[];
   avatar: Avatar;
   location: string;
   residence?: string;
-  birthday?: Date;
+  birthday?: any;
   signature?: string;
   parsedSignature?: string;
 

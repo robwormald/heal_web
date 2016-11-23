@@ -9,4 +9,5 @@ export class PollView {
   totalAnswers: number;
   percent: number;
   widthStyle: string;
+  message?: string;
 }
